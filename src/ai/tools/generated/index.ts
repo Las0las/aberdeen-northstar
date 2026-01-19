@@ -1,0 +1,27945 @@
+// AUTO-GENERATED - AI Tools from OpenAPI
+// DO NOT EDIT - Regenerate with: node scripts/generate-ai-tools.js
+
+import type { Database } from '@/types/database.types';
+
+export interface AIToolParameter {
+  type: string;
+  description: string;
+  enum?: string[];
+}
+
+export interface AIToolMetadata {
+  method: string;
+  path: string;
+  tag: string;
+  requiresAuth: boolean;
+  mutates: boolean;
+  confidenceThreshold: number;
+}
+
+export interface AITool {
+  name: string;
+  description: string;
+  parameters: {
+    type: 'object';
+    properties: Record<string, AIToolParameter>;
+    required?: string[];
+  };
+  metadata: AIToolMetadata;
+}
+
+export const aiTools: AITool[] = [
+  {
+    "name": "listTags",
+    "description": "List tags",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/tags",
+      "tag": "Tags",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createTags",
+    "description": "Create tags",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "color": {
+          "type": "string",
+          "description": "color field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "tag_type": {
+          "type": "string",
+          "description": "tag_type field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "name",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/tags",
+      "tag": "Tags",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getTags",
+    "description": "Get tags by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/tags/{id}",
+      "tag": "Tags",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateTags",
+    "description": "Update tags",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "color": {
+          "type": "string",
+          "description": "color field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "tag_type": {
+          "type": "string",
+          "description": "tag_type field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/tags/{id}",
+      "tag": "Tags",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteTags",
+    "description": "Delete tags",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/tags/{id}",
+      "tag": "Tags",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listUsers",
+    "description": "List users",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/users",
+      "tag": "Users",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createUsers",
+    "description": "Create users",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "full_name": {
+          "type": "string",
+          "description": "full_name field"
+        },
+        "role": {
+          "type": "string",
+          "description": "role field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "password_hash": {
+          "type": "string",
+          "description": "password_hash field"
+        },
+        "avatar_url": {
+          "type": "string",
+          "description": "avatar_url field"
+        },
+        "last_login_at": {
+          "type": "string",
+          "description": "last_login_at field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "permissions": {
+          "type": "object",
+          "description": "permissions field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "email"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/users",
+      "tag": "Users",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getUsers",
+    "description": "Get users by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/users/{id}",
+      "tag": "Users",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateUsers",
+    "description": "Update users",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "full_name": {
+          "type": "string",
+          "description": "full_name field"
+        },
+        "role": {
+          "type": "string",
+          "description": "role field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "password_hash": {
+          "type": "string",
+          "description": "password_hash field"
+        },
+        "avatar_url": {
+          "type": "string",
+          "description": "avatar_url field"
+        },
+        "last_login_at": {
+          "type": "string",
+          "description": "last_login_at field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "permissions": {
+          "type": "object",
+          "description": "permissions field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/users/{id}",
+      "tag": "Users",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteUsers",
+    "description": "Delete users",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/users/{id}",
+      "tag": "Users",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listInterviewFeedback",
+    "description": "List interview_feedback",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/interview_feedback",
+      "tag": "InterviewFeedback",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createInterviewFeedback",
+    "description": "Create interview_feedback",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "interview_id": {
+          "type": "string",
+          "description": "interview_id field"
+        },
+        "interviewer_id": {
+          "type": "string",
+          "description": "interviewer_id field"
+        },
+        "interviewer_name": {
+          "type": "string",
+          "description": "interviewer_name field"
+        },
+        "overall_rating": {
+          "type": "integer",
+          "description": "overall_rating field"
+        },
+        "recommendation": {
+          "type": "string",
+          "description": "recommendation field"
+        },
+        "strengths": {
+          "type": "array",
+          "description": "strengths field"
+        },
+        "concerns": {
+          "type": "array",
+          "description": "concerns field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "scorecard": {
+          "type": "object",
+          "description": "scorecard field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        }
+      }
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/interview_feedback",
+      "tag": "InterviewFeedback",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getInterviewFeedback",
+    "description": "Get interview_feedback by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/interview_feedback/{id}",
+      "tag": "InterviewFeedback",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateInterviewFeedback",
+    "description": "Update interview_feedback",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "interview_id": {
+          "type": "string",
+          "description": "interview_id field"
+        },
+        "interviewer_id": {
+          "type": "string",
+          "description": "interviewer_id field"
+        },
+        "interviewer_name": {
+          "type": "string",
+          "description": "interviewer_name field"
+        },
+        "overall_rating": {
+          "type": "integer",
+          "description": "overall_rating field"
+        },
+        "recommendation": {
+          "type": "string",
+          "description": "recommendation field"
+        },
+        "strengths": {
+          "type": "array",
+          "description": "strengths field"
+        },
+        "concerns": {
+          "type": "array",
+          "description": "concerns field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "scorecard": {
+          "type": "object",
+          "description": "scorecard field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/interview_feedback/{id}",
+      "tag": "InterviewFeedback",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteInterviewFeedback",
+    "description": "Delete interview_feedback",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/interview_feedback/{id}",
+      "tag": "InterviewFeedback",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listUserSessions",
+    "description": "List user_sessions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/user_sessions",
+      "tag": "UserSessions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createUserSessions",
+    "description": "Create user_sessions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "session_token": {
+          "type": "string",
+          "description": "session_token field"
+        },
+        "ip_address": {
+          "type": "string",
+          "description": "ip_address field"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "user_agent field"
+        },
+        "expires_at": {
+          "type": "string",
+          "description": "expires_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "user_id",
+        "session_token",
+        "expires_at",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/user_sessions",
+      "tag": "UserSessions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getUserSessions",
+    "description": "Get user_sessions by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/user_sessions/{id}",
+      "tag": "UserSessions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateUserSessions",
+    "description": "Update user_sessions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "session_token": {
+          "type": "string",
+          "description": "session_token field"
+        },
+        "ip_address": {
+          "type": "string",
+          "description": "ip_address field"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "user_agent field"
+        },
+        "expires_at": {
+          "type": "string",
+          "description": "expires_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/user_sessions/{id}",
+      "tag": "UserSessions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteUserSessions",
+    "description": "Delete user_sessions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/user_sessions/{id}",
+      "tag": "UserSessions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listSavedSearches",
+    "description": "List saved_searches",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/saved_searches",
+      "tag": "SavedSearches",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createSavedSearches",
+    "description": "Create saved_searches",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "filters": {
+          "type": "object",
+          "description": "filters field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "name",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/saved_searches",
+      "tag": "SavedSearches",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getSavedSearches",
+    "description": "Get saved_searches by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/saved_searches/{id}",
+      "tag": "SavedSearches",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateSavedSearches",
+    "description": "Update saved_searches",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "filters": {
+          "type": "object",
+          "description": "filters field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/saved_searches/{id}",
+      "tag": "SavedSearches",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteSavedSearches",
+    "description": "Delete saved_searches",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/saved_searches/{id}",
+      "tag": "SavedSearches",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listActivities",
+    "description": "List activities",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/activities",
+      "tag": "Activities",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createActivities",
+    "description": "Create activities",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "action_type": {
+          "type": "string",
+          "description": "action_type field"
+        },
+        "action_category": {
+          "type": "string",
+          "description": "action_category field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "actor_id": {
+          "type": "string",
+          "description": "actor_id field"
+        },
+        "actor_type": {
+          "type": "string",
+          "description": "actor_type field"
+        },
+        "actor_name": {
+          "type": "string",
+          "description": "actor_name field"
+        },
+        "previous_value": {
+          "type": "object",
+          "description": "previous_value field"
+        },
+        "new_value": {
+          "type": "object",
+          "description": "new_value field"
+        },
+        "changes": {
+          "type": "object",
+          "description": "changes field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "ip_address": {
+          "type": "string",
+          "description": "ip_address field"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "user_agent field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        }
+      },
+      "required": [
+        "entity_type",
+        "entity_id",
+        "action_type",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/activities",
+      "tag": "Activities",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getActivities",
+    "description": "Get activities by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/activities/{id}",
+      "tag": "Activities",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateActivities",
+    "description": "Update activities",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "action_type": {
+          "type": "string",
+          "description": "action_type field"
+        },
+        "action_category": {
+          "type": "string",
+          "description": "action_category field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "actor_id": {
+          "type": "string",
+          "description": "actor_id field"
+        },
+        "actor_type": {
+          "type": "string",
+          "description": "actor_type field"
+        },
+        "actor_name": {
+          "type": "string",
+          "description": "actor_name field"
+        },
+        "previous_value": {
+          "type": "object",
+          "description": "previous_value field"
+        },
+        "new_value": {
+          "type": "object",
+          "description": "new_value field"
+        },
+        "changes": {
+          "type": "object",
+          "description": "changes field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "ip_address": {
+          "type": "string",
+          "description": "ip_address field"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "user_agent field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/activities/{id}",
+      "tag": "Activities",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteActivities",
+    "description": "Delete activities",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/activities/{id}",
+      "tag": "Activities",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listRegistryActions",
+    "description": "List registry_actions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/registry_actions",
+      "tag": "RegistryActions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createRegistryActions",
+    "description": "Create registry_actions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action_key": {
+          "type": "string",
+          "description": "action_key field"
+        },
+        "definition": {
+          "type": "object",
+          "description": "definition field"
+        }
+      },
+      "required": [
+        "action_key",
+        "definition"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/registry_actions",
+      "tag": "RegistryActions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getRegistryActions",
+    "description": "Get registry_actions by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/registry_actions/{id}",
+      "tag": "RegistryActions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateRegistryActions",
+    "description": "Update registry_actions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "action_key": {
+          "type": "string",
+          "description": "action_key field"
+        },
+        "definition": {
+          "type": "object",
+          "description": "definition field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/registry_actions/{id}",
+      "tag": "RegistryActions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteRegistryActions",
+    "description": "Delete registry_actions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/registry_actions/{id}",
+      "tag": "RegistryActions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listIntegrationConnections",
+    "description": "List integration_connections",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/integration_connections",
+      "tag": "IntegrationConnections",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createIntegrationConnections",
+    "description": "Create integration_connections",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "category": {
+          "type": "string",
+          "description": "category field"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "external_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "credentials_ref": {
+          "type": "string",
+          "description": "credentials_ref field"
+        },
+        "last_sync_at": {
+          "type": "string",
+          "description": "last_sync_at field"
+        },
+        "last_sync_status": {
+          "type": "string",
+          "description": "last_sync_status field"
+        },
+        "last_error": {
+          "type": "string",
+          "description": "last_error field"
+        },
+        "settings": {
+          "type": "object",
+          "description": "settings field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "provider",
+        "category"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/integration_connections",
+      "tag": "IntegrationConnections",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getIntegrationConnections",
+    "description": "Get integration_connections by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/integration_connections/{id}",
+      "tag": "IntegrationConnections",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateIntegrationConnections",
+    "description": "Update integration_connections",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "category": {
+          "type": "string",
+          "description": "category field"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "external_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "credentials_ref": {
+          "type": "string",
+          "description": "credentials_ref field"
+        },
+        "last_sync_at": {
+          "type": "string",
+          "description": "last_sync_at field"
+        },
+        "last_sync_status": {
+          "type": "string",
+          "description": "last_sync_status field"
+        },
+        "last_error": {
+          "type": "string",
+          "description": "last_error field"
+        },
+        "settings": {
+          "type": "object",
+          "description": "settings field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/integration_connections/{id}",
+      "tag": "IntegrationConnections",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteIntegrationConnections",
+    "description": "Delete integration_connections",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/integration_connections/{id}",
+      "tag": "IntegrationConnections",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listJobBoardMappings",
+    "description": "List job_board_mappings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/job_board_mappings",
+      "tag": "JobBoardMappings",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createJobBoardMappings",
+    "description": "Create job_board_mappings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "external_job_id": {
+          "type": "string",
+          "description": "external_job_id field"
+        },
+        "external_url": {
+          "type": "string",
+          "description": "external_url field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "posted_at": {
+          "type": "string",
+          "description": "posted_at field"
+        },
+        "expires_at": {
+          "type": "string",
+          "description": "expires_at field"
+        },
+        "last_sync_at": {
+          "type": "string",
+          "description": "last_sync_at field"
+        },
+        "views_count": {
+          "type": "integer",
+          "description": "views_count field"
+        },
+        "applications_count": {
+          "type": "integer",
+          "description": "applications_count field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "job_id",
+        "provider",
+        "external_job_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/job_board_mappings",
+      "tag": "JobBoardMappings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getJobBoardMappings",
+    "description": "Get job_board_mappings by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/job_board_mappings/{id}",
+      "tag": "JobBoardMappings",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateJobBoardMappings",
+    "description": "Update job_board_mappings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "external_job_id": {
+          "type": "string",
+          "description": "external_job_id field"
+        },
+        "external_url": {
+          "type": "string",
+          "description": "external_url field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "posted_at": {
+          "type": "string",
+          "description": "posted_at field"
+        },
+        "expires_at": {
+          "type": "string",
+          "description": "expires_at field"
+        },
+        "last_sync_at": {
+          "type": "string",
+          "description": "last_sync_at field"
+        },
+        "views_count": {
+          "type": "integer",
+          "description": "views_count field"
+        },
+        "applications_count": {
+          "type": "integer",
+          "description": "applications_count field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/job_board_mappings/{id}",
+      "tag": "JobBoardMappings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteJobBoardMappings",
+    "description": "Delete job_board_mappings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/job_board_mappings/{id}",
+      "tag": "JobBoardMappings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listWebhookLogs",
+    "description": "List webhook_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/webhook_logs",
+      "tag": "WebhookLogs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createWebhookLogs",
+    "description": "Create webhook_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "event_type": {
+          "type": "string",
+          "description": "event_type field"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "external_id field"
+        },
+        "payload": {
+          "type": "object",
+          "description": "payload field"
+        },
+        "headers": {
+          "type": "object",
+          "description": "headers field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "processed_at": {
+          "type": "string",
+          "description": "processed_at field"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "error_message field"
+        },
+        "retry_count": {
+          "type": "integer",
+          "description": "retry_count field"
+        },
+        "received_at": {
+          "type": "string",
+          "description": "received_at field"
+        }
+      },
+      "required": [
+        "provider",
+        "event_type",
+        "payload"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/webhook_logs",
+      "tag": "WebhookLogs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getWebhookLogs",
+    "description": "Get webhook_logs by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/webhook_logs/{id}",
+      "tag": "WebhookLogs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateWebhookLogs",
+    "description": "Update webhook_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "event_type": {
+          "type": "string",
+          "description": "event_type field"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "external_id field"
+        },
+        "payload": {
+          "type": "object",
+          "description": "payload field"
+        },
+        "headers": {
+          "type": "object",
+          "description": "headers field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "processed_at": {
+          "type": "string",
+          "description": "processed_at field"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "error_message field"
+        },
+        "retry_count": {
+          "type": "integer",
+          "description": "retry_count field"
+        },
+        "received_at": {
+          "type": "string",
+          "description": "received_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/webhook_logs/{id}",
+      "tag": "WebhookLogs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteWebhookLogs",
+    "description": "Delete webhook_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/webhook_logs/{id}",
+      "tag": "WebhookLogs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listMessages",
+    "description": "List messages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/messages",
+      "tag": "Messages",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createMessages",
+    "description": "Create messages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "description": "tenant_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "enrollment_id": {
+          "type": "string",
+          "description": "enrollment_id field"
+        },
+        "channel": {
+          "type": "string",
+          "description": "channel field"
+        },
+        "direction": {
+          "type": "string",
+          "description": "direction field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "body": {
+          "type": "string",
+          "description": "body field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "provider_message_id": {
+          "type": "string",
+          "description": "provider_message_id field"
+        },
+        "sent_at": {
+          "type": "string",
+          "description": "sent_at field"
+        },
+        "delivered_at": {
+          "type": "string",
+          "description": "delivered_at field"
+        },
+        "failed_at": {
+          "type": "string",
+          "description": "failed_at field"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "error_message field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "candidate_id",
+        "channel",
+        "body",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/messages",
+      "tag": "Messages",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getMessages",
+    "description": "Get messages by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/messages/{id}",
+      "tag": "Messages",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateMessages",
+    "description": "Update messages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "tenant_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "enrollment_id": {
+          "type": "string",
+          "description": "enrollment_id field"
+        },
+        "channel": {
+          "type": "string",
+          "description": "channel field"
+        },
+        "direction": {
+          "type": "string",
+          "description": "direction field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "body": {
+          "type": "string",
+          "description": "body field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "provider_message_id": {
+          "type": "string",
+          "description": "provider_message_id field"
+        },
+        "sent_at": {
+          "type": "string",
+          "description": "sent_at field"
+        },
+        "delivered_at": {
+          "type": "string",
+          "description": "delivered_at field"
+        },
+        "failed_at": {
+          "type": "string",
+          "description": "failed_at field"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "error_message field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/messages/{id}",
+      "tag": "Messages",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteMessages",
+    "description": "Delete messages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/messages/{id}",
+      "tag": "Messages",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listWebhookSubscriptions",
+    "description": "List webhook_subscriptions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/webhook_subscriptions",
+      "tag": "WebhookSubscriptions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createWebhookSubscriptions",
+    "description": "Create webhook_subscriptions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "description": "tenant_id field"
+        },
+        "url": {
+          "type": "string",
+          "description": "url field"
+        },
+        "secret": {
+          "type": "string",
+          "description": "secret field"
+        },
+        "events": {
+          "type": "array",
+          "description": "events field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "url",
+        "secret",
+        "events",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/webhook_subscriptions",
+      "tag": "WebhookSubscriptions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getWebhookSubscriptions",
+    "description": "Get webhook_subscriptions by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/webhook_subscriptions/{id}",
+      "tag": "WebhookSubscriptions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateWebhookSubscriptions",
+    "description": "Update webhook_subscriptions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "tenant_id field"
+        },
+        "url": {
+          "type": "string",
+          "description": "url field"
+        },
+        "secret": {
+          "type": "string",
+          "description": "secret field"
+        },
+        "events": {
+          "type": "array",
+          "description": "events field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/webhook_subscriptions/{id}",
+      "tag": "WebhookSubscriptions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteWebhookSubscriptions",
+    "description": "Delete webhook_subscriptions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/webhook_subscriptions/{id}",
+      "tag": "WebhookSubscriptions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listWorkspaces",
+    "description": "List workspaces",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/workspaces",
+      "tag": "Workspaces",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createWorkspaces",
+    "description": "Create workspaces",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "slug": {
+          "type": "string",
+          "description": "slug field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "settings": {
+          "type": "object",
+          "description": "settings field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "name",
+        "slug",
+        "created_by",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/workspaces",
+      "tag": "Workspaces",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getWorkspaces",
+    "description": "Get workspaces by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/workspaces/{id}",
+      "tag": "Workspaces",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateWorkspaces",
+    "description": "Update workspaces",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "slug": {
+          "type": "string",
+          "description": "slug field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "settings": {
+          "type": "object",
+          "description": "settings field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/workspaces/{id}",
+      "tag": "Workspaces",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteWorkspaces",
+    "description": "Delete workspaces",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/workspaces/{id}",
+      "tag": "Workspaces",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listImportRuns",
+    "description": "List import_runs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/import_runs",
+      "tag": "ImportRuns",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createImportRuns",
+    "description": "Create import_runs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "file_name": {
+          "type": "string",
+          "description": "file_name field"
+        },
+        "file_size_bytes": {
+          "type": "integer",
+          "description": "file_size_bytes field"
+        },
+        "storage_path": {
+          "type": "string",
+          "description": "storage_path field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "total_rows": {
+          "type": "integer",
+          "description": "total_rows field"
+        },
+        "rows_processed": {
+          "type": "integer",
+          "description": "rows_processed field"
+        },
+        "candidates_created": {
+          "type": "integer",
+          "description": "candidates_created field"
+        },
+        "candidates_updated": {
+          "type": "integer",
+          "description": "candidates_updated field"
+        },
+        "candidates_skipped": {
+          "type": "integer",
+          "description": "candidates_skipped field"
+        },
+        "conflicts_detected": {
+          "type": "integer",
+          "description": "conflicts_detected field"
+        },
+        "errors_count": {
+          "type": "integer",
+          "description": "errors_count field"
+        },
+        "error_log": {
+          "type": "object",
+          "description": "error_log field"
+        },
+        "uploaded_by": {
+          "type": "string",
+          "description": "uploaded_by field"
+        },
+        "started_at": {
+          "type": "string",
+          "description": "started_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "file_name",
+        "uploaded_by"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/import_runs",
+      "tag": "ImportRuns",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getImportRuns",
+    "description": "Get import_runs by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/import_runs/{id}",
+      "tag": "ImportRuns",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateImportRuns",
+    "description": "Update import_runs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "file_name": {
+          "type": "string",
+          "description": "file_name field"
+        },
+        "file_size_bytes": {
+          "type": "integer",
+          "description": "file_size_bytes field"
+        },
+        "storage_path": {
+          "type": "string",
+          "description": "storage_path field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "total_rows": {
+          "type": "integer",
+          "description": "total_rows field"
+        },
+        "rows_processed": {
+          "type": "integer",
+          "description": "rows_processed field"
+        },
+        "candidates_created": {
+          "type": "integer",
+          "description": "candidates_created field"
+        },
+        "candidates_updated": {
+          "type": "integer",
+          "description": "candidates_updated field"
+        },
+        "candidates_skipped": {
+          "type": "integer",
+          "description": "candidates_skipped field"
+        },
+        "conflicts_detected": {
+          "type": "integer",
+          "description": "conflicts_detected field"
+        },
+        "errors_count": {
+          "type": "integer",
+          "description": "errors_count field"
+        },
+        "error_log": {
+          "type": "object",
+          "description": "error_log field"
+        },
+        "uploaded_by": {
+          "type": "string",
+          "description": "uploaded_by field"
+        },
+        "started_at": {
+          "type": "string",
+          "description": "started_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/import_runs/{id}",
+      "tag": "ImportRuns",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteImportRuns",
+    "description": "Delete import_runs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/import_runs/{id}",
+      "tag": "ImportRuns",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listImportConflicts",
+    "description": "List import_conflicts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/import_conflicts",
+      "tag": "ImportConflicts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createImportConflicts",
+    "description": "Create import_conflicts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "import_run_id": {
+          "type": "string",
+          "description": "import_run_id field"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "conflict_type": {
+          "type": "string",
+          "description": "conflict_type field"
+        },
+        "confidence_score": {
+          "type": "number",
+          "description": "confidence_score field"
+        },
+        "existing_candidate_id": {
+          "type": "string",
+          "description": "existing_candidate_id field"
+        },
+        "incoming_data": {
+          "type": "object",
+          "description": "incoming_data field"
+        },
+        "resolution": {
+          "type": "string",
+          "description": "resolution field"
+        },
+        "resolved_by": {
+          "type": "string",
+          "description": "resolved_by field"
+        },
+        "resolved_at": {
+          "type": "string",
+          "description": "resolved_at field"
+        },
+        "detected_at": {
+          "type": "string",
+          "description": "detected_at field"
+        }
+      },
+      "required": [
+        "import_run_id",
+        "workspace_id",
+        "conflict_type",
+        "existing_candidate_id",
+        "incoming_data"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/import_conflicts",
+      "tag": "ImportConflicts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getImportConflicts",
+    "description": "Get import_conflicts by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/import_conflicts/{id}",
+      "tag": "ImportConflicts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateImportConflicts",
+    "description": "Update import_conflicts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "import_run_id": {
+          "type": "string",
+          "description": "import_run_id field"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "conflict_type": {
+          "type": "string",
+          "description": "conflict_type field"
+        },
+        "confidence_score": {
+          "type": "number",
+          "description": "confidence_score field"
+        },
+        "existing_candidate_id": {
+          "type": "string",
+          "description": "existing_candidate_id field"
+        },
+        "incoming_data": {
+          "type": "object",
+          "description": "incoming_data field"
+        },
+        "resolution": {
+          "type": "string",
+          "description": "resolution field"
+        },
+        "resolved_by": {
+          "type": "string",
+          "description": "resolved_by field"
+        },
+        "resolved_at": {
+          "type": "string",
+          "description": "resolved_at field"
+        },
+        "detected_at": {
+          "type": "string",
+          "description": "detected_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/import_conflicts/{id}",
+      "tag": "ImportConflicts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteImportConflicts",
+    "description": "Delete import_conflicts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/import_conflicts/{id}",
+      "tag": "ImportConflicts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listClients",
+    "description": "List clients",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/clients",
+      "tag": "Clients",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createClients",
+    "description": "Create clients",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "industry": {
+          "type": "string",
+          "description": "industry field"
+        },
+        "website": {
+          "type": "string",
+          "description": "website field"
+        },
+        "tier": {
+          "type": "string",
+          "description": "tier field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "contact_name": {
+          "type": "string",
+          "description": "contact_name field"
+        },
+        "contact_email": {
+          "type": "string",
+          "description": "contact_email field"
+        },
+        "contact_phone": {
+          "type": "string",
+          "description": "contact_phone field"
+        },
+        "billing_info": {
+          "type": "object",
+          "description": "billing_info field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/clients",
+      "tag": "Clients",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getClients",
+    "description": "Get clients by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/clients/{id}",
+      "tag": "Clients",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateClients",
+    "description": "Update clients",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "industry": {
+          "type": "string",
+          "description": "industry field"
+        },
+        "website": {
+          "type": "string",
+          "description": "website field"
+        },
+        "tier": {
+          "type": "string",
+          "description": "tier field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "contact_name": {
+          "type": "string",
+          "description": "contact_name field"
+        },
+        "contact_email": {
+          "type": "string",
+          "description": "contact_email field"
+        },
+        "contact_phone": {
+          "type": "string",
+          "description": "contact_phone field"
+        },
+        "billing_info": {
+          "type": "object",
+          "description": "billing_info field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/clients/{id}",
+      "tag": "Clients",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteClients",
+    "description": "Delete clients",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/clients/{id}",
+      "tag": "Clients",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listJobs",
+    "description": "List jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/jobs",
+      "tag": "Jobs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createJobs",
+    "description": "Create jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "department": {
+          "type": "string",
+          "description": "department field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "employment_type": {
+          "type": "string",
+          "description": "employment_type field"
+        },
+        "experience_level": {
+          "type": "string",
+          "description": "experience_level field"
+        },
+        "salary_min": {
+          "type": "integer",
+          "description": "salary_min field"
+        },
+        "salary_max": {
+          "type": "integer",
+          "description": "salary_max field"
+        },
+        "salary_currency": {
+          "type": "string",
+          "description": "salary_currency field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "requirements": {
+          "type": "string",
+          "description": "requirements field"
+        },
+        "benefits": {
+          "type": "string",
+          "description": "benefits field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "priority": {
+          "type": "string",
+          "description": "priority field"
+        },
+        "openings": {
+          "type": "integer",
+          "description": "openings field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "ats_job_id": {
+          "type": "string",
+          "description": "ats_job_id field"
+        },
+        "external_id": {
+          "type": "number",
+          "description": "external_id field"
+        },
+        "hiring_project_id": {
+          "type": "number",
+          "description": "hiring_project_id field"
+        },
+        "hiring_project_title": {
+          "type": "string",
+          "description": "hiring_project_title field"
+        },
+        "url": {
+          "type": "string",
+          "description": "url field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "currency": {
+          "type": "string",
+          "description": "currency field"
+        },
+        "ai": {
+          "type": "object",
+          "description": "ai field"
+        },
+        "job_search_text": {
+          "type": "string",
+          "description": "job_search_text field"
+        },
+        "search_text": {
+          "type": "string",
+          "description": "search_text field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "title"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/jobs",
+      "tag": "Jobs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getJobs",
+    "description": "Get jobs by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/jobs/{id}",
+      "tag": "Jobs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateJobs",
+    "description": "Update jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "department": {
+          "type": "string",
+          "description": "department field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "employment_type": {
+          "type": "string",
+          "description": "employment_type field"
+        },
+        "experience_level": {
+          "type": "string",
+          "description": "experience_level field"
+        },
+        "salary_min": {
+          "type": "integer",
+          "description": "salary_min field"
+        },
+        "salary_max": {
+          "type": "integer",
+          "description": "salary_max field"
+        },
+        "salary_currency": {
+          "type": "string",
+          "description": "salary_currency field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "requirements": {
+          "type": "string",
+          "description": "requirements field"
+        },
+        "benefits": {
+          "type": "string",
+          "description": "benefits field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "priority": {
+          "type": "string",
+          "description": "priority field"
+        },
+        "openings": {
+          "type": "integer",
+          "description": "openings field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "ats_job_id": {
+          "type": "string",
+          "description": "ats_job_id field"
+        },
+        "external_id": {
+          "type": "number",
+          "description": "external_id field"
+        },
+        "hiring_project_id": {
+          "type": "number",
+          "description": "hiring_project_id field"
+        },
+        "hiring_project_title": {
+          "type": "string",
+          "description": "hiring_project_title field"
+        },
+        "url": {
+          "type": "string",
+          "description": "url field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "currency": {
+          "type": "string",
+          "description": "currency field"
+        },
+        "ai": {
+          "type": "object",
+          "description": "ai field"
+        },
+        "job_search_text": {
+          "type": "string",
+          "description": "job_search_text field"
+        },
+        "search_text": {
+          "type": "string",
+          "description": "search_text field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/jobs/{id}",
+      "tag": "Jobs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteJobs",
+    "description": "Delete jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/jobs/{id}",
+      "tag": "Jobs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listConsultants",
+    "description": "List consultants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/consultants",
+      "tag": "Consultants",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createConsultants",
+    "description": "Create consultants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "performance_rating": {
+          "type": "number",
+          "description": "performance_rating field"
+        },
+        "availability_date": {
+          "type": "string",
+          "description": "availability_date field"
+        },
+        "preferred_locations": {
+          "type": "array",
+          "description": "preferred_locations field"
+        },
+        "preferred_roles": {
+          "type": "array",
+          "description": "preferred_roles field"
+        },
+        "preferred_rate_min": {
+          "type": "integer",
+          "description": "preferred_rate_min field"
+        },
+        "preferred_rate_max": {
+          "type": "integer",
+          "description": "preferred_rate_max field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        }
+      }
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/consultants",
+      "tag": "Consultants",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getConsultants",
+    "description": "Get consultants by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/consultants/{id}",
+      "tag": "Consultants",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateConsultants",
+    "description": "Update consultants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "performance_rating": {
+          "type": "number",
+          "description": "performance_rating field"
+        },
+        "availability_date": {
+          "type": "string",
+          "description": "availability_date field"
+        },
+        "preferred_locations": {
+          "type": "array",
+          "description": "preferred_locations field"
+        },
+        "preferred_roles": {
+          "type": "array",
+          "description": "preferred_roles field"
+        },
+        "preferred_rate_min": {
+          "type": "integer",
+          "description": "preferred_rate_min field"
+        },
+        "preferred_rate_max": {
+          "type": "integer",
+          "description": "preferred_rate_max field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/consultants/{id}",
+      "tag": "Consultants",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteConsultants",
+    "description": "Delete consultants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/consultants/{id}",
+      "tag": "Consultants",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listNotes",
+    "description": "List notes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/notes",
+      "tag": "Notes",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createNotes",
+    "description": "Create notes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "content": {
+          "type": "string",
+          "description": "content field"
+        },
+        "template_id": {
+          "type": "string",
+          "description": "template_id field"
+        },
+        "note_type": {
+          "type": "string",
+          "description": "note_type field"
+        },
+        "is_internal": {
+          "type": "boolean",
+          "description": "is_internal field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "candidate_id",
+        "content",
+        "created_by",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/notes",
+      "tag": "Notes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getNotes",
+    "description": "Get notes by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/notes/{id}",
+      "tag": "Notes",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateNotes",
+    "description": "Update notes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "content": {
+          "type": "string",
+          "description": "content field"
+        },
+        "template_id": {
+          "type": "string",
+          "description": "template_id field"
+        },
+        "note_type": {
+          "type": "string",
+          "description": "note_type field"
+        },
+        "is_internal": {
+          "type": "boolean",
+          "description": "is_internal field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/notes/{id}",
+      "tag": "Notes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteNotes",
+    "description": "Delete notes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/notes/{id}",
+      "tag": "Notes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCompliance",
+    "description": "List compliance",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/compliance",
+      "tag": "Compliance",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCompliance",
+    "description": "Create compliance",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "compliance_type": {
+          "type": "string",
+          "description": "compliance_type field"
+        },
+        "requirement": {
+          "type": "string",
+          "description": "requirement field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "due_date": {
+          "type": "string",
+          "description": "due_date field"
+        },
+        "completed_date": {
+          "type": "string",
+          "description": "completed_date field"
+        },
+        "verified_by": {
+          "type": "string",
+          "description": "verified_by field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "compliance_type"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/compliance",
+      "tag": "Compliance",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCompliance",
+    "description": "Get compliance by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/compliance/{id}",
+      "tag": "Compliance",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCompliance",
+    "description": "Update compliance",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "compliance_type": {
+          "type": "string",
+          "description": "compliance_type field"
+        },
+        "requirement": {
+          "type": "string",
+          "description": "requirement field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "due_date": {
+          "type": "string",
+          "description": "due_date field"
+        },
+        "completed_date": {
+          "type": "string",
+          "description": "completed_date field"
+        },
+        "verified_by": {
+          "type": "string",
+          "description": "verified_by field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/compliance/{id}",
+      "tag": "Compliance",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCompliance",
+    "description": "Delete compliance",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/compliance/{id}",
+      "tag": "Compliance",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listNotifications",
+    "description": "List notifications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/notifications",
+      "tag": "Notifications",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createNotifications",
+    "description": "Create notifications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "channel": {
+          "type": "string",
+          "description": "channel field"
+        },
+        "topic": {
+          "type": "string",
+          "description": "topic field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "body": {
+          "type": "string",
+          "description": "body field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "sent_at": {
+          "type": "string",
+          "description": "sent_at field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "user_id",
+        "channel",
+        "topic",
+        "body"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/notifications",
+      "tag": "Notifications",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getNotifications",
+    "description": "Get notifications by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/notifications/{id}",
+      "tag": "Notifications",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateNotifications",
+    "description": "Update notifications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "channel": {
+          "type": "string",
+          "description": "channel field"
+        },
+        "topic": {
+          "type": "string",
+          "description": "topic field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "body": {
+          "type": "string",
+          "description": "body field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "sent_at": {
+          "type": "string",
+          "description": "sent_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/notifications/{id}",
+      "tag": "Notifications",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteNotifications",
+    "description": "Delete notifications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/notifications/{id}",
+      "tag": "Notifications",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAssignmentExtensions",
+    "description": "List assignment_extensions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/assignment_extensions",
+      "tag": "AssignmentExtensions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAssignmentExtensions",
+    "description": "Create assignment_extensions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "assignment_id": {
+          "type": "string",
+          "description": "assignment_id field"
+        },
+        "prev_end_date": {
+          "type": "string",
+          "description": "prev_end_date field"
+        },
+        "new_end_date": {
+          "type": "string",
+          "description": "new_end_date field"
+        },
+        "reason": {
+          "type": "string",
+          "description": "reason field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "extended_by": {
+          "type": "string",
+          "description": "extended_by field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "assignment_id",
+        "new_end_date",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/assignment_extensions",
+      "tag": "AssignmentExtensions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAssignmentExtensions",
+    "description": "Get assignment_extensions by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/assignment_extensions/{id}",
+      "tag": "AssignmentExtensions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAssignmentExtensions",
+    "description": "Update assignment_extensions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "assignment_id": {
+          "type": "string",
+          "description": "assignment_id field"
+        },
+        "prev_end_date": {
+          "type": "string",
+          "description": "prev_end_date field"
+        },
+        "new_end_date": {
+          "type": "string",
+          "description": "new_end_date field"
+        },
+        "reason": {
+          "type": "string",
+          "description": "reason field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "extended_by": {
+          "type": "string",
+          "description": "extended_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/assignment_extensions/{id}",
+      "tag": "AssignmentExtensions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAssignmentExtensions",
+    "description": "Delete assignment_extensions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/assignment_extensions/{id}",
+      "tag": "AssignmentExtensions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listImportJobs",
+    "description": "List import_jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/import_jobs",
+      "tag": "ImportJobs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createImportJobs",
+    "description": "Create import_jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "filename": {
+          "type": "string",
+          "description": "filename field"
+        },
+        "file_size": {
+          "type": "integer",
+          "description": "file_size field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "total_rows": {
+          "type": "integer",
+          "description": "total_rows field"
+        },
+        "processed_rows": {
+          "type": "integer",
+          "description": "processed_rows field"
+        },
+        "created_count": {
+          "type": "integer",
+          "description": "created_count field"
+        },
+        "updated_count": {
+          "type": "integer",
+          "description": "updated_count field"
+        },
+        "skipped_count": {
+          "type": "integer",
+          "description": "skipped_count field"
+        },
+        "error_count": {
+          "type": "integer",
+          "description": "error_count field"
+        },
+        "errors": {
+          "type": "object",
+          "description": "errors field"
+        },
+        "warnings": {
+          "type": "object",
+          "description": "warnings field"
+        },
+        "summary": {
+          "type": "object",
+          "description": "summary field"
+        },
+        "imported_by": {
+          "type": "string",
+          "description": "imported_by field"
+        },
+        "started_at": {
+          "type": "string",
+          "description": "started_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "filename",
+        "imported_by"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/import_jobs",
+      "tag": "ImportJobs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getImportJobs",
+    "description": "Get import_jobs by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/import_jobs/{id}",
+      "tag": "ImportJobs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateImportJobs",
+    "description": "Update import_jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "filename": {
+          "type": "string",
+          "description": "filename field"
+        },
+        "file_size": {
+          "type": "integer",
+          "description": "file_size field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "total_rows": {
+          "type": "integer",
+          "description": "total_rows field"
+        },
+        "processed_rows": {
+          "type": "integer",
+          "description": "processed_rows field"
+        },
+        "created_count": {
+          "type": "integer",
+          "description": "created_count field"
+        },
+        "updated_count": {
+          "type": "integer",
+          "description": "updated_count field"
+        },
+        "skipped_count": {
+          "type": "integer",
+          "description": "skipped_count field"
+        },
+        "error_count": {
+          "type": "integer",
+          "description": "error_count field"
+        },
+        "errors": {
+          "type": "object",
+          "description": "errors field"
+        },
+        "warnings": {
+          "type": "object",
+          "description": "warnings field"
+        },
+        "summary": {
+          "type": "object",
+          "description": "summary field"
+        },
+        "imported_by": {
+          "type": "string",
+          "description": "imported_by field"
+        },
+        "started_at": {
+          "type": "string",
+          "description": "started_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/import_jobs/{id}",
+      "tag": "ImportJobs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteImportJobs",
+    "description": "Delete import_jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/import_jobs/{id}",
+      "tag": "ImportJobs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listWorkspaceMembers",
+    "description": "List workspace_members",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/workspace_members",
+      "tag": "WorkspaceMembers",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createWorkspaceMembers",
+    "description": "Create workspace_members",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "role": {
+          "type": "string",
+          "description": "role field"
+        },
+        "joined_at": {
+          "type": "string",
+          "description": "joined_at field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "user_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/workspace_members",
+      "tag": "WorkspaceMembers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getWorkspaceMembers",
+    "description": "Get workspace_members by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/workspace_members/{id}",
+      "tag": "WorkspaceMembers",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateWorkspaceMembers",
+    "description": "Update workspace_members",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "role": {
+          "type": "string",
+          "description": "role field"
+        },
+        "joined_at": {
+          "type": "string",
+          "description": "joined_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/workspace_members/{id}",
+      "tag": "WorkspaceMembers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteWorkspaceMembers",
+    "description": "Delete workspace_members",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/workspace_members/{id}",
+      "tag": "WorkspaceMembers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAiPrompts",
+    "description": "List ai_prompts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/ai_prompts",
+      "tag": "AiPrompts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAiPrompts",
+    "description": "Create ai_prompts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "version": {
+          "type": "integer",
+          "description": "version field"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "purpose field"
+        },
+        "template": {
+          "type": "string",
+          "description": "template field"
+        },
+        "model": {
+          "type": "string",
+          "description": "model field"
+        },
+        "parameters": {
+          "type": "object",
+          "description": "parameters field"
+        },
+        "output_schema": {
+          "type": "object",
+          "description": "output_schema field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "name",
+        "version",
+        "purpose",
+        "template",
+        "created_by",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/ai_prompts",
+      "tag": "AiPrompts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAiPrompts",
+    "description": "Get ai_prompts by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/ai_prompts/{id}",
+      "tag": "AiPrompts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAiPrompts",
+    "description": "Update ai_prompts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "version": {
+          "type": "integer",
+          "description": "version field"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "purpose field"
+        },
+        "template": {
+          "type": "string",
+          "description": "template field"
+        },
+        "model": {
+          "type": "string",
+          "description": "model field"
+        },
+        "parameters": {
+          "type": "object",
+          "description": "parameters field"
+        },
+        "output_schema": {
+          "type": "object",
+          "description": "output_schema field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/ai_prompts/{id}",
+      "tag": "AiPrompts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAiPrompts",
+    "description": "Delete ai_prompts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/ai_prompts/{id}",
+      "tag": "AiPrompts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listOnboarding",
+    "description": "List onboarding",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/onboarding",
+      "tag": "Onboarding",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createOnboarding",
+    "description": "Create onboarding",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "placement_id": {
+          "type": "string",
+          "description": "placement_id field"
+        },
+        "checklist": {
+          "type": "object",
+          "description": "checklist field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "completion_date": {
+          "type": "string",
+          "description": "completion_date field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/onboarding",
+      "tag": "Onboarding",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getOnboarding",
+    "description": "Get onboarding by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/onboarding/{id}",
+      "tag": "Onboarding",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateOnboarding",
+    "description": "Update onboarding",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "placement_id": {
+          "type": "string",
+          "description": "placement_id field"
+        },
+        "checklist": {
+          "type": "object",
+          "description": "checklist field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "completion_date": {
+          "type": "string",
+          "description": "completion_date field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/onboarding/{id}",
+      "tag": "Onboarding",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteOnboarding",
+    "description": "Delete onboarding",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/onboarding/{id}",
+      "tag": "Onboarding",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listPerformanceReviews",
+    "description": "List performance_reviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/performance_reviews",
+      "tag": "PerformanceReviews",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createPerformanceReviews",
+    "description": "Create performance_reviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "employee_id": {
+          "type": "string",
+          "description": "employee_id field"
+        },
+        "reviewer_id": {
+          "type": "string",
+          "description": "reviewer_id field"
+        },
+        "review_period_start": {
+          "type": "string",
+          "description": "review_period_start field"
+        },
+        "review_period_end": {
+          "type": "string",
+          "description": "review_period_end field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "ratings": {
+          "type": "object",
+          "description": "ratings field"
+        },
+        "comments": {
+          "type": "string",
+          "description": "comments field"
+        },
+        "goals": {
+          "type": "object",
+          "description": "goals field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/performance_reviews",
+      "tag": "PerformanceReviews",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getPerformanceReviews",
+    "description": "Get performance_reviews by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/performance_reviews/{id}",
+      "tag": "PerformanceReviews",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updatePerformanceReviews",
+    "description": "Update performance_reviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "employee_id": {
+          "type": "string",
+          "description": "employee_id field"
+        },
+        "reviewer_id": {
+          "type": "string",
+          "description": "reviewer_id field"
+        },
+        "review_period_start": {
+          "type": "string",
+          "description": "review_period_start field"
+        },
+        "review_period_end": {
+          "type": "string",
+          "description": "review_period_end field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "ratings": {
+          "type": "object",
+          "description": "ratings field"
+        },
+        "comments": {
+          "type": "string",
+          "description": "comments field"
+        },
+        "goals": {
+          "type": "object",
+          "description": "goals field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/performance_reviews/{id}",
+      "tag": "PerformanceReviews",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deletePerformanceReviews",
+    "description": "Delete performance_reviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/performance_reviews/{id}",
+      "tag": "PerformanceReviews",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listSubmissions",
+    "description": "List submissions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/submissions",
+      "tag": "Submissions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createSubmissions",
+    "description": "Create submissions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "submitted_by": {
+          "type": "string",
+          "description": "submitted_by field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "cover_letter": {
+          "type": "string",
+          "description": "cover_letter field"
+        },
+        "ai_match_score": {
+          "type": "integer",
+          "description": "ai_match_score field"
+        },
+        "ai_analysis": {
+          "type": "object",
+          "description": "ai_analysis field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/submissions",
+      "tag": "Submissions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getSubmissions",
+    "description": "Get submissions by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/submissions/{id}",
+      "tag": "Submissions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateSubmissions",
+    "description": "Update submissions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "submitted_by": {
+          "type": "string",
+          "description": "submitted_by field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "cover_letter": {
+          "type": "string",
+          "description": "cover_letter field"
+        },
+        "ai_match_score": {
+          "type": "integer",
+          "description": "ai_match_score field"
+        },
+        "ai_analysis": {
+          "type": "object",
+          "description": "ai_analysis field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/submissions/{id}",
+      "tag": "Submissions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteSubmissions",
+    "description": "Delete submissions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/submissions/{id}",
+      "tag": "Submissions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listInterviews",
+    "description": "List interviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/interviews",
+      "tag": "Interviews",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createInterviews",
+    "description": "Create interviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "submission_id": {
+          "type": "string",
+          "description": "submission_id field"
+        },
+        "interview_type": {
+          "type": "string",
+          "description": "interview_type field"
+        },
+        "interview_stage": {
+          "type": "string",
+          "description": "interview_stage field"
+        },
+        "interview_round": {
+          "type": "integer",
+          "description": "interview_round field"
+        },
+        "scheduled_date": {
+          "type": "string",
+          "description": "scheduled_date field"
+        },
+        "scheduled_time": {
+          "type": "string",
+          "description": "scheduled_time field"
+        },
+        "scheduled_start_at": {
+          "type": "string",
+          "description": "scheduled_start_at field"
+        },
+        "scheduled_end_at": {
+          "type": "string",
+          "description": "scheduled_end_at field"
+        },
+        "duration_minutes": {
+          "type": "integer",
+          "description": "duration_minutes field"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "timezone field"
+        },
+        "meeting_platform": {
+          "type": "string",
+          "description": "meeting_platform field"
+        },
+        "meeting_link": {
+          "type": "string",
+          "description": "meeting_link field"
+        },
+        "meeting_id": {
+          "type": "string",
+          "description": "meeting_id field"
+        },
+        "meeting_password": {
+          "type": "string",
+          "description": "meeting_password field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "interviewers": {
+          "type": "object",
+          "description": "interviewers field"
+        },
+        "interviewer_names": {
+          "type": "array",
+          "description": "interviewer_names field"
+        },
+        "candidate_confirmed": {
+          "type": "boolean",
+          "description": "candidate_confirmed field"
+        },
+        "interviewers_confirmed": {
+          "type": "boolean",
+          "description": "interviewers_confirmed field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "overall_rating": {
+          "type": "integer",
+          "description": "overall_rating field"
+        },
+        "technical_score": {
+          "type": "integer",
+          "description": "technical_score field"
+        },
+        "cultural_fit_score": {
+          "type": "integer",
+          "description": "cultural_fit_score field"
+        },
+        "communication_score": {
+          "type": "integer",
+          "description": "communication_score field"
+        },
+        "strengths": {
+          "type": "string",
+          "description": "strengths field"
+        },
+        "weaknesses": {
+          "type": "string",
+          "description": "weaknesses field"
+        },
+        "feedback_notes": {
+          "type": "string",
+          "description": "feedback_notes field"
+        },
+        "interviewer_notes": {
+          "type": "string",
+          "description": "interviewer_notes field"
+        },
+        "internal_notes": {
+          "type": "string",
+          "description": "internal_notes field"
+        },
+        "recommendation": {
+          "type": "string",
+          "description": "recommendation field"
+        },
+        "recommendation_notes": {
+          "type": "string",
+          "description": "recommendation_notes field"
+        },
+        "next_steps": {
+          "type": "string",
+          "description": "next_steps field"
+        },
+        "follow_up_required": {
+          "type": "boolean",
+          "description": "follow_up_required field"
+        },
+        "follow_up_date": {
+          "type": "string",
+          "description": "follow_up_date field"
+        },
+        "recording_url": {
+          "type": "string",
+          "description": "recording_url field"
+        },
+        "transcript_url": {
+          "type": "string",
+          "description": "transcript_url field"
+        },
+        "attachments": {
+          "type": "object",
+          "description": "attachments field"
+        },
+        "cancelled_at": {
+          "type": "string",
+          "description": "cancelled_at field"
+        },
+        "cancelled_by": {
+          "type": "string",
+          "description": "cancelled_by field"
+        },
+        "cancellation_reason": {
+          "type": "string",
+          "description": "cancellation_reason field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        },
+        "custom_fields": {
+          "type": "object",
+          "description": "custom_fields field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "scheduled_at": {
+          "type": "string",
+          "description": "scheduled_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/interviews",
+      "tag": "Interviews",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getInterviews",
+    "description": "Get interviews by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/interviews/{id}",
+      "tag": "Interviews",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateInterviews",
+    "description": "Update interviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "submission_id": {
+          "type": "string",
+          "description": "submission_id field"
+        },
+        "interview_type": {
+          "type": "string",
+          "description": "interview_type field"
+        },
+        "interview_stage": {
+          "type": "string",
+          "description": "interview_stage field"
+        },
+        "interview_round": {
+          "type": "integer",
+          "description": "interview_round field"
+        },
+        "scheduled_date": {
+          "type": "string",
+          "description": "scheduled_date field"
+        },
+        "scheduled_time": {
+          "type": "string",
+          "description": "scheduled_time field"
+        },
+        "scheduled_start_at": {
+          "type": "string",
+          "description": "scheduled_start_at field"
+        },
+        "scheduled_end_at": {
+          "type": "string",
+          "description": "scheduled_end_at field"
+        },
+        "duration_minutes": {
+          "type": "integer",
+          "description": "duration_minutes field"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "timezone field"
+        },
+        "meeting_platform": {
+          "type": "string",
+          "description": "meeting_platform field"
+        },
+        "meeting_link": {
+          "type": "string",
+          "description": "meeting_link field"
+        },
+        "meeting_id": {
+          "type": "string",
+          "description": "meeting_id field"
+        },
+        "meeting_password": {
+          "type": "string",
+          "description": "meeting_password field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "interviewers": {
+          "type": "object",
+          "description": "interviewers field"
+        },
+        "interviewer_names": {
+          "type": "array",
+          "description": "interviewer_names field"
+        },
+        "candidate_confirmed": {
+          "type": "boolean",
+          "description": "candidate_confirmed field"
+        },
+        "interviewers_confirmed": {
+          "type": "boolean",
+          "description": "interviewers_confirmed field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "overall_rating": {
+          "type": "integer",
+          "description": "overall_rating field"
+        },
+        "technical_score": {
+          "type": "integer",
+          "description": "technical_score field"
+        },
+        "cultural_fit_score": {
+          "type": "integer",
+          "description": "cultural_fit_score field"
+        },
+        "communication_score": {
+          "type": "integer",
+          "description": "communication_score field"
+        },
+        "strengths": {
+          "type": "string",
+          "description": "strengths field"
+        },
+        "weaknesses": {
+          "type": "string",
+          "description": "weaknesses field"
+        },
+        "feedback_notes": {
+          "type": "string",
+          "description": "feedback_notes field"
+        },
+        "interviewer_notes": {
+          "type": "string",
+          "description": "interviewer_notes field"
+        },
+        "internal_notes": {
+          "type": "string",
+          "description": "internal_notes field"
+        },
+        "recommendation": {
+          "type": "string",
+          "description": "recommendation field"
+        },
+        "recommendation_notes": {
+          "type": "string",
+          "description": "recommendation_notes field"
+        },
+        "next_steps": {
+          "type": "string",
+          "description": "next_steps field"
+        },
+        "follow_up_required": {
+          "type": "boolean",
+          "description": "follow_up_required field"
+        },
+        "follow_up_date": {
+          "type": "string",
+          "description": "follow_up_date field"
+        },
+        "recording_url": {
+          "type": "string",
+          "description": "recording_url field"
+        },
+        "transcript_url": {
+          "type": "string",
+          "description": "transcript_url field"
+        },
+        "attachments": {
+          "type": "object",
+          "description": "attachments field"
+        },
+        "cancelled_at": {
+          "type": "string",
+          "description": "cancelled_at field"
+        },
+        "cancelled_by": {
+          "type": "string",
+          "description": "cancelled_by field"
+        },
+        "cancellation_reason": {
+          "type": "string",
+          "description": "cancellation_reason field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        },
+        "custom_fields": {
+          "type": "object",
+          "description": "custom_fields field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "scheduled_at": {
+          "type": "string",
+          "description": "scheduled_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/interviews/{id}",
+      "tag": "Interviews",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteInterviews",
+    "description": "Delete interviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/interviews/{id}",
+      "tag": "Interviews",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCampaignEnrollments",
+    "description": "List campaign_enrollments",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/campaign_enrollments",
+      "tag": "CampaignEnrollments",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCampaignEnrollments",
+    "description": "Create campaign_enrollments",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "sequence_id": {
+          "type": "string",
+          "description": "sequence_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "current_step": {
+          "type": "integer",
+          "description": "current_step field"
+        },
+        "enrolled_at": {
+          "type": "string",
+          "description": "enrolled_at field"
+        },
+        "stopped_at": {
+          "type": "string",
+          "description": "stopped_at field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "sequence_id",
+        "candidate_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/campaign_enrollments",
+      "tag": "CampaignEnrollments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCampaignEnrollments",
+    "description": "Get campaign_enrollments by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/campaign_enrollments/{id}",
+      "tag": "CampaignEnrollments",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCampaignEnrollments",
+    "description": "Update campaign_enrollments",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "sequence_id": {
+          "type": "string",
+          "description": "sequence_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "current_step": {
+          "type": "integer",
+          "description": "current_step field"
+        },
+        "enrolled_at": {
+          "type": "string",
+          "description": "enrolled_at field"
+        },
+        "stopped_at": {
+          "type": "string",
+          "description": "stopped_at field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/campaign_enrollments/{id}",
+      "tag": "CampaignEnrollments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCampaignEnrollments",
+    "description": "Delete campaign_enrollments",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/campaign_enrollments/{id}",
+      "tag": "CampaignEnrollments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listWorkflowInstances",
+    "description": "List workflow_instances",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/workflow_instances",
+      "tag": "WorkflowInstances",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createWorkflowInstances",
+    "description": "Create workflow_instances",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "workflow_id": {
+          "type": "string",
+          "description": "workflow_id field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "current_stage": {
+          "type": "string",
+          "description": "current_stage field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "started_at": {
+          "type": "string",
+          "description": "started_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "entity_type",
+        "entity_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/workflow_instances",
+      "tag": "WorkflowInstances",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getWorkflowInstances",
+    "description": "Get workflow_instances by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/workflow_instances/{id}",
+      "tag": "WorkflowInstances",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateWorkflowInstances",
+    "description": "Update workflow_instances",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "workflow_id": {
+          "type": "string",
+          "description": "workflow_id field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "current_stage": {
+          "type": "string",
+          "description": "current_stage field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "started_at": {
+          "type": "string",
+          "description": "started_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/workflow_instances/{id}",
+      "tag": "WorkflowInstances",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteWorkflowInstances",
+    "description": "Delete workflow_instances",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/workflow_instances/{id}",
+      "tag": "WorkflowInstances",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listBusinessRules",
+    "description": "List business_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/business_rules",
+      "tag": "BusinessRules",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createBusinessRules",
+    "description": "Create business_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "rule_name": {
+          "type": "string",
+          "description": "rule_name field"
+        },
+        "rule_type": {
+          "type": "string",
+          "description": "rule_type field"
+        },
+        "conditions": {
+          "type": "object",
+          "description": "conditions field"
+        },
+        "actions": {
+          "type": "object",
+          "description": "actions field"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "priority field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "rule_name",
+        "rule_type",
+        "conditions",
+        "actions"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/business_rules",
+      "tag": "BusinessRules",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getBusinessRules",
+    "description": "Get business_rules by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/business_rules/{id}",
+      "tag": "BusinessRules",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateBusinessRules",
+    "description": "Update business_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "rule_name": {
+          "type": "string",
+          "description": "rule_name field"
+        },
+        "rule_type": {
+          "type": "string",
+          "description": "rule_type field"
+        },
+        "conditions": {
+          "type": "object",
+          "description": "conditions field"
+        },
+        "actions": {
+          "type": "object",
+          "description": "actions field"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "priority field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/business_rules/{id}",
+      "tag": "BusinessRules",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteBusinessRules",
+    "description": "Delete business_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/business_rules/{id}",
+      "tag": "BusinessRules",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listRecruitingMetrics",
+    "description": "List recruiting_metrics",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/recruiting_metrics",
+      "tag": "RecruitingMetrics",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createRecruitingMetrics",
+    "description": "Create recruiting_metrics",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "metric_date": {
+          "type": "string",
+          "description": "metric_date field"
+        },
+        "metric_type": {
+          "type": "string",
+          "description": "metric_type field"
+        },
+        "dimension": {
+          "type": "string",
+          "description": "dimension field"
+        },
+        "dimension_value": {
+          "type": "string",
+          "description": "dimension_value field"
+        },
+        "applications": {
+          "type": "integer",
+          "description": "applications field"
+        },
+        "screens": {
+          "type": "integer",
+          "description": "screens field"
+        },
+        "submittals": {
+          "type": "integer",
+          "description": "submittals field"
+        },
+        "interviews": {
+          "type": "integer",
+          "description": "interviews field"
+        },
+        "offers": {
+          "type": "integer",
+          "description": "offers field"
+        },
+        "placements": {
+          "type": "integer",
+          "description": "placements field"
+        },
+        "screen_rate": {
+          "type": "number",
+          "description": "screen_rate field"
+        },
+        "submittal_rate": {
+          "type": "number",
+          "description": "submittal_rate field"
+        },
+        "interview_rate": {
+          "type": "number",
+          "description": "interview_rate field"
+        },
+        "offer_rate": {
+          "type": "number",
+          "description": "offer_rate field"
+        },
+        "placement_rate": {
+          "type": "number",
+          "description": "placement_rate field"
+        },
+        "avg_time_to_screen": {
+          "type": "number",
+          "description": "avg_time_to_screen field"
+        },
+        "avg_time_to_submittal": {
+          "type": "number",
+          "description": "avg_time_to_submittal field"
+        },
+        "avg_time_to_interview": {
+          "type": "number",
+          "description": "avg_time_to_interview field"
+        },
+        "avg_time_to_offer": {
+          "type": "number",
+          "description": "avg_time_to_offer field"
+        },
+        "avg_time_to_placement": {
+          "type": "number",
+          "description": "avg_time_to_placement field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/recruiting_metrics",
+      "tag": "RecruitingMetrics",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getRecruitingMetrics",
+    "description": "Get recruiting_metrics by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/recruiting_metrics/{id}",
+      "tag": "RecruitingMetrics",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateRecruitingMetrics",
+    "description": "Update recruiting_metrics",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "metric_date": {
+          "type": "string",
+          "description": "metric_date field"
+        },
+        "metric_type": {
+          "type": "string",
+          "description": "metric_type field"
+        },
+        "dimension": {
+          "type": "string",
+          "description": "dimension field"
+        },
+        "dimension_value": {
+          "type": "string",
+          "description": "dimension_value field"
+        },
+        "applications": {
+          "type": "integer",
+          "description": "applications field"
+        },
+        "screens": {
+          "type": "integer",
+          "description": "screens field"
+        },
+        "submittals": {
+          "type": "integer",
+          "description": "submittals field"
+        },
+        "interviews": {
+          "type": "integer",
+          "description": "interviews field"
+        },
+        "offers": {
+          "type": "integer",
+          "description": "offers field"
+        },
+        "placements": {
+          "type": "integer",
+          "description": "placements field"
+        },
+        "screen_rate": {
+          "type": "number",
+          "description": "screen_rate field"
+        },
+        "submittal_rate": {
+          "type": "number",
+          "description": "submittal_rate field"
+        },
+        "interview_rate": {
+          "type": "number",
+          "description": "interview_rate field"
+        },
+        "offer_rate": {
+          "type": "number",
+          "description": "offer_rate field"
+        },
+        "placement_rate": {
+          "type": "number",
+          "description": "placement_rate field"
+        },
+        "avg_time_to_screen": {
+          "type": "number",
+          "description": "avg_time_to_screen field"
+        },
+        "avg_time_to_submittal": {
+          "type": "number",
+          "description": "avg_time_to_submittal field"
+        },
+        "avg_time_to_interview": {
+          "type": "number",
+          "description": "avg_time_to_interview field"
+        },
+        "avg_time_to_offer": {
+          "type": "number",
+          "description": "avg_time_to_offer field"
+        },
+        "avg_time_to_placement": {
+          "type": "number",
+          "description": "avg_time_to_placement field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/recruiting_metrics/{id}",
+      "tag": "RecruitingMetrics",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteRecruitingMetrics",
+    "description": "Delete recruiting_metrics",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/recruiting_metrics/{id}",
+      "tag": "RecruitingMetrics",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listSkillsTaxonomy",
+    "description": "List skills_taxonomy",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/skills_taxonomy",
+      "tag": "SkillsTaxonomy",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createSkillsTaxonomy",
+    "description": "Create skills_taxonomy",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "skill_name": {
+          "type": "string",
+          "description": "skill_name field"
+        },
+        "skill_category": {
+          "type": "string",
+          "description": "skill_category field"
+        },
+        "skill_subcategory": {
+          "type": "string",
+          "description": "skill_subcategory field"
+        },
+        "linkedin_skill_id": {
+          "type": "string",
+          "description": "linkedin_skill_id field"
+        },
+        "synonyms": {
+          "type": "array",
+          "description": "synonyms field"
+        },
+        "related_skills": {
+          "type": "array",
+          "description": "related_skills field"
+        },
+        "proficiency_levels": {
+          "type": "array",
+          "description": "proficiency_levels field"
+        },
+        "demand_score": {
+          "type": "integer",
+          "description": "demand_score field"
+        },
+        "growth_rate": {
+          "type": "number",
+          "description": "growth_rate field"
+        },
+        "avg_years_to_master": {
+          "type": "number",
+          "description": "avg_years_to_master field"
+        },
+        "certifications": {
+          "type": "array",
+          "description": "certifications field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "skill_name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/skills_taxonomy",
+      "tag": "SkillsTaxonomy",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getSkillsTaxonomy",
+    "description": "Get skills_taxonomy by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/skills_taxonomy/{id}",
+      "tag": "SkillsTaxonomy",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateSkillsTaxonomy",
+    "description": "Update skills_taxonomy",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "skill_name": {
+          "type": "string",
+          "description": "skill_name field"
+        },
+        "skill_category": {
+          "type": "string",
+          "description": "skill_category field"
+        },
+        "skill_subcategory": {
+          "type": "string",
+          "description": "skill_subcategory field"
+        },
+        "linkedin_skill_id": {
+          "type": "string",
+          "description": "linkedin_skill_id field"
+        },
+        "synonyms": {
+          "type": "array",
+          "description": "synonyms field"
+        },
+        "related_skills": {
+          "type": "array",
+          "description": "related_skills field"
+        },
+        "proficiency_levels": {
+          "type": "array",
+          "description": "proficiency_levels field"
+        },
+        "demand_score": {
+          "type": "integer",
+          "description": "demand_score field"
+        },
+        "growth_rate": {
+          "type": "number",
+          "description": "growth_rate field"
+        },
+        "avg_years_to_master": {
+          "type": "number",
+          "description": "avg_years_to_master field"
+        },
+        "certifications": {
+          "type": "array",
+          "description": "certifications field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/skills_taxonomy/{id}",
+      "tag": "SkillsTaxonomy",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteSkillsTaxonomy",
+    "description": "Delete skills_taxonomy",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/skills_taxonomy/{id}",
+      "tag": "SkillsTaxonomy",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listSkillProfiles",
+    "description": "List skill_profiles",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/skill_profiles",
+      "tag": "SkillProfiles",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createSkillProfiles",
+    "description": "Create skill_profiles",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "profile_name": {
+          "type": "string",
+          "description": "profile_name field"
+        },
+        "role_title": {
+          "type": "string",
+          "description": "role_title field"
+        },
+        "seniority_level": {
+          "type": "string",
+          "description": "seniority_level field"
+        },
+        "industry": {
+          "type": "string",
+          "description": "industry field"
+        },
+        "required_skills": {
+          "type": "object",
+          "description": "required_skills field"
+        },
+        "preferred_skills": {
+          "type": "object",
+          "description": "preferred_skills field"
+        },
+        "years_experience_min": {
+          "type": "integer",
+          "description": "years_experience_min field"
+        },
+        "years_experience_max": {
+          "type": "integer",
+          "description": "years_experience_max field"
+        },
+        "compensation_benchmark": {
+          "type": "object",
+          "description": "compensation_benchmark field"
+        },
+        "demand_index": {
+          "type": "integer",
+          "description": "demand_index field"
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "last_updated field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "profile_name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/skill_profiles",
+      "tag": "SkillProfiles",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getSkillProfiles",
+    "description": "Get skill_profiles by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/skill_profiles/{id}",
+      "tag": "SkillProfiles",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateSkillProfiles",
+    "description": "Update skill_profiles",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "profile_name field"
+        },
+        "role_title": {
+          "type": "string",
+          "description": "role_title field"
+        },
+        "seniority_level": {
+          "type": "string",
+          "description": "seniority_level field"
+        },
+        "industry": {
+          "type": "string",
+          "description": "industry field"
+        },
+        "required_skills": {
+          "type": "object",
+          "description": "required_skills field"
+        },
+        "preferred_skills": {
+          "type": "object",
+          "description": "preferred_skills field"
+        },
+        "years_experience_min": {
+          "type": "integer",
+          "description": "years_experience_min field"
+        },
+        "years_experience_max": {
+          "type": "integer",
+          "description": "years_experience_max field"
+        },
+        "compensation_benchmark": {
+          "type": "object",
+          "description": "compensation_benchmark field"
+        },
+        "demand_index": {
+          "type": "integer",
+          "description": "demand_index field"
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "last_updated field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/skill_profiles/{id}",
+      "tag": "SkillProfiles",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteSkillProfiles",
+    "description": "Delete skill_profiles",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/skill_profiles/{id}",
+      "tag": "SkillProfiles",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCommunications",
+    "description": "List communications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/communications",
+      "tag": "Communications",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCommunications",
+    "description": "Create communications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "sender_id": {
+          "type": "string",
+          "description": "sender_id field"
+        },
+        "sender_type": {
+          "type": "string",
+          "description": "sender_type field"
+        },
+        "channel": {
+          "type": "string",
+          "description": "channel field"
+        },
+        "direction": {
+          "type": "string",
+          "description": "direction field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "body": {
+          "type": "string",
+          "description": "body field"
+        },
+        "template_id": {
+          "type": "string",
+          "description": "template_id field"
+        },
+        "template_variables": {
+          "type": "object",
+          "description": "template_variables field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "sent_at": {
+          "type": "string",
+          "description": "sent_at field"
+        },
+        "delivered_at": {
+          "type": "string",
+          "description": "delivered_at field"
+        },
+        "opened_at": {
+          "type": "string",
+          "description": "opened_at field"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "external_id field"
+        },
+        "tracking_data": {
+          "type": "object",
+          "description": "tracking_data field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/communications",
+      "tag": "Communications",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCommunications",
+    "description": "Get communications by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/communications/{id}",
+      "tag": "Communications",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCommunications",
+    "description": "Update communications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "sender_id": {
+          "type": "string",
+          "description": "sender_id field"
+        },
+        "sender_type": {
+          "type": "string",
+          "description": "sender_type field"
+        },
+        "channel": {
+          "type": "string",
+          "description": "channel field"
+        },
+        "direction": {
+          "type": "string",
+          "description": "direction field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "body": {
+          "type": "string",
+          "description": "body field"
+        },
+        "template_id": {
+          "type": "string",
+          "description": "template_id field"
+        },
+        "template_variables": {
+          "type": "object",
+          "description": "template_variables field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "sent_at": {
+          "type": "string",
+          "description": "sent_at field"
+        },
+        "delivered_at": {
+          "type": "string",
+          "description": "delivered_at field"
+        },
+        "opened_at": {
+          "type": "string",
+          "description": "opened_at field"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "external_id field"
+        },
+        "tracking_data": {
+          "type": "object",
+          "description": "tracking_data field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/communications/{id}",
+      "tag": "Communications",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCommunications",
+    "description": "Delete communications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/communications/{id}",
+      "tag": "Communications",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCandidateSkills",
+    "description": "List candidate_skills",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_skills",
+      "tag": "CandidateSkills",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCandidateSkills",
+    "description": "Create candidate_skills",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "skill_id": {
+          "type": "string",
+          "description": "skill_id field"
+        },
+        "skill_name": {
+          "type": "string",
+          "description": "skill_name field"
+        },
+        "proficiency_level": {
+          "type": "string",
+          "description": "proficiency_level field"
+        },
+        "years_experience": {
+          "type": "number",
+          "description": "years_experience field"
+        },
+        "last_used": {
+          "type": "string",
+          "description": "last_used field"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "is_primary field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "confidence_score": {
+          "type": "number",
+          "description": "confidence_score field"
+        },
+        "verified": {
+          "type": "boolean",
+          "description": "verified field"
+        },
+        "verified_by": {
+          "type": "string",
+          "description": "verified_by field"
+        },
+        "verified_at": {
+          "type": "string",
+          "description": "verified_at field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "skill_name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/candidate_skills",
+      "tag": "CandidateSkills",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCandidateSkills",
+    "description": "Get candidate_skills by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_skills/{id}",
+      "tag": "CandidateSkills",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCandidateSkills",
+    "description": "Update candidate_skills",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "skill_id": {
+          "type": "string",
+          "description": "skill_id field"
+        },
+        "skill_name": {
+          "type": "string",
+          "description": "skill_name field"
+        },
+        "proficiency_level": {
+          "type": "string",
+          "description": "proficiency_level field"
+        },
+        "years_experience": {
+          "type": "number",
+          "description": "years_experience field"
+        },
+        "last_used": {
+          "type": "string",
+          "description": "last_used field"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "is_primary field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "confidence_score": {
+          "type": "number",
+          "description": "confidence_score field"
+        },
+        "verified": {
+          "type": "boolean",
+          "description": "verified field"
+        },
+        "verified_by": {
+          "type": "string",
+          "description": "verified_by field"
+        },
+        "verified_at": {
+          "type": "string",
+          "description": "verified_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/candidate_skills/{id}",
+      "tag": "CandidateSkills",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCandidateSkills",
+    "description": "Delete candidate_skills",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/candidate_skills/{id}",
+      "tag": "CandidateSkills",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listJobSkills",
+    "description": "List job_skills",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/job_skills",
+      "tag": "JobSkills",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createJobSkills",
+    "description": "Create job_skills",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "skill_id": {
+          "type": "string",
+          "description": "skill_id field"
+        },
+        "skill_name": {
+          "type": "string",
+          "description": "skill_name field"
+        },
+        "requirement_type": {
+          "type": "string",
+          "description": "requirement_type field"
+        },
+        "proficiency_level": {
+          "type": "string",
+          "description": "proficiency_level field"
+        },
+        "years_experience": {
+          "type": "integer",
+          "description": "years_experience field"
+        },
+        "weight": {
+          "type": "integer",
+          "description": "weight field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "skill_name",
+        "requirement_type"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/job_skills",
+      "tag": "JobSkills",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getJobSkills",
+    "description": "Get job_skills by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/job_skills/{id}",
+      "tag": "JobSkills",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateJobSkills",
+    "description": "Update job_skills",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "skill_id": {
+          "type": "string",
+          "description": "skill_id field"
+        },
+        "skill_name": {
+          "type": "string",
+          "description": "skill_name field"
+        },
+        "requirement_type": {
+          "type": "string",
+          "description": "requirement_type field"
+        },
+        "proficiency_level": {
+          "type": "string",
+          "description": "proficiency_level field"
+        },
+        "years_experience": {
+          "type": "integer",
+          "description": "years_experience field"
+        },
+        "weight": {
+          "type": "integer",
+          "description": "weight field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/job_skills/{id}",
+      "tag": "JobSkills",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteJobSkills",
+    "description": "Delete job_skills",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/job_skills/{id}",
+      "tag": "JobSkills",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAiAgents",
+    "description": "List ai_agents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/ai_agents",
+      "tag": "AiAgents",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAiAgents",
+    "description": "Create ai_agents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "agent_name": {
+          "type": "string",
+          "description": "agent_name field"
+        },
+        "agent_type": {
+          "type": "string",
+          "description": "agent_type field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "model_id": {
+          "type": "string",
+          "description": "model_id field"
+        },
+        "temperature": {
+          "type": "number",
+          "description": "temperature field"
+        },
+        "max_tokens": {
+          "type": "integer",
+          "description": "max_tokens field"
+        },
+        "system_prompt": {
+          "type": "string",
+          "description": "system_prompt field"
+        },
+        "configuration": {
+          "type": "object",
+          "description": "configuration field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "agent_name",
+        "agent_type"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/ai_agents",
+      "tag": "AiAgents",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAiAgents",
+    "description": "Get ai_agents by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/ai_agents/{id}",
+      "tag": "AiAgents",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAiAgents",
+    "description": "Update ai_agents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "agent_name": {
+          "type": "string",
+          "description": "agent_name field"
+        },
+        "agent_type": {
+          "type": "string",
+          "description": "agent_type field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "model_id": {
+          "type": "string",
+          "description": "model_id field"
+        },
+        "temperature": {
+          "type": "number",
+          "description": "temperature field"
+        },
+        "max_tokens": {
+          "type": "integer",
+          "description": "max_tokens field"
+        },
+        "system_prompt": {
+          "type": "string",
+          "description": "system_prompt field"
+        },
+        "configuration": {
+          "type": "object",
+          "description": "configuration field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/ai_agents/{id}",
+      "tag": "AiAgents",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAiAgents",
+    "description": "Delete ai_agents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/ai_agents/{id}",
+      "tag": "AiAgents",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listInvoices",
+    "description": "List invoices",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/invoices",
+      "tag": "Invoices",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createInvoices",
+    "description": "Create invoices",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "invoice_number": {
+          "type": "string",
+          "description": "invoice_number field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "placement_id": {
+          "type": "string",
+          "description": "placement_id field"
+        },
+        "amount": {
+          "type": "number",
+          "description": "amount field"
+        },
+        "line_items": {
+          "type": "object",
+          "description": "line_items field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "due_date": {
+          "type": "string",
+          "description": "due_date field"
+        },
+        "paid_date": {
+          "type": "string",
+          "description": "paid_date field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/invoices",
+      "tag": "Invoices",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getInvoices",
+    "description": "Get invoices by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/invoices/{id}",
+      "tag": "Invoices",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateInvoices",
+    "description": "Update invoices",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "invoice_number": {
+          "type": "string",
+          "description": "invoice_number field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "placement_id": {
+          "type": "string",
+          "description": "placement_id field"
+        },
+        "amount": {
+          "type": "number",
+          "description": "amount field"
+        },
+        "line_items": {
+          "type": "object",
+          "description": "line_items field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "due_date": {
+          "type": "string",
+          "description": "due_date field"
+        },
+        "paid_date": {
+          "type": "string",
+          "description": "paid_date field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/invoices/{id}",
+      "tag": "Invoices",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteInvoices",
+    "description": "Delete invoices",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/invoices/{id}",
+      "tag": "Invoices",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listPromptTemplates",
+    "description": "List prompt_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/prompt_templates",
+      "tag": "PromptTemplates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createPromptTemplates",
+    "description": "Create prompt_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "template_name": {
+          "type": "string",
+          "description": "template_name field"
+        },
+        "category": {
+          "type": "string",
+          "description": "category field"
+        },
+        "agent_name": {
+          "type": "string",
+          "description": "agent_name field"
+        },
+        "prompt_text": {
+          "type": "string",
+          "description": "prompt_text field"
+        },
+        "variables": {
+          "type": "object",
+          "description": "variables field"
+        },
+        "example_output": {
+          "type": "string",
+          "description": "example_output field"
+        },
+        "use_case": {
+          "type": "string",
+          "description": "use_case field"
+        },
+        "version": {
+          "type": "integer",
+          "description": "version field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "usage_count": {
+          "type": "integer",
+          "description": "usage_count field"
+        },
+        "avg_rating": {
+          "type": "number",
+          "description": "avg_rating field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "template_name",
+        "prompt_text"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/prompt_templates",
+      "tag": "PromptTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getPromptTemplates",
+    "description": "Get prompt_templates by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/prompt_templates/{id}",
+      "tag": "PromptTemplates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updatePromptTemplates",
+    "description": "Update prompt_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "template_name": {
+          "type": "string",
+          "description": "template_name field"
+        },
+        "category": {
+          "type": "string",
+          "description": "category field"
+        },
+        "agent_name": {
+          "type": "string",
+          "description": "agent_name field"
+        },
+        "prompt_text": {
+          "type": "string",
+          "description": "prompt_text field"
+        },
+        "variables": {
+          "type": "object",
+          "description": "variables field"
+        },
+        "example_output": {
+          "type": "string",
+          "description": "example_output field"
+        },
+        "use_case": {
+          "type": "string",
+          "description": "use_case field"
+        },
+        "version": {
+          "type": "integer",
+          "description": "version field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "usage_count": {
+          "type": "integer",
+          "description": "usage_count field"
+        },
+        "avg_rating": {
+          "type": "number",
+          "description": "avg_rating field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/prompt_templates/{id}",
+      "tag": "PromptTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deletePromptTemplates",
+    "description": "Delete prompt_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/prompt_templates/{id}",
+      "tag": "PromptTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAiExecutions",
+    "description": "List ai_executions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/ai_executions",
+      "tag": "AiExecutions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAiExecutions",
+    "description": "Create ai_executions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "agent_id": {
+          "type": "string",
+          "description": "agent_id field"
+        },
+        "template_id": {
+          "type": "string",
+          "description": "template_id field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "input_data": {
+          "type": "object",
+          "description": "input_data field"
+        },
+        "output_data": {
+          "type": "object",
+          "description": "output_data field"
+        },
+        "model_used": {
+          "type": "string",
+          "description": "model_used field"
+        },
+        "tokens_used": {
+          "type": "integer",
+          "description": "tokens_used field"
+        },
+        "cost_usd": {
+          "type": "number",
+          "description": "cost_usd field"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "description": "duration_ms field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "error_message field"
+        }
+      }
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/ai_executions",
+      "tag": "AiExecutions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAiExecutions",
+    "description": "Get ai_executions by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/ai_executions/{id}",
+      "tag": "AiExecutions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAiExecutions",
+    "description": "Update ai_executions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "agent_id": {
+          "type": "string",
+          "description": "agent_id field"
+        },
+        "template_id": {
+          "type": "string",
+          "description": "template_id field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "input_data": {
+          "type": "object",
+          "description": "input_data field"
+        },
+        "output_data": {
+          "type": "object",
+          "description": "output_data field"
+        },
+        "model_used": {
+          "type": "string",
+          "description": "model_used field"
+        },
+        "tokens_used": {
+          "type": "integer",
+          "description": "tokens_used field"
+        },
+        "cost_usd": {
+          "type": "number",
+          "description": "cost_usd field"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "description": "duration_ms field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "error_message field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/ai_executions/{id}",
+      "tag": "AiExecutions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAiExecutions",
+    "description": "Delete ai_executions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/ai_executions/{id}",
+      "tag": "AiExecutions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listExpenses",
+    "description": "List expenses",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/expenses",
+      "tag": "Expenses",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createExpenses",
+    "description": "Create expenses",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "employee_id": {
+          "type": "string",
+          "description": "employee_id field"
+        },
+        "expense_type": {
+          "type": "string",
+          "description": "expense_type field"
+        },
+        "amount": {
+          "type": "number",
+          "description": "amount field"
+        },
+        "currency": {
+          "type": "string",
+          "description": "currency field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "receipt_path": {
+          "type": "string",
+          "description": "receipt_path field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        },
+        "approved_at": {
+          "type": "string",
+          "description": "approved_at field"
+        },
+        "approved_by": {
+          "type": "string",
+          "description": "approved_by field"
+        },
+        "reimbursed_at": {
+          "type": "string",
+          "description": "reimbursed_at field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/expenses",
+      "tag": "Expenses",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getExpenses",
+    "description": "Get expenses by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/expenses/{id}",
+      "tag": "Expenses",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateExpenses",
+    "description": "Update expenses",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "employee_id": {
+          "type": "string",
+          "description": "employee_id field"
+        },
+        "expense_type": {
+          "type": "string",
+          "description": "expense_type field"
+        },
+        "amount": {
+          "type": "number",
+          "description": "amount field"
+        },
+        "currency": {
+          "type": "string",
+          "description": "currency field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "receipt_path": {
+          "type": "string",
+          "description": "receipt_path field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        },
+        "approved_at": {
+          "type": "string",
+          "description": "approved_at field"
+        },
+        "approved_by": {
+          "type": "string",
+          "description": "approved_by field"
+        },
+        "reimbursed_at": {
+          "type": "string",
+          "description": "reimbursed_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/expenses/{id}",
+      "tag": "Expenses",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteExpenses",
+    "description": "Delete expenses",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/expenses/{id}",
+      "tag": "Expenses",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listClientContracts",
+    "description": "List client_contracts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/client_contracts",
+      "tag": "ClientContracts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createClientContracts",
+    "description": "Create client_contracts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "contract_number": {
+          "type": "string",
+          "description": "contract_number field"
+        },
+        "contract_type": {
+          "type": "string",
+          "description": "contract_type field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "auto_renew": {
+          "type": "boolean",
+          "description": "auto_renew field"
+        },
+        "payment_terms": {
+          "type": "string",
+          "description": "payment_terms field"
+        },
+        "billing_frequency": {
+          "type": "string",
+          "description": "billing_frequency field"
+        },
+        "currency": {
+          "type": "string",
+          "description": "currency field"
+        },
+        "standard_markup_percent": {
+          "type": "number",
+          "description": "standard_markup_percent field"
+        },
+        "standard_fee_percent": {
+          "type": "number",
+          "description": "standard_fee_percent field"
+        },
+        "volume_discounts": {
+          "type": "object",
+          "description": "volume_discounts field"
+        },
+        "document_path": {
+          "type": "string",
+          "description": "document_path field"
+        },
+        "signed_document_path": {
+          "type": "string",
+          "description": "signed_document_path field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "signed_by": {
+          "type": "string",
+          "description": "signed_by field"
+        },
+        "signed_at": {
+          "type": "string",
+          "description": "signed_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "start_date"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/client_contracts",
+      "tag": "ClientContracts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getClientContracts",
+    "description": "Get client_contracts by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/client_contracts/{id}",
+      "tag": "ClientContracts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateClientContracts",
+    "description": "Update client_contracts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "contract_number": {
+          "type": "string",
+          "description": "contract_number field"
+        },
+        "contract_type": {
+          "type": "string",
+          "description": "contract_type field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "auto_renew": {
+          "type": "boolean",
+          "description": "auto_renew field"
+        },
+        "payment_terms": {
+          "type": "string",
+          "description": "payment_terms field"
+        },
+        "billing_frequency": {
+          "type": "string",
+          "description": "billing_frequency field"
+        },
+        "currency": {
+          "type": "string",
+          "description": "currency field"
+        },
+        "standard_markup_percent": {
+          "type": "number",
+          "description": "standard_markup_percent field"
+        },
+        "standard_fee_percent": {
+          "type": "number",
+          "description": "standard_fee_percent field"
+        },
+        "volume_discounts": {
+          "type": "object",
+          "description": "volume_discounts field"
+        },
+        "document_path": {
+          "type": "string",
+          "description": "document_path field"
+        },
+        "signed_document_path": {
+          "type": "string",
+          "description": "signed_document_path field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "signed_by": {
+          "type": "string",
+          "description": "signed_by field"
+        },
+        "signed_at": {
+          "type": "string",
+          "description": "signed_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/client_contracts/{id}",
+      "tag": "ClientContracts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteClientContracts",
+    "description": "Delete client_contracts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/client_contracts/{id}",
+      "tag": "ClientContracts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCandidateNotes",
+    "description": "List candidate_notes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_notes",
+      "tag": "CandidateNotes",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCandidateNotes",
+    "description": "Create candidate_notes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "note_type": {
+          "type": "string",
+          "description": "note_type field"
+        },
+        "content": {
+          "type": "string",
+          "description": "content field"
+        },
+        "is_private": {
+          "type": "boolean",
+          "description": "is_private field"
+        },
+        "visible_to": {
+          "type": "array",
+          "description": "visible_to field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "note_type",
+        "content"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/candidate_notes",
+      "tag": "CandidateNotes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCandidateNotes",
+    "description": "Get candidate_notes by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_notes/{id}",
+      "tag": "CandidateNotes",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCandidateNotes",
+    "description": "Update candidate_notes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "note_type": {
+          "type": "string",
+          "description": "note_type field"
+        },
+        "content": {
+          "type": "string",
+          "description": "content field"
+        },
+        "is_private": {
+          "type": "boolean",
+          "description": "is_private field"
+        },
+        "visible_to": {
+          "type": "array",
+          "description": "visible_to field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/candidate_notes/{id}",
+      "tag": "CandidateNotes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCandidateNotes",
+    "description": "Delete candidate_notes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/candidate_notes/{id}",
+      "tag": "CandidateNotes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listClientContacts",
+    "description": "List client_contacts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/client_contacts",
+      "tag": "ClientContacts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createClientContacts",
+    "description": "Create client_contacts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "first_name field"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "last_name field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "mobile": {
+          "type": "string",
+          "description": "mobile field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "department": {
+          "type": "string",
+          "description": "department field"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "is_primary field"
+        },
+        "is_decision_maker": {
+          "type": "boolean",
+          "description": "is_decision_maker field"
+        },
+        "is_hiring_manager": {
+          "type": "boolean",
+          "description": "is_hiring_manager field"
+        },
+        "preferred_contact_method": {
+          "type": "string",
+          "description": "preferred_contact_method field"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "timezone field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "linkedin_url": {
+          "type": "string",
+          "description": "linkedin_url field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        }
+      }
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/client_contacts",
+      "tag": "ClientContacts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getClientContacts",
+    "description": "Get client_contacts by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/client_contacts/{id}",
+      "tag": "ClientContacts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateClientContacts",
+    "description": "Update client_contacts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "first_name field"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "last_name field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "mobile": {
+          "type": "string",
+          "description": "mobile field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "department": {
+          "type": "string",
+          "description": "department field"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "is_primary field"
+        },
+        "is_decision_maker": {
+          "type": "boolean",
+          "description": "is_decision_maker field"
+        },
+        "is_hiring_manager": {
+          "type": "boolean",
+          "description": "is_hiring_manager field"
+        },
+        "preferred_contact_method": {
+          "type": "string",
+          "description": "preferred_contact_method field"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "timezone field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "linkedin_url": {
+          "type": "string",
+          "description": "linkedin_url field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/client_contacts/{id}",
+      "tag": "ClientContacts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteClientContacts",
+    "description": "Delete client_contacts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/client_contacts/{id}",
+      "tag": "ClientContacts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listClientProjects",
+    "description": "List client_projects",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/client_projects",
+      "tag": "ClientProjects",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createClientProjects",
+    "description": "Create client_projects",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "contract_id": {
+          "type": "string",
+          "description": "contract_id field"
+        },
+        "project_code": {
+          "type": "string",
+          "description": "project_code field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "hiring_manager_contact_id": {
+          "type": "string",
+          "description": "hiring_manager_contact_id field"
+        },
+        "billing_code": {
+          "type": "string",
+          "description": "billing_code field"
+        },
+        "po_number": {
+          "type": "string",
+          "description": "po_number field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/client_projects",
+      "tag": "ClientProjects",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getClientProjects",
+    "description": "Get client_projects by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/client_projects/{id}",
+      "tag": "ClientProjects",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateClientProjects",
+    "description": "Update client_projects",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "contract_id": {
+          "type": "string",
+          "description": "contract_id field"
+        },
+        "project_code": {
+          "type": "string",
+          "description": "project_code field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "hiring_manager_contact_id": {
+          "type": "string",
+          "description": "hiring_manager_contact_id field"
+        },
+        "billing_code": {
+          "type": "string",
+          "description": "billing_code field"
+        },
+        "po_number": {
+          "type": "string",
+          "description": "po_number field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/client_projects/{id}",
+      "tag": "ClientProjects",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteClientProjects",
+    "description": "Delete client_projects",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/client_projects/{id}",
+      "tag": "ClientProjects",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listWorkflows",
+    "description": "List workflows",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/workflows",
+      "tag": "Workflows",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createWorkflows",
+    "description": "Create workflows",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "workflow_name": {
+          "type": "string",
+          "description": "workflow_name field"
+        },
+        "workflow_type": {
+          "type": "string",
+          "description": "workflow_type field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "trigger_event": {
+          "type": "string",
+          "description": "trigger_event field"
+        },
+        "stages": {
+          "type": "object",
+          "description": "stages field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "workflow_name",
+        "workflow_type",
+        "stages"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/workflows",
+      "tag": "Workflows",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getWorkflows",
+    "description": "Get workflows by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/workflows/{id}",
+      "tag": "Workflows",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateWorkflows",
+    "description": "Update workflows",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "workflow_name": {
+          "type": "string",
+          "description": "workflow_name field"
+        },
+        "workflow_type": {
+          "type": "string",
+          "description": "workflow_type field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "trigger_event": {
+          "type": "string",
+          "description": "trigger_event field"
+        },
+        "stages": {
+          "type": "object",
+          "description": "stages field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/workflows/{id}",
+      "tag": "Workflows",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteWorkflows",
+    "description": "Delete workflows",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/workflows/{id}",
+      "tag": "Workflows",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listContacts",
+    "description": "List contacts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/contacts",
+      "tag": "Contacts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createContacts",
+    "description": "Create contacts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "first_name field"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "last_name field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/contacts",
+      "tag": "Contacts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getContacts",
+    "description": "Get contacts by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/contacts/{id}",
+      "tag": "Contacts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateContacts",
+    "description": "Update contacts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "first_name field"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "last_name field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/contacts/{id}",
+      "tag": "Contacts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteContacts",
+    "description": "Delete contacts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/contacts/{id}",
+      "tag": "Contacts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listReviews",
+    "description": "List reviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/reviews",
+      "tag": "Reviews",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createReviews",
+    "description": "Create reviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "reviewer_id": {
+          "type": "string",
+          "description": "reviewer_id field"
+        },
+        "rating": {
+          "type": "integer",
+          "description": "rating field"
+        },
+        "review_text": {
+          "type": "string",
+          "description": "review_text field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "published_at": {
+          "type": "string",
+          "description": "published_at field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/reviews",
+      "tag": "Reviews",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getReviews",
+    "description": "Get reviews by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/reviews/{id}",
+      "tag": "Reviews",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateReviews",
+    "description": "Update reviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "reviewer_id": {
+          "type": "string",
+          "description": "reviewer_id field"
+        },
+        "rating": {
+          "type": "integer",
+          "description": "rating field"
+        },
+        "review_text": {
+          "type": "string",
+          "description": "review_text field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "published_at": {
+          "type": "string",
+          "description": "published_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/reviews/{id}",
+      "tag": "Reviews",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteReviews",
+    "description": "Delete reviews",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/reviews/{id}",
+      "tag": "Reviews",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listEmailLogs",
+    "description": "List email_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/email_logs",
+      "tag": "EmailLogs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createEmailLogs",
+    "description": "Create email_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "resend_id": {
+          "type": "string",
+          "description": "resend_id field"
+        },
+        "template": {
+          "type": "string",
+          "description": "template field"
+        },
+        "recipient_email": {
+          "type": "string",
+          "description": "recipient_email field"
+        },
+        "recipient_type": {
+          "type": "string",
+          "description": "recipient_type field"
+        },
+        "recipient_id": {
+          "type": "string",
+          "description": "recipient_id field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "interview_id": {
+          "type": "string",
+          "description": "interview_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "sent_at": {
+          "type": "string",
+          "description": "sent_at field"
+        },
+        "delivered_at": {
+          "type": "string",
+          "description": "delivered_at field"
+        },
+        "bounced_at": {
+          "type": "string",
+          "description": "bounced_at field"
+        },
+        "opened_at": {
+          "type": "string",
+          "description": "opened_at field"
+        },
+        "clicked_at": {
+          "type": "string",
+          "description": "clicked_at field"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "error_message field"
+        },
+        "bounce_type": {
+          "type": "string",
+          "description": "bounce_type field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "template",
+        "recipient_email",
+        "subject"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/email_logs",
+      "tag": "EmailLogs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getEmailLogs",
+    "description": "Get email_logs by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/email_logs/{id}",
+      "tag": "EmailLogs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateEmailLogs",
+    "description": "Update email_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "resend_id": {
+          "type": "string",
+          "description": "resend_id field"
+        },
+        "template": {
+          "type": "string",
+          "description": "template field"
+        },
+        "recipient_email": {
+          "type": "string",
+          "description": "recipient_email field"
+        },
+        "recipient_type": {
+          "type": "string",
+          "description": "recipient_type field"
+        },
+        "recipient_id": {
+          "type": "string",
+          "description": "recipient_id field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "interview_id": {
+          "type": "string",
+          "description": "interview_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "sent_at": {
+          "type": "string",
+          "description": "sent_at field"
+        },
+        "delivered_at": {
+          "type": "string",
+          "description": "delivered_at field"
+        },
+        "bounced_at": {
+          "type": "string",
+          "description": "bounced_at field"
+        },
+        "opened_at": {
+          "type": "string",
+          "description": "opened_at field"
+        },
+        "clicked_at": {
+          "type": "string",
+          "description": "clicked_at field"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "error_message field"
+        },
+        "bounce_type": {
+          "type": "string",
+          "description": "bounce_type field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/email_logs/{id}",
+      "tag": "EmailLogs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteEmailLogs",
+    "description": "Delete email_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/email_logs/{id}",
+      "tag": "EmailLogs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listContracts",
+    "description": "List contracts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/contracts",
+      "tag": "Contracts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createContracts",
+    "description": "Create contracts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "contract_number": {
+          "type": "string",
+          "description": "contract_number field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "contract_type": {
+          "type": "string",
+          "description": "contract_type field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "terms": {
+          "type": "object",
+          "description": "terms field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/contracts",
+      "tag": "Contracts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getContracts",
+    "description": "Get contracts by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/contracts/{id}",
+      "tag": "Contracts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateContracts",
+    "description": "Update contracts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "contract_number": {
+          "type": "string",
+          "description": "contract_number field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "contract_type": {
+          "type": "string",
+          "description": "contract_type field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "terms": {
+          "type": "object",
+          "description": "terms field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/contracts/{id}",
+      "tag": "Contracts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteContracts",
+    "description": "Delete contracts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/contracts/{id}",
+      "tag": "Contracts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listMeetingParticipants",
+    "description": "List meeting_participants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/meeting_participants",
+      "tag": "MeetingParticipants",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createMeetingParticipants",
+    "description": "Create meeting_participants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "meeting_id": {
+          "type": "string",
+          "description": "meeting_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "role": {
+          "type": "string",
+          "description": "role field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "meeting_id",
+        "email",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/meeting_participants",
+      "tag": "MeetingParticipants",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getMeetingParticipants",
+    "description": "Get meeting_participants by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/meeting_participants/{id}",
+      "tag": "MeetingParticipants",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateMeetingParticipants",
+    "description": "Update meeting_participants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "meeting_id": {
+          "type": "string",
+          "description": "meeting_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "role": {
+          "type": "string",
+          "description": "role field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/meeting_participants/{id}",
+      "tag": "MeetingParticipants",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteMeetingParticipants",
+    "description": "Delete meeting_participants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/meeting_participants/{id}",
+      "tag": "MeetingParticipants",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listMeetings",
+    "description": "List meetings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/meetings",
+      "tag": "Meetings",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createMeetings",
+    "description": "Create meetings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "description": "tenant_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "start_time field"
+        },
+        "end_time": {
+          "type": "string",
+          "description": "end_time field"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "timezone field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "meeting_url": {
+          "type": "string",
+          "description": "meeting_url field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "calendar_event_id": {
+          "type": "string",
+          "description": "calendar_event_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "candidate_id",
+        "title",
+        "start_time",
+        "end_time",
+        "timezone"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/meetings",
+      "tag": "Meetings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getMeetings",
+    "description": "Get meetings by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/meetings/{id}",
+      "tag": "Meetings",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateMeetings",
+    "description": "Update meetings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "tenant_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "start_time field"
+        },
+        "end_time": {
+          "type": "string",
+          "description": "end_time field"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "timezone field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "meeting_url": {
+          "type": "string",
+          "description": "meeting_url field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "calendar_event_id": {
+          "type": "string",
+          "description": "calendar_event_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/meetings/{id}",
+      "tag": "Meetings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteMeetings",
+    "description": "Delete meetings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/meetings/{id}",
+      "tag": "Meetings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAvailabilityWindows",
+    "description": "List availability_windows",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/availability_windows",
+      "tag": "AvailabilityWindows",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAvailabilityWindows",
+    "description": "Create availability_windows",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "start_time field"
+        },
+        "end_time": {
+          "type": "string",
+          "description": "end_time field"
+        },
+        "is_available": {
+          "type": "boolean",
+          "description": "is_available field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "user_id",
+        "start_time",
+        "end_time"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/availability_windows",
+      "tag": "AvailabilityWindows",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAvailabilityWindows",
+    "description": "Get availability_windows by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/availability_windows/{id}",
+      "tag": "AvailabilityWindows",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAvailabilityWindows",
+    "description": "Update availability_windows",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "start_time field"
+        },
+        "end_time": {
+          "type": "string",
+          "description": "end_time field"
+        },
+        "is_available": {
+          "type": "boolean",
+          "description": "is_available field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/availability_windows/{id}",
+      "tag": "AvailabilityWindows",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAvailabilityWindows",
+    "description": "Delete availability_windows",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/availability_windows/{id}",
+      "tag": "AvailabilityWindows",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listInterviewPlans",
+    "description": "List interview_plans",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/interview_plans",
+      "tag": "InterviewPlans",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createInterviewPlans",
+    "description": "Create interview_plans",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "owner_user_id": {
+          "type": "string",
+          "description": "owner_user_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "candidate_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/interview_plans",
+      "tag": "InterviewPlans",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getInterviewPlans",
+    "description": "Get interview_plans by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/interview_plans/{id}",
+      "tag": "InterviewPlans",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateInterviewPlans",
+    "description": "Update interview_plans",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "owner_user_id": {
+          "type": "string",
+          "description": "owner_user_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/interview_plans/{id}",
+      "tag": "InterviewPlans",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteInterviewPlans",
+    "description": "Delete interview_plans",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/interview_plans/{id}",
+      "tag": "InterviewPlans",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listInterviewRounds",
+    "description": "List interview_rounds",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/interview_rounds",
+      "tag": "InterviewRounds",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createInterviewRounds",
+    "description": "Create interview_rounds",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "interview_plan_id": {
+          "type": "string",
+          "description": "interview_plan_id field"
+        },
+        "meeting_id": {
+          "type": "string",
+          "description": "meeting_id field"
+        },
+        "round_order": {
+          "type": "integer",
+          "description": "round_order field"
+        },
+        "round_name": {
+          "type": "string",
+          "description": "round_name field"
+        },
+        "round_type": {
+          "type": "string",
+          "description": "round_type field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "interview_plan_id",
+        "round_order",
+        "round_name",
+        "round_type"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/interview_rounds",
+      "tag": "InterviewRounds",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getInterviewRounds",
+    "description": "Get interview_rounds by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/interview_rounds/{id}",
+      "tag": "InterviewRounds",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateInterviewRounds",
+    "description": "Update interview_rounds",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "interview_plan_id": {
+          "type": "string",
+          "description": "interview_plan_id field"
+        },
+        "meeting_id": {
+          "type": "string",
+          "description": "meeting_id field"
+        },
+        "round_order": {
+          "type": "integer",
+          "description": "round_order field"
+        },
+        "round_name": {
+          "type": "string",
+          "description": "round_name field"
+        },
+        "round_type": {
+          "type": "string",
+          "description": "round_type field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/interview_rounds/{id}",
+      "tag": "InterviewRounds",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteInterviewRounds",
+    "description": "Delete interview_rounds",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/interview_rounds/{id}",
+      "tag": "InterviewRounds",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listUserAuditLog",
+    "description": "List user_audit_log",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/user_audit_log",
+      "tag": "UserAuditLog",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createUserAuditLog",
+    "description": "Create user_audit_log",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "action": {
+          "type": "string",
+          "description": "action field"
+        },
+        "resource_type": {
+          "type": "string",
+          "description": "resource_type field"
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "resource_id field"
+        },
+        "ip_address": {
+          "type": "string",
+          "description": "ip_address field"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "user_agent field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "action",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/user_audit_log",
+      "tag": "UserAuditLog",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getUserAuditLog",
+    "description": "Get user_audit_log by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/user_audit_log/{id}",
+      "tag": "UserAuditLog",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateUserAuditLog",
+    "description": "Update user_audit_log",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "action": {
+          "type": "string",
+          "description": "action field"
+        },
+        "resource_type": {
+          "type": "string",
+          "description": "resource_type field"
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "resource_id field"
+        },
+        "ip_address": {
+          "type": "string",
+          "description": "ip_address field"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "user_agent field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/user_audit_log/{id}",
+      "tag": "UserAuditLog",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteUserAuditLog",
+    "description": "Delete user_audit_log",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/user_audit_log/{id}",
+      "tag": "UserAuditLog",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listBulkJobs",
+    "description": "List bulk_jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/bulk_jobs",
+      "tag": "BulkJobs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createBulkJobs",
+    "description": "Create bulk_jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "operation": {
+          "type": "string",
+          "description": "operation field"
+        },
+        "total_items": {
+          "type": "integer",
+          "description": "total_items field"
+        },
+        "processed_items": {
+          "type": "integer",
+          "description": "processed_items field"
+        },
+        "successful_items": {
+          "type": "integer",
+          "description": "successful_items field"
+        },
+        "failed_items": {
+          "type": "integer",
+          "description": "failed_items field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "params": {
+          "type": "object",
+          "description": "params field"
+        },
+        "results": {
+          "type": "object",
+          "description": "results field"
+        },
+        "created_by_user_id": {
+          "type": "string",
+          "description": "created_by_user_id field"
+        },
+        "started_at": {
+          "type": "string",
+          "description": "started_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "operation"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/bulk_jobs",
+      "tag": "BulkJobs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getBulkJobs",
+    "description": "Get bulk_jobs by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/bulk_jobs/{id}",
+      "tag": "BulkJobs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateBulkJobs",
+    "description": "Update bulk_jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "operation": {
+          "type": "string",
+          "description": "operation field"
+        },
+        "total_items": {
+          "type": "integer",
+          "description": "total_items field"
+        },
+        "processed_items": {
+          "type": "integer",
+          "description": "processed_items field"
+        },
+        "successful_items": {
+          "type": "integer",
+          "description": "successful_items field"
+        },
+        "failed_items": {
+          "type": "integer",
+          "description": "failed_items field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "params": {
+          "type": "object",
+          "description": "params field"
+        },
+        "results": {
+          "type": "object",
+          "description": "results field"
+        },
+        "created_by_user_id": {
+          "type": "string",
+          "description": "created_by_user_id field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "started_at": {
+          "type": "string",
+          "description": "started_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/bulk_jobs/{id}",
+      "tag": "BulkJobs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteBulkJobs",
+    "description": "Delete bulk_jobs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/bulk_jobs/{id}",
+      "tag": "BulkJobs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listTranscripts",
+    "description": "List transcripts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/transcripts",
+      "tag": "Transcripts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createTranscripts",
+    "description": "Create transcripts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "recording_asset_id": {
+          "type": "string",
+          "description": "recording_asset_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "transcript_text": {
+          "type": "string",
+          "description": "transcript_text field"
+        },
+        "transcript_json": {
+          "type": "object",
+          "description": "transcript_json field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "recording_asset_id",
+        "provider"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/transcripts",
+      "tag": "Transcripts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getTranscripts",
+    "description": "Get transcripts by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/transcripts/{id}",
+      "tag": "Transcripts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateTranscripts",
+    "description": "Update transcripts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "recording_asset_id": {
+          "type": "string",
+          "description": "recording_asset_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "transcript_text": {
+          "type": "string",
+          "description": "transcript_text field"
+        },
+        "transcript_json": {
+          "type": "object",
+          "description": "transcript_json field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/transcripts/{id}",
+      "tag": "Transcripts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteTranscripts",
+    "description": "Delete transcripts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/transcripts/{id}",
+      "tag": "Transcripts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listScorecardTemplates",
+    "description": "List scorecard_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/scorecard_templates",
+      "tag": "ScorecardTemplates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createScorecardTemplates",
+    "description": "Create scorecard_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "schema": {
+          "type": "object",
+          "description": "schema field"
+        },
+        "rubric_version": {
+          "type": "integer",
+          "description": "rubric_version field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name",
+        "schema"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/scorecard_templates",
+      "tag": "ScorecardTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getScorecardTemplates",
+    "description": "Get scorecard_templates by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/scorecard_templates/{id}",
+      "tag": "ScorecardTemplates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateScorecardTemplates",
+    "description": "Update scorecard_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "schema": {
+          "type": "object",
+          "description": "schema field"
+        },
+        "rubric_version": {
+          "type": "integer",
+          "description": "rubric_version field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/scorecard_templates/{id}",
+      "tag": "ScorecardTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteScorecardTemplates",
+    "description": "Delete scorecard_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/scorecard_templates/{id}",
+      "tag": "ScorecardTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listDecisionPackets",
+    "description": "List decision_packets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/decision_packets",
+      "tag": "DecisionPackets",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createDecisionPackets",
+    "description": "Create decision_packets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "interview_plan_id": {
+          "type": "string",
+          "description": "interview_plan_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "packet": {
+          "type": "object",
+          "description": "packet field"
+        },
+        "ai_summary": {
+          "type": "string",
+          "description": "ai_summary field"
+        },
+        "ai_risks": {
+          "type": "object",
+          "description": "ai_risks field"
+        },
+        "ai_recommendation": {
+          "type": "string",
+          "description": "ai_recommendation field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "interview_plan_id",
+        "candidate_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/decision_packets",
+      "tag": "DecisionPackets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getDecisionPackets",
+    "description": "Get decision_packets by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/decision_packets/{id}",
+      "tag": "DecisionPackets",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateDecisionPackets",
+    "description": "Update decision_packets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "interview_plan_id": {
+          "type": "string",
+          "description": "interview_plan_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "packet": {
+          "type": "object",
+          "description": "packet field"
+        },
+        "ai_summary": {
+          "type": "string",
+          "description": "ai_summary field"
+        },
+        "ai_risks": {
+          "type": "object",
+          "description": "ai_risks field"
+        },
+        "ai_recommendation": {
+          "type": "string",
+          "description": "ai_recommendation field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/decision_packets/{id}",
+      "tag": "DecisionPackets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteDecisionPackets",
+    "description": "Delete decision_packets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/decision_packets/{id}",
+      "tag": "DecisionPackets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listRecordingAssets",
+    "description": "List recording_assets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/recording_assets",
+      "tag": "RecordingAssets",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createRecordingAssets",
+    "description": "Create recording_assets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "meeting_id": {
+          "type": "string",
+          "description": "meeting_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "provider_asset_id": {
+          "type": "string",
+          "description": "provider_asset_id field"
+        },
+        "url": {
+          "type": "string",
+          "description": "url field"
+        },
+        "asset_type": {
+          "type": "string",
+          "description": "asset_type field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "provider",
+        "asset_type"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/recording_assets",
+      "tag": "RecordingAssets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getRecordingAssets",
+    "description": "Get recording_assets by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/recording_assets/{id}",
+      "tag": "RecordingAssets",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateRecordingAssets",
+    "description": "Update recording_assets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "meeting_id": {
+          "type": "string",
+          "description": "meeting_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "provider_asset_id": {
+          "type": "string",
+          "description": "provider_asset_id field"
+        },
+        "url": {
+          "type": "string",
+          "description": "url field"
+        },
+        "asset_type": {
+          "type": "string",
+          "description": "asset_type field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/recording_assets/{id}",
+      "tag": "RecordingAssets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteRecordingAssets",
+    "description": "Delete recording_assets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/recording_assets/{id}",
+      "tag": "RecordingAssets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listTimesheets",
+    "description": "List timesheets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/timesheets",
+      "tag": "Timesheets",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createTimesheets",
+    "description": "Create timesheets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "assignment_id": {
+          "type": "string",
+          "description": "assignment_id field"
+        },
+        "consultant_id": {
+          "type": "string",
+          "description": "consultant_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "week_start_date": {
+          "type": "string",
+          "description": "week_start_date field"
+        },
+        "week_end_date": {
+          "type": "string",
+          "description": "week_end_date field"
+        },
+        "total_hours": {
+          "type": "number",
+          "description": "total_hours field"
+        },
+        "regular_hours": {
+          "type": "number",
+          "description": "regular_hours field"
+        },
+        "overtime_hours": {
+          "type": "number",
+          "description": "overtime_hours field"
+        },
+        "billable_hours": {
+          "type": "number",
+          "description": "billable_hours field"
+        },
+        "non_billable_hours": {
+          "type": "number",
+          "description": "non_billable_hours field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "hourly_rate": {
+          "type": "number",
+          "description": "hourly_rate field"
+        },
+        "total_amount": {
+          "type": "number",
+          "description": "total_amount field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        },
+        "submitted_by": {
+          "type": "string",
+          "description": "submitted_by field"
+        },
+        "approved_at": {
+          "type": "string",
+          "description": "approved_at field"
+        },
+        "approved_by": {
+          "type": "string",
+          "description": "approved_by field"
+        },
+        "rejected_at": {
+          "type": "string",
+          "description": "rejected_at field"
+        },
+        "rejected_by": {
+          "type": "string",
+          "description": "rejected_by field"
+        },
+        "rejection_reason": {
+          "type": "string",
+          "description": "rejection_reason field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "attachments": {
+          "type": "object",
+          "description": "attachments field"
+        },
+        "time_entries": {
+          "type": "object",
+          "description": "time_entries field"
+        },
+        "tags": {
+          "type": "array",
+          "description": "tags field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "week_start_date",
+        "week_end_date"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/timesheets",
+      "tag": "Timesheets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getTimesheets",
+    "description": "Get timesheets by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/timesheets/{id}",
+      "tag": "Timesheets",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateTimesheets",
+    "description": "Update timesheets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "assignment_id": {
+          "type": "string",
+          "description": "assignment_id field"
+        },
+        "consultant_id": {
+          "type": "string",
+          "description": "consultant_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "week_start_date": {
+          "type": "string",
+          "description": "week_start_date field"
+        },
+        "week_end_date": {
+          "type": "string",
+          "description": "week_end_date field"
+        },
+        "total_hours": {
+          "type": "number",
+          "description": "total_hours field"
+        },
+        "regular_hours": {
+          "type": "number",
+          "description": "regular_hours field"
+        },
+        "overtime_hours": {
+          "type": "number",
+          "description": "overtime_hours field"
+        },
+        "billable_hours": {
+          "type": "number",
+          "description": "billable_hours field"
+        },
+        "non_billable_hours": {
+          "type": "number",
+          "description": "non_billable_hours field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "hourly_rate": {
+          "type": "number",
+          "description": "hourly_rate field"
+        },
+        "total_amount": {
+          "type": "number",
+          "description": "total_amount field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        },
+        "submitted_by": {
+          "type": "string",
+          "description": "submitted_by field"
+        },
+        "approved_at": {
+          "type": "string",
+          "description": "approved_at field"
+        },
+        "approved_by": {
+          "type": "string",
+          "description": "approved_by field"
+        },
+        "rejected_at": {
+          "type": "string",
+          "description": "rejected_at field"
+        },
+        "rejected_by": {
+          "type": "string",
+          "description": "rejected_by field"
+        },
+        "rejection_reason": {
+          "type": "string",
+          "description": "rejection_reason field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "attachments": {
+          "type": "object",
+          "description": "attachments field"
+        },
+        "time_entries": {
+          "type": "object",
+          "description": "time_entries field"
+        },
+        "tags": {
+          "type": "array",
+          "description": "tags field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/timesheets/{id}",
+      "tag": "Timesheets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteTimesheets",
+    "description": "Delete timesheets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/timesheets/{id}",
+      "tag": "Timesheets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCompBands",
+    "description": "List comp_bands",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/comp_bands",
+      "tag": "CompBands",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCompBands",
+    "description": "Create comp_bands",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "role_title": {
+          "type": "string",
+          "description": "role_title field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "employment_type": {
+          "type": "string",
+          "description": "employment_type field"
+        },
+        "currency": {
+          "type": "string",
+          "description": "currency field"
+        },
+        "min_amount": {
+          "type": "number",
+          "description": "min_amount field"
+        },
+        "mid_amount": {
+          "type": "number",
+          "description": "mid_amount field"
+        },
+        "max_amount": {
+          "type": "number",
+          "description": "max_amount field"
+        },
+        "unit": {
+          "type": "string",
+          "description": "unit field"
+        },
+        "effective_from": {
+          "type": "string",
+          "description": "effective_from field"
+        },
+        "effective_to": {
+          "type": "string",
+          "description": "effective_to field"
+        },
+        "approvals_required": {
+          "type": "object",
+          "description": "approvals_required field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "employment_type",
+        "min_amount",
+        "max_amount",
+        "unit"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/comp_bands",
+      "tag": "CompBands",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCompBands",
+    "description": "Get comp_bands by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/comp_bands/{id}",
+      "tag": "CompBands",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCompBands",
+    "description": "Update comp_bands",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "role_title": {
+          "type": "string",
+          "description": "role_title field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "employment_type": {
+          "type": "string",
+          "description": "employment_type field"
+        },
+        "currency": {
+          "type": "string",
+          "description": "currency field"
+        },
+        "min_amount": {
+          "type": "number",
+          "description": "min_amount field"
+        },
+        "mid_amount": {
+          "type": "number",
+          "description": "mid_amount field"
+        },
+        "max_amount": {
+          "type": "number",
+          "description": "max_amount field"
+        },
+        "unit": {
+          "type": "string",
+          "description": "unit field"
+        },
+        "effective_from": {
+          "type": "string",
+          "description": "effective_from field"
+        },
+        "effective_to": {
+          "type": "string",
+          "description": "effective_to field"
+        },
+        "approvals_required": {
+          "type": "object",
+          "description": "approvals_required field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/comp_bands/{id}",
+      "tag": "CompBands",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCompBands",
+    "description": "Delete comp_bands",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/comp_bands/{id}",
+      "tag": "CompBands",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listScorecardResponses",
+    "description": "List scorecard_responses",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/scorecard_responses",
+      "tag": "ScorecardResponses",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createScorecardResponses",
+    "description": "Create scorecard_responses",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "scorecard_instance_id": {
+          "type": "string",
+          "description": "scorecard_instance_id field"
+        },
+        "responses": {
+          "type": "object",
+          "description": "responses field"
+        },
+        "created_by_user_id": {
+          "type": "string",
+          "description": "created_by_user_id field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "scorecard_instance_id",
+        "responses",
+        "created_by_user_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/scorecard_responses",
+      "tag": "ScorecardResponses",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getScorecardResponses",
+    "description": "Get scorecard_responses by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/scorecard_responses/{id}",
+      "tag": "ScorecardResponses",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateScorecardResponses",
+    "description": "Update scorecard_responses",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "scorecard_instance_id": {
+          "type": "string",
+          "description": "scorecard_instance_id field"
+        },
+        "responses": {
+          "type": "object",
+          "description": "responses field"
+        },
+        "created_by_user_id": {
+          "type": "string",
+          "description": "created_by_user_id field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/scorecard_responses/{id}",
+      "tag": "ScorecardResponses",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteScorecardResponses",
+    "description": "Delete scorecard_responses",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/scorecard_responses/{id}",
+      "tag": "ScorecardResponses",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listOnboardingPackets",
+    "description": "List onboarding_packets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/onboarding_packets",
+      "tag": "OnboardingPackets",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createOnboardingPackets",
+    "description": "Create onboarding_packets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "start_id": {
+          "type": "string",
+          "description": "start_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "packet": {
+          "type": "object",
+          "description": "packet field"
+        },
+        "last_error": {
+          "type": "string",
+          "description": "last_error field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "start_id",
+        "candidate_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/onboarding_packets",
+      "tag": "OnboardingPackets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getOnboardingPackets",
+    "description": "Get onboarding_packets by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/onboarding_packets/{id}",
+      "tag": "OnboardingPackets",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateOnboardingPackets",
+    "description": "Update onboarding_packets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "start_id": {
+          "type": "string",
+          "description": "start_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "packet": {
+          "type": "object",
+          "description": "packet field"
+        },
+        "last_error": {
+          "type": "string",
+          "description": "last_error field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/onboarding_packets/{id}",
+      "tag": "OnboardingPackets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteOnboardingPackets",
+    "description": "Delete onboarding_packets",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/onboarding_packets/{id}",
+      "tag": "OnboardingPackets",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listStarts",
+    "description": "List starts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/starts",
+      "tag": "Starts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createStarts",
+    "description": "Create starts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "employment_type": {
+          "type": "string",
+          "description": "employment_type field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "candidate_id",
+        "start_date",
+        "employment_type"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/starts",
+      "tag": "Starts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getStarts",
+    "description": "Get starts by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/starts/{id}",
+      "tag": "Starts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateStarts",
+    "description": "Update starts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "employment_type": {
+          "type": "string",
+          "description": "employment_type field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/starts/{id}",
+      "tag": "Starts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteStarts",
+    "description": "Delete starts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/starts/{id}",
+      "tag": "Starts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listEsignEnvelopes",
+    "description": "List esign_envelopes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/esign_envelopes",
+      "tag": "EsignEnvelopes",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createEsignEnvelopes",
+    "description": "Create esign_envelopes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "provider_envelope_id": {
+          "type": "string",
+          "description": "provider_envelope_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "signing_url": {
+          "type": "string",
+          "description": "signing_url field"
+        },
+        "signed_at": {
+          "type": "string",
+          "description": "signed_at field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "offer_id",
+        "provider"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/esign_envelopes",
+      "tag": "EsignEnvelopes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getEsignEnvelopes",
+    "description": "Get esign_envelopes by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/esign_envelopes/{id}",
+      "tag": "EsignEnvelopes",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateEsignEnvelopes",
+    "description": "Update esign_envelopes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "provider_envelope_id": {
+          "type": "string",
+          "description": "provider_envelope_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "signing_url": {
+          "type": "string",
+          "description": "signing_url field"
+        },
+        "signed_at": {
+          "type": "string",
+          "description": "signed_at field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/esign_envelopes/{id}",
+      "tag": "EsignEnvelopes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteEsignEnvelopes",
+    "description": "Delete esign_envelopes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/esign_envelopes/{id}",
+      "tag": "EsignEnvelopes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listOfferApprovals",
+    "description": "List offer_approvals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/offer_approvals",
+      "tag": "OfferApprovals",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createOfferApprovals",
+    "description": "Create offer_approvals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "step_order": {
+          "type": "integer",
+          "description": "step_order field"
+        },
+        "approver_user_id": {
+          "type": "string",
+          "description": "approver_user_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "decided_at": {
+          "type": "string",
+          "description": "decided_at field"
+        },
+        "decision_note": {
+          "type": "string",
+          "description": "decision_note field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "offer_id",
+        "step_order",
+        "approver_user_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/offer_approvals",
+      "tag": "OfferApprovals",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getOfferApprovals",
+    "description": "Get offer_approvals by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/offer_approvals/{id}",
+      "tag": "OfferApprovals",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateOfferApprovals",
+    "description": "Update offer_approvals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "step_order": {
+          "type": "integer",
+          "description": "step_order field"
+        },
+        "approver_user_id": {
+          "type": "string",
+          "description": "approver_user_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "decided_at": {
+          "type": "string",
+          "description": "decided_at field"
+        },
+        "decision_note": {
+          "type": "string",
+          "description": "decision_note field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/offer_approvals/{id}",
+      "tag": "OfferApprovals",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteOfferApprovals",
+    "description": "Delete offer_approvals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/offer_approvals/{id}",
+      "tag": "OfferApprovals",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listOfferDocuments",
+    "description": "List offer_documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/offer_documents",
+      "tag": "OfferDocuments",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createOfferDocuments",
+    "description": "Create offer_documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "doc_type": {
+          "type": "string",
+          "description": "doc_type field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "storage_key": {
+          "type": "string",
+          "description": "storage_key field"
+        },
+        "url": {
+          "type": "string",
+          "description": "url field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "offer_id",
+        "doc_type"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/offer_documents",
+      "tag": "OfferDocuments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getOfferDocuments",
+    "description": "Get offer_documents by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/offer_documents/{id}",
+      "tag": "OfferDocuments",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateOfferDocuments",
+    "description": "Update offer_documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "doc_type": {
+          "type": "string",
+          "description": "doc_type field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "storage_key": {
+          "type": "string",
+          "description": "storage_key field"
+        },
+        "url": {
+          "type": "string",
+          "description": "url field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/offer_documents/{id}",
+      "tag": "OfferDocuments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteOfferDocuments",
+    "description": "Delete offer_documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/offer_documents/{id}",
+      "tag": "OfferDocuments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listApplications",
+    "description": "List applications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/applications",
+      "tag": "Applications",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createApplications",
+    "description": "Create applications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "current_stage_text_old": {
+          "type": "string",
+          "description": "current_stage_text_old field"
+        },
+        "stage_history": {
+          "type": "object",
+          "description": "stage_history field"
+        },
+        "date_applied": {
+          "type": "string",
+          "description": "date_applied field"
+        },
+        "linkedin_application_status": {
+          "type": "string",
+          "description": "linkedin_application_status field"
+        },
+        "screening_questions": {
+          "type": "object",
+          "description": "screening_questions field"
+        },
+        "is_favorite": {
+          "type": "boolean",
+          "description": "is_favorite field"
+        },
+        "is_archived": {
+          "type": "boolean",
+          "description": "is_archived field"
+        },
+        "assigned_to": {
+          "type": "string",
+          "description": "assigned_to field"
+        },
+        "current_stage": {
+          "type": "string",
+          "description": "current_stage field"
+        },
+        "applied_date": {
+          "type": "string",
+          "description": "applied_date field"
+        },
+        "candidate_email": {
+          "type": "string",
+          "description": "candidate_email field"
+        },
+        "job_external_id": {
+          "type": "number",
+          "description": "job_external_id field"
+        },
+        "screening_data": {
+          "type": "object",
+          "description": "screening_data field"
+        },
+        "stage": {
+          "type": "string",
+          "description": "stage field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/applications",
+      "tag": "Applications",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getApplications",
+    "description": "Get applications by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/applications/{id}",
+      "tag": "Applications",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateApplications",
+    "description": "Update applications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "current_stage_text_old": {
+          "type": "string",
+          "description": "current_stage_text_old field"
+        },
+        "stage_history": {
+          "type": "object",
+          "description": "stage_history field"
+        },
+        "date_applied": {
+          "type": "string",
+          "description": "date_applied field"
+        },
+        "linkedin_application_status": {
+          "type": "string",
+          "description": "linkedin_application_status field"
+        },
+        "screening_questions": {
+          "type": "object",
+          "description": "screening_questions field"
+        },
+        "is_favorite": {
+          "type": "boolean",
+          "description": "is_favorite field"
+        },
+        "is_archived": {
+          "type": "boolean",
+          "description": "is_archived field"
+        },
+        "assigned_to": {
+          "type": "string",
+          "description": "assigned_to field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "current_stage": {
+          "type": "string",
+          "description": "current_stage field"
+        },
+        "applied_date": {
+          "type": "string",
+          "description": "applied_date field"
+        },
+        "candidate_email": {
+          "type": "string",
+          "description": "candidate_email field"
+        },
+        "job_external_id": {
+          "type": "number",
+          "description": "job_external_id field"
+        },
+        "screening_data": {
+          "type": "object",
+          "description": "screening_data field"
+        },
+        "stage": {
+          "type": "string",
+          "description": "stage field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/applications/{id}",
+      "tag": "Applications",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteApplications",
+    "description": "Delete applications",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/applications/{id}",
+      "tag": "Applications",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listTemplates",
+    "description": "List templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/templates",
+      "tag": "Templates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createTemplates",
+    "description": "Create templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "template_type": {
+          "type": "string",
+          "description": "template_type field"
+        },
+        "category": {
+          "type": "string",
+          "description": "category field"
+        },
+        "content": {
+          "type": "string",
+          "description": "content field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "variables": {
+          "type": "array",
+          "description": "variables field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "is_default": {
+          "type": "boolean",
+          "description": "is_default field"
+        },
+        "usage_count": {
+          "type": "integer",
+          "description": "usage_count field"
+        },
+        "last_used_at": {
+          "type": "string",
+          "description": "last_used_at field"
+        },
+        "owner_id": {
+          "type": "string",
+          "description": "owner_id field"
+        },
+        "owner_name": {
+          "type": "string",
+          "description": "owner_name field"
+        },
+        "tags": {
+          "type": "array",
+          "description": "tags field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name",
+        "template_type",
+        "content"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/templates",
+      "tag": "Templates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getTemplates",
+    "description": "Get templates by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/templates/{id}",
+      "tag": "Templates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateTemplates",
+    "description": "Update templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "template_type": {
+          "type": "string",
+          "description": "template_type field"
+        },
+        "category": {
+          "type": "string",
+          "description": "category field"
+        },
+        "content": {
+          "type": "string",
+          "description": "content field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "variables": {
+          "type": "array",
+          "description": "variables field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "is_default": {
+          "type": "boolean",
+          "description": "is_default field"
+        },
+        "usage_count": {
+          "type": "integer",
+          "description": "usage_count field"
+        },
+        "last_used_at": {
+          "type": "string",
+          "description": "last_used_at field"
+        },
+        "owner_id": {
+          "type": "string",
+          "description": "owner_id field"
+        },
+        "owner_name": {
+          "type": "string",
+          "description": "owner_name field"
+        },
+        "tags": {
+          "type": "array",
+          "description": "tags field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/templates/{id}",
+      "tag": "Templates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteTemplates",
+    "description": "Delete templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/templates/{id}",
+      "tag": "Templates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCandidateEmbeddings",
+    "description": "List candidate_embeddings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_embeddings",
+      "tag": "CandidateEmbeddings",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCandidateEmbeddings",
+    "description": "Create candidate_embeddings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "embedding": {
+          "type": "string",
+          "description": "embedding field"
+        },
+        "content_snapshot": {
+          "type": "string",
+          "description": "content_snapshot field"
+        },
+        "model_name": {
+          "type": "string",
+          "description": "model_name field"
+        },
+        "generated_at": {
+          "type": "string",
+          "description": "generated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "embedding",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/candidate_embeddings",
+      "tag": "CandidateEmbeddings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCandidateEmbeddings",
+    "description": "Get candidate_embeddings by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_embeddings/{id}",
+      "tag": "CandidateEmbeddings",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCandidateEmbeddings",
+    "description": "Update candidate_embeddings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "embedding": {
+          "type": "string",
+          "description": "embedding field"
+        },
+        "content_snapshot": {
+          "type": "string",
+          "description": "content_snapshot field"
+        },
+        "model_name": {
+          "type": "string",
+          "description": "model_name field"
+        },
+        "generated_at": {
+          "type": "string",
+          "description": "generated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/candidate_embeddings/{id}",
+      "tag": "CandidateEmbeddings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCandidateEmbeddings",
+    "description": "Delete candidate_embeddings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/candidate_embeddings/{id}",
+      "tag": "CandidateEmbeddings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listSubscriptions",
+    "description": "List subscriptions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/subscriptions",
+      "tag": "Subscriptions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createSubscriptions",
+    "description": "Create subscriptions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "stripe_customer_id": {
+          "type": "string",
+          "description": "stripe_customer_id field"
+        },
+        "stripe_subscription_id": {
+          "type": "string",
+          "description": "stripe_subscription_id field"
+        },
+        "plan_id": {
+          "type": "string",
+          "description": "plan_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "current_period_start": {
+          "type": "string",
+          "description": "current_period_start field"
+        },
+        "current_period_end": {
+          "type": "string",
+          "description": "current_period_end field"
+        },
+        "trial_start": {
+          "type": "string",
+          "description": "trial_start field"
+        },
+        "trial_end": {
+          "type": "string",
+          "description": "trial_end field"
+        },
+        "cancel_at_period_end": {
+          "type": "boolean",
+          "description": "cancel_at_period_end field"
+        },
+        "canceled_at": {
+          "type": "string",
+          "description": "canceled_at field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "stripe_customer_id",
+        "stripe_subscription_id",
+        "plan_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/subscriptions",
+      "tag": "Subscriptions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getSubscriptions",
+    "description": "Get subscriptions by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/subscriptions/{id}",
+      "tag": "Subscriptions",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateSubscriptions",
+    "description": "Update subscriptions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "stripe_customer_id": {
+          "type": "string",
+          "description": "stripe_customer_id field"
+        },
+        "stripe_subscription_id": {
+          "type": "string",
+          "description": "stripe_subscription_id field"
+        },
+        "plan_id": {
+          "type": "string",
+          "description": "plan_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "current_period_start": {
+          "type": "string",
+          "description": "current_period_start field"
+        },
+        "current_period_end": {
+          "type": "string",
+          "description": "current_period_end field"
+        },
+        "trial_start": {
+          "type": "string",
+          "description": "trial_start field"
+        },
+        "trial_end": {
+          "type": "string",
+          "description": "trial_end field"
+        },
+        "cancel_at_period_end": {
+          "type": "boolean",
+          "description": "cancel_at_period_end field"
+        },
+        "canceled_at": {
+          "type": "string",
+          "description": "canceled_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/subscriptions/{id}",
+      "tag": "Subscriptions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteSubscriptions",
+    "description": "Delete subscriptions",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/subscriptions/{id}",
+      "tag": "Subscriptions",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAssignments",
+    "description": "List assignments",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/assignments",
+      "tag": "Assignments",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAssignments",
+    "description": "Create assignments",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "state": {
+          "type": "string",
+          "description": "state field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "current_end_date": {
+          "type": "string",
+          "description": "current_end_date field"
+        },
+        "client_name": {
+          "type": "string",
+          "description": "client_name field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "engagement_type": {
+          "type": "string",
+          "description": "engagement_type field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "candidate_id",
+        "job_id",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/assignments",
+      "tag": "Assignments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAssignments",
+    "description": "Get assignments by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/assignments/{id}",
+      "tag": "Assignments",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAssignments",
+    "description": "Update assignments",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "state": {
+          "type": "string",
+          "description": "state field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "current_end_date": {
+          "type": "string",
+          "description": "current_end_date field"
+        },
+        "client_name": {
+          "type": "string",
+          "description": "client_name field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "engagement_type": {
+          "type": "string",
+          "description": "engagement_type field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/assignments/{id}",
+      "tag": "Assignments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAssignments",
+    "description": "Delete assignments",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/assignments/{id}",
+      "tag": "Assignments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listForecasts",
+    "description": "List forecasts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/forecasts",
+      "tag": "Forecasts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createForecasts",
+    "description": "Create forecasts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "forecast_type": {
+          "type": "string",
+          "description": "forecast_type field"
+        },
+        "period_type": {
+          "type": "string",
+          "description": "period_type field"
+        },
+        "period_start": {
+          "type": "string",
+          "description": "period_start field"
+        },
+        "period_end": {
+          "type": "string",
+          "description": "period_end field"
+        },
+        "predicted_value": {
+          "type": "number",
+          "description": "predicted_value field"
+        },
+        "confidence_level": {
+          "type": "integer",
+          "description": "confidence_level field"
+        },
+        "actual_value": {
+          "type": "number",
+          "description": "actual_value field"
+        },
+        "variance": {
+          "type": "number",
+          "description": "variance field"
+        },
+        "variance_percent": {
+          "type": "number",
+          "description": "variance_percent field"
+        },
+        "accuracy_score": {
+          "type": "integer",
+          "description": "accuracy_score field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "methodology": {
+          "type": "string",
+          "description": "methodology field"
+        },
+        "assumptions": {
+          "type": "object",
+          "description": "assumptions field"
+        },
+        "owner_id": {
+          "type": "string",
+          "description": "owner_id field"
+        },
+        "owner_name": {
+          "type": "string",
+          "description": "owner_name field"
+        },
+        "tags": {
+          "type": "array",
+          "description": "tags field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name",
+        "forecast_type",
+        "period_type",
+        "period_start",
+        "period_end",
+        "predicted_value"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/forecasts",
+      "tag": "Forecasts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getForecasts",
+    "description": "Get forecasts by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/forecasts/{id}",
+      "tag": "Forecasts",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateForecasts",
+    "description": "Update forecasts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "forecast_type": {
+          "type": "string",
+          "description": "forecast_type field"
+        },
+        "period_type": {
+          "type": "string",
+          "description": "period_type field"
+        },
+        "period_start": {
+          "type": "string",
+          "description": "period_start field"
+        },
+        "period_end": {
+          "type": "string",
+          "description": "period_end field"
+        },
+        "predicted_value": {
+          "type": "number",
+          "description": "predicted_value field"
+        },
+        "confidence_level": {
+          "type": "integer",
+          "description": "confidence_level field"
+        },
+        "actual_value": {
+          "type": "number",
+          "description": "actual_value field"
+        },
+        "variance": {
+          "type": "number",
+          "description": "variance field"
+        },
+        "variance_percent": {
+          "type": "number",
+          "description": "variance_percent field"
+        },
+        "accuracy_score": {
+          "type": "integer",
+          "description": "accuracy_score field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "methodology": {
+          "type": "string",
+          "description": "methodology field"
+        },
+        "assumptions": {
+          "type": "object",
+          "description": "assumptions field"
+        },
+        "owner_id": {
+          "type": "string",
+          "description": "owner_id field"
+        },
+        "owner_name": {
+          "type": "string",
+          "description": "owner_name field"
+        },
+        "tags": {
+          "type": "array",
+          "description": "tags field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/forecasts/{id}",
+      "tag": "Forecasts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteForecasts",
+    "description": "Delete forecasts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/forecasts/{id}",
+      "tag": "Forecasts",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listActionRegistry",
+    "description": "List action_registry",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/action_registry",
+      "tag": "ActionRegistry",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createActionRegistry",
+    "description": "Create action_registry",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action_key": {
+          "type": "string",
+          "description": "action_key field"
+        },
+        "entity_name": {
+          "type": "string",
+          "description": "entity_name field"
+        },
+        "rpc_name": {
+          "type": "string",
+          "description": "rpc_name field"
+        },
+        "valid_states_ref": {
+          "type": "string",
+          "description": "valid_states_ref field"
+        },
+        "emits_events": {
+          "type": "array",
+          "description": "emits_events field"
+        },
+        "is_idempotent": {
+          "type": "boolean",
+          "description": "is_idempotent field"
+        },
+        "requires_organization_id": {
+          "type": "boolean",
+          "description": "requires_organization_id field"
+        }
+      },
+      "required": [
+        "action_key",
+        "entity_name",
+        "rpc_name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/action_registry",
+      "tag": "ActionRegistry",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getActionRegistry",
+    "description": "Get action_registry by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/action_registry/{id}",
+      "tag": "ActionRegistry",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateActionRegistry",
+    "description": "Update action_registry",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "action_key": {
+          "type": "string",
+          "description": "action_key field"
+        },
+        "entity_name": {
+          "type": "string",
+          "description": "entity_name field"
+        },
+        "rpc_name": {
+          "type": "string",
+          "description": "rpc_name field"
+        },
+        "valid_states_ref": {
+          "type": "string",
+          "description": "valid_states_ref field"
+        },
+        "emits_events": {
+          "type": "array",
+          "description": "emits_events field"
+        },
+        "is_idempotent": {
+          "type": "boolean",
+          "description": "is_idempotent field"
+        },
+        "requires_organization_id": {
+          "type": "boolean",
+          "description": "requires_organization_id field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/action_registry/{id}",
+      "tag": "ActionRegistry",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteActionRegistry",
+    "description": "Delete action_registry",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/action_registry/{id}",
+      "tag": "ActionRegistry",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listBenchEntries",
+    "description": "List bench_entries",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/bench_entries",
+      "tag": "BenchEntries",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createBenchEntries",
+    "description": "Create bench_entries",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "assignment_id": {
+          "type": "string",
+          "description": "assignment_id field"
+        },
+        "state": {
+          "type": "string",
+          "description": "state field"
+        },
+        "reason": {
+          "type": "string",
+          "description": "reason field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "bench_started_at": {
+          "type": "string",
+          "description": "bench_started_at field"
+        },
+        "bench_ended_at": {
+          "type": "string",
+          "description": "bench_ended_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "candidate_id",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/bench_entries",
+      "tag": "BenchEntries",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getBenchEntries",
+    "description": "Get bench_entries by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/bench_entries/{id}",
+      "tag": "BenchEntries",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateBenchEntries",
+    "description": "Update bench_entries",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "assignment_id": {
+          "type": "string",
+          "description": "assignment_id field"
+        },
+        "state": {
+          "type": "string",
+          "description": "state field"
+        },
+        "reason": {
+          "type": "string",
+          "description": "reason field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "bench_started_at": {
+          "type": "string",
+          "description": "bench_started_at field"
+        },
+        "bench_ended_at": {
+          "type": "string",
+          "description": "bench_ended_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/bench_entries/{id}",
+      "tag": "BenchEntries",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteBenchEntries",
+    "description": "Delete bench_entries",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/bench_entries/{id}",
+      "tag": "BenchEntries",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listTeams",
+    "description": "List teams",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/teams",
+      "tag": "Teams",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createTeams",
+    "description": "Create teams",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/teams",
+      "tag": "Teams",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getTeams",
+    "description": "Get teams by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/teams/{id}",
+      "tag": "Teams",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateTeams",
+    "description": "Update teams",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/teams/{id}",
+      "tag": "Teams",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteTeams",
+    "description": "Delete teams",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/teams/{id}",
+      "tag": "Teams",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAutomationRules",
+    "description": "List automation_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/automation_rules",
+      "tag": "AutomationRules",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAutomationRules",
+    "description": "Create automation_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "trigger_type": {
+          "type": "string",
+          "description": "trigger_type field"
+        },
+        "trigger_config": {
+          "type": "object",
+          "description": "trigger_config field"
+        },
+        "action_type": {
+          "type": "string",
+          "description": "action_type field"
+        },
+        "action_config": {
+          "type": "object",
+          "description": "action_config field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/automation_rules",
+      "tag": "AutomationRules",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAutomationRules",
+    "description": "Get automation_rules by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/automation_rules/{id}",
+      "tag": "AutomationRules",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAutomationRules",
+    "description": "Update automation_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "trigger_type": {
+          "type": "string",
+          "description": "trigger_type field"
+        },
+        "trigger_config": {
+          "type": "object",
+          "description": "trigger_config field"
+        },
+        "action_type": {
+          "type": "string",
+          "description": "action_type field"
+        },
+        "action_config": {
+          "type": "object",
+          "description": "action_config field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/automation_rules/{id}",
+      "tag": "AutomationRules",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAutomationRules",
+    "description": "Delete automation_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/automation_rules/{id}",
+      "tag": "AutomationRules",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listIntegrations",
+    "description": "List integrations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/integrations",
+      "tag": "Integrations",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createIntegrations",
+    "description": "Create integrations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "integration_type": {
+          "type": "string",
+          "description": "integration_type field"
+        },
+        "config": {
+          "type": "object",
+          "description": "config field"
+        },
+        "credentials": {
+          "type": "object",
+          "description": "credentials field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "last_sync_at": {
+          "type": "string",
+          "description": "last_sync_at field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/integrations",
+      "tag": "Integrations",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getIntegrations",
+    "description": "Get integrations by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/integrations/{id}",
+      "tag": "Integrations",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateIntegrations",
+    "description": "Update integrations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "integration_type": {
+          "type": "string",
+          "description": "integration_type field"
+        },
+        "config": {
+          "type": "object",
+          "description": "config field"
+        },
+        "credentials": {
+          "type": "object",
+          "description": "credentials field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "last_sync_at": {
+          "type": "string",
+          "description": "last_sync_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/integrations/{id}",
+      "tag": "Integrations",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteIntegrations",
+    "description": "Delete integrations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/integrations/{id}",
+      "tag": "Integrations",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listOffers",
+    "description": "List offers",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/offers",
+      "tag": "Offers",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createOffers",
+    "description": "Create offers",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "submission_id": {
+          "type": "string",
+          "description": "submission_id field"
+        },
+        "salary_amount": {
+          "type": "integer",
+          "description": "salary_amount field"
+        },
+        "salary_currency": {
+          "type": "string",
+          "description": "salary_currency field"
+        },
+        "equity_percentage": {
+          "type": "number",
+          "description": "equity_percentage field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "offer_letter_url": {
+          "type": "string",
+          "description": "offer_letter_url field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "sent_at": {
+          "type": "string",
+          "description": "sent_at field"
+        },
+        "accepted_at": {
+          "type": "string",
+          "description": "accepted_at field"
+        },
+        "declined_at": {
+          "type": "string",
+          "description": "declined_at field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "salary_amount"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/offers",
+      "tag": "Offers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getOffers",
+    "description": "Get offers by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/offers/{id}",
+      "tag": "Offers",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateOffers",
+    "description": "Update offers",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "submission_id": {
+          "type": "string",
+          "description": "submission_id field"
+        },
+        "salary_amount": {
+          "type": "integer",
+          "description": "salary_amount field"
+        },
+        "salary_currency": {
+          "type": "string",
+          "description": "salary_currency field"
+        },
+        "equity_percentage": {
+          "type": "number",
+          "description": "equity_percentage field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "offer_letter_url": {
+          "type": "string",
+          "description": "offer_letter_url field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "sent_at": {
+          "type": "string",
+          "description": "sent_at field"
+        },
+        "accepted_at": {
+          "type": "string",
+          "description": "accepted_at field"
+        },
+        "declined_at": {
+          "type": "string",
+          "description": "declined_at field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/offers/{id}",
+      "tag": "Offers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteOffers",
+    "description": "Delete offers",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/offers/{id}",
+      "tag": "Offers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listReports",
+    "description": "List reports",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/reports",
+      "tag": "Reports",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createReports",
+    "description": "Create reports",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "report_type": {
+          "type": "string",
+          "description": "report_type field"
+        },
+        "config": {
+          "type": "object",
+          "description": "config field"
+        },
+        "schedule": {
+          "type": "string",
+          "description": "schedule field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "last_run_at": {
+          "type": "string",
+          "description": "last_run_at field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/reports",
+      "tag": "Reports",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getReports",
+    "description": "Get reports by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/reports/{id}",
+      "tag": "Reports",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateReports",
+    "description": "Update reports",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "report_type": {
+          "type": "string",
+          "description": "report_type field"
+        },
+        "config": {
+          "type": "object",
+          "description": "config field"
+        },
+        "schedule": {
+          "type": "string",
+          "description": "schedule field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "last_run_at": {
+          "type": "string",
+          "description": "last_run_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/reports/{id}",
+      "tag": "Reports",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteReports",
+    "description": "Delete reports",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/reports/{id}",
+      "tag": "Reports",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listDashboards",
+    "description": "List dashboards",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/dashboards",
+      "tag": "Dashboards",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createDashboards",
+    "description": "Create dashboards",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "layout": {
+          "type": "object",
+          "description": "layout field"
+        },
+        "widgets": {
+          "type": "object",
+          "description": "widgets field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/dashboards",
+      "tag": "Dashboards",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getDashboards",
+    "description": "Get dashboards by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/dashboards/{id}",
+      "tag": "Dashboards",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateDashboards",
+    "description": "Update dashboards",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "layout": {
+          "type": "object",
+          "description": "layout field"
+        },
+        "widgets": {
+          "type": "object",
+          "description": "widgets field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/dashboards/{id}",
+      "tag": "Dashboards",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteDashboards",
+    "description": "Delete dashboards",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/dashboards/{id}",
+      "tag": "Dashboards",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listRequirements",
+    "description": "List requirements",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/requirements",
+      "tag": "Requirements",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createRequirements",
+    "description": "Create requirements",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "required_skills": {
+          "type": "object",
+          "description": "required_skills field"
+        },
+        "preferred_skills": {
+          "type": "object",
+          "description": "preferred_skills field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "priority": {
+          "type": "string",
+          "description": "priority field"
+        },
+        "deadline": {
+          "type": "string",
+          "description": "deadline field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "title"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/requirements",
+      "tag": "Requirements",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getRequirements",
+    "description": "Get requirements by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/requirements/{id}",
+      "tag": "Requirements",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateRequirements",
+    "description": "Update requirements",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "client_id": {
+          "type": "string",
+          "description": "client_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "required_skills": {
+          "type": "object",
+          "description": "required_skills field"
+        },
+        "preferred_skills": {
+          "type": "object",
+          "description": "preferred_skills field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "priority": {
+          "type": "string",
+          "description": "priority field"
+        },
+        "deadline": {
+          "type": "string",
+          "description": "deadline field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/requirements/{id}",
+      "tag": "Requirements",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteRequirements",
+    "description": "Delete requirements",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/requirements/{id}",
+      "tag": "Requirements",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAnalyticsReports",
+    "description": "List analytics_reports",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/analytics_reports",
+      "tag": "AnalyticsReports",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAnalyticsReports",
+    "description": "Create analytics_reports",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "query": {
+          "type": "object",
+          "description": "query field"
+        },
+        "results": {
+          "type": "object",
+          "description": "results field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "published_at": {
+          "type": "string",
+          "description": "published_at field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/analytics_reports",
+      "tag": "AnalyticsReports",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAnalyticsReports",
+    "description": "Get analytics_reports by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/analytics_reports/{id}",
+      "tag": "AnalyticsReports",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAnalyticsReports",
+    "description": "Update analytics_reports",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "query": {
+          "type": "object",
+          "description": "query field"
+        },
+        "results": {
+          "type": "object",
+          "description": "results field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "published_at": {
+          "type": "string",
+          "description": "published_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/analytics_reports/{id}",
+      "tag": "AnalyticsReports",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAnalyticsReports",
+    "description": "Delete analytics_reports",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/analytics_reports/{id}",
+      "tag": "AnalyticsReports",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listTaskRules",
+    "description": "List task_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/task_rules",
+      "tag": "TaskRules",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createTaskRules",
+    "description": "Create task_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "event_topic": {
+          "type": "string",
+          "description": "event_topic field"
+        },
+        "conditions": {
+          "type": "object",
+          "description": "conditions field"
+        },
+        "actions": {
+          "type": "object",
+          "description": "actions field"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "priority field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name",
+        "event_topic",
+        "actions"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/task_rules",
+      "tag": "TaskRules",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getTaskRules",
+    "description": "Get task_rules by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/task_rules/{id}",
+      "tag": "TaskRules",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateTaskRules",
+    "description": "Update task_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "event_topic": {
+          "type": "string",
+          "description": "event_topic field"
+        },
+        "conditions": {
+          "type": "object",
+          "description": "conditions field"
+        },
+        "actions": {
+          "type": "object",
+          "description": "actions field"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "priority field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/task_rules/{id}",
+      "tag": "TaskRules",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteTaskRules",
+    "description": "Delete task_rules",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/task_rules/{id}",
+      "tag": "TaskRules",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCampaignSequences",
+    "description": "List campaign_sequences",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/campaign_sequences",
+      "tag": "CampaignSequences",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCampaignSequences",
+    "description": "Create campaign_sequences",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "steps": {
+          "type": "object",
+          "description": "steps field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name",
+        "steps"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/campaign_sequences",
+      "tag": "CampaignSequences",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCampaignSequences",
+    "description": "Get campaign_sequences by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/campaign_sequences/{id}",
+      "tag": "CampaignSequences",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCampaignSequences",
+    "description": "Update campaign_sequences",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "steps": {
+          "type": "object",
+          "description": "steps field"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "is_active field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/campaign_sequences/{id}",
+      "tag": "CampaignSequences",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCampaignSequences",
+    "description": "Delete campaign_sequences",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/campaign_sequences/{id}",
+      "tag": "CampaignSequences",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listReferrals",
+    "description": "List referrals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/referrals",
+      "tag": "Referrals",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createReferrals",
+    "description": "Create referrals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "referred_by_type": {
+          "type": "string",
+          "description": "referred_by_type field"
+        },
+        "referred_by_id": {
+          "type": "string",
+          "description": "referred_by_id field"
+        },
+        "referral_source": {
+          "type": "string",
+          "description": "referral_source field"
+        },
+        "referral_fee_amount": {
+          "type": "number",
+          "description": "referral_fee_amount field"
+        },
+        "referral_fee_paid": {
+          "type": "boolean",
+          "description": "referral_fee_paid field"
+        },
+        "referral_fee_paid_at": {
+          "type": "string",
+          "description": "referral_fee_paid_at field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        }
+      },
+      "required": [
+        "referred_by_type"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/referrals",
+      "tag": "Referrals",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getReferrals",
+    "description": "Get referrals by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/referrals/{id}",
+      "tag": "Referrals",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateReferrals",
+    "description": "Update referrals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "referred_by_type": {
+          "type": "string",
+          "description": "referred_by_type field"
+        },
+        "referred_by_id": {
+          "type": "string",
+          "description": "referred_by_id field"
+        },
+        "referral_source": {
+          "type": "string",
+          "description": "referral_source field"
+        },
+        "referral_fee_amount": {
+          "type": "number",
+          "description": "referral_fee_amount field"
+        },
+        "referral_fee_paid": {
+          "type": "boolean",
+          "description": "referral_fee_paid field"
+        },
+        "referral_fee_paid_at": {
+          "type": "string",
+          "description": "referral_fee_paid_at field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/referrals/{id}",
+      "tag": "Referrals",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteReferrals",
+    "description": "Delete referrals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/referrals/{id}",
+      "tag": "Referrals",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAuditLog",
+    "description": "List audit_log",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/audit_log",
+      "tag": "AuditLog",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAuditLog",
+    "description": "Create audit_log",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "action": {
+          "type": "string",
+          "description": "action field"
+        },
+        "table_name": {
+          "type": "string",
+          "description": "table_name field"
+        },
+        "record_id": {
+          "type": "string",
+          "description": "record_id field"
+        },
+        "old_data": {
+          "type": "object",
+          "description": "old_data field"
+        },
+        "new_data": {
+          "type": "object",
+          "description": "new_data field"
+        },
+        "ip_address": {
+          "type": "string",
+          "description": "ip_address field"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "user_agent field"
+        }
+      },
+      "required": [
+        "action",
+        "table_name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/audit_log",
+      "tag": "AuditLog",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAuditLog",
+    "description": "Get audit_log by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/audit_log/{id}",
+      "tag": "AuditLog",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAuditLog",
+    "description": "Update audit_log",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "action": {
+          "type": "string",
+          "description": "action field"
+        },
+        "table_name": {
+          "type": "string",
+          "description": "table_name field"
+        },
+        "record_id": {
+          "type": "string",
+          "description": "record_id field"
+        },
+        "old_data": {
+          "type": "object",
+          "description": "old_data field"
+        },
+        "new_data": {
+          "type": "object",
+          "description": "new_data field"
+        },
+        "ip_address": {
+          "type": "string",
+          "description": "ip_address field"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "user_agent field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/audit_log/{id}",
+      "tag": "AuditLog",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAuditLog",
+    "description": "Delete audit_log",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/audit_log/{id}",
+      "tag": "AuditLog",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCandidateWorkHistory",
+    "description": "List candidate_work_history",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_work_history",
+      "tag": "CandidateWorkHistory",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCandidateWorkHistory",
+    "description": "Create candidate_work_history",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "company_name": {
+          "type": "string",
+          "description": "company_name field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "employment_type": {
+          "type": "string",
+          "description": "employment_type field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "is_current": {
+          "type": "boolean",
+          "description": "is_current field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "achievements": {
+          "type": "array",
+          "description": "achievements field"
+        },
+        "technologies_used": {
+          "type": "array",
+          "description": "technologies_used field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        }
+      },
+      "required": [
+        "company_name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/candidate_work_history",
+      "tag": "CandidateWorkHistory",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCandidateWorkHistory",
+    "description": "Get candidate_work_history by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_work_history/{id}",
+      "tag": "CandidateWorkHistory",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCandidateWorkHistory",
+    "description": "Update candidate_work_history",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "company_name": {
+          "type": "string",
+          "description": "company_name field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "employment_type": {
+          "type": "string",
+          "description": "employment_type field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "is_current": {
+          "type": "boolean",
+          "description": "is_current field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "achievements": {
+          "type": "array",
+          "description": "achievements field"
+        },
+        "technologies_used": {
+          "type": "array",
+          "description": "technologies_used field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/candidate_work_history/{id}",
+      "tag": "CandidateWorkHistory",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCandidateWorkHistory",
+    "description": "Delete candidate_work_history",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/candidate_work_history/{id}",
+      "tag": "CandidateWorkHistory",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listMatchScores",
+    "description": "List match_scores",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/match_scores",
+      "tag": "MatchScores",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createMatchScores",
+    "description": "Create match_scores",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "overall_score": {
+          "type": "number",
+          "description": "overall_score field"
+        },
+        "skills_score": {
+          "type": "number",
+          "description": "skills_score field"
+        },
+        "experience_score": {
+          "type": "number",
+          "description": "experience_score field"
+        },
+        "certification_score": {
+          "type": "number",
+          "description": "certification_score field"
+        },
+        "location_score": {
+          "type": "number",
+          "description": "location_score field"
+        },
+        "compensation_score": {
+          "type": "number",
+          "description": "compensation_score field"
+        },
+        "culture_score": {
+          "type": "number",
+          "description": "culture_score field"
+        },
+        "recency_score": {
+          "type": "number",
+          "description": "recency_score field"
+        },
+        "adjustments": {
+          "type": "object",
+          "description": "adjustments field"
+        },
+        "threshold_result": {
+          "type": "string",
+          "description": "threshold_result field"
+        },
+        "override_by": {
+          "type": "string",
+          "description": "override_by field"
+        },
+        "override_reason": {
+          "type": "string",
+          "description": "override_reason field"
+        },
+        "model_version": {
+          "type": "string",
+          "description": "model_version field"
+        },
+        "scoring_weights": {
+          "type": "object",
+          "description": "scoring_weights field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/match_scores",
+      "tag": "MatchScores",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getMatchScores",
+    "description": "Get match_scores by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/match_scores/{id}",
+      "tag": "MatchScores",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateMatchScores",
+    "description": "Update match_scores",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "overall_score": {
+          "type": "number",
+          "description": "overall_score field"
+        },
+        "skills_score": {
+          "type": "number",
+          "description": "skills_score field"
+        },
+        "experience_score": {
+          "type": "number",
+          "description": "experience_score field"
+        },
+        "certification_score": {
+          "type": "number",
+          "description": "certification_score field"
+        },
+        "location_score": {
+          "type": "number",
+          "description": "location_score field"
+        },
+        "compensation_score": {
+          "type": "number",
+          "description": "compensation_score field"
+        },
+        "culture_score": {
+          "type": "number",
+          "description": "culture_score field"
+        },
+        "recency_score": {
+          "type": "number",
+          "description": "recency_score field"
+        },
+        "adjustments": {
+          "type": "object",
+          "description": "adjustments field"
+        },
+        "threshold_result": {
+          "type": "string",
+          "description": "threshold_result field"
+        },
+        "override_by": {
+          "type": "string",
+          "description": "override_by field"
+        },
+        "override_reason": {
+          "type": "string",
+          "description": "override_reason field"
+        },
+        "model_version": {
+          "type": "string",
+          "description": "model_version field"
+        },
+        "scoring_weights": {
+          "type": "object",
+          "description": "scoring_weights field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/match_scores/{id}",
+      "tag": "MatchScores",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteMatchScores",
+    "description": "Delete match_scores",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/match_scores/{id}",
+      "tag": "MatchScores",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCandidateEducation",
+    "description": "List candidate_education",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_education",
+      "tag": "CandidateEducation",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCandidateEducation",
+    "description": "Create candidate_education",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "institution": {
+          "type": "string",
+          "description": "institution field"
+        },
+        "degree": {
+          "type": "string",
+          "description": "degree field"
+        },
+        "field_of_study": {
+          "type": "string",
+          "description": "field_of_study field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "graduated": {
+          "type": "boolean",
+          "description": "graduated field"
+        },
+        "gpa": {
+          "type": "number",
+          "description": "gpa field"
+        },
+        "honors": {
+          "type": "array",
+          "description": "honors field"
+        },
+        "activities": {
+          "type": "array",
+          "description": "activities field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        }
+      },
+      "required": [
+        "institution"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/candidate_education",
+      "tag": "CandidateEducation",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCandidateEducation",
+    "description": "Get candidate_education by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_education/{id}",
+      "tag": "CandidateEducation",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCandidateEducation",
+    "description": "Update candidate_education",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "institution": {
+          "type": "string",
+          "description": "institution field"
+        },
+        "degree": {
+          "type": "string",
+          "description": "degree field"
+        },
+        "field_of_study": {
+          "type": "string",
+          "description": "field_of_study field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "graduated": {
+          "type": "boolean",
+          "description": "graduated field"
+        },
+        "gpa": {
+          "type": "number",
+          "description": "gpa field"
+        },
+        "honors": {
+          "type": "array",
+          "description": "honors field"
+        },
+        "activities": {
+          "type": "array",
+          "description": "activities field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/candidate_education/{id}",
+      "tag": "CandidateEducation",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCandidateEducation",
+    "description": "Delete candidate_education",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/candidate_education/{id}",
+      "tag": "CandidateEducation",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listMessageTemplates",
+    "description": "List message_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/message_templates",
+      "tag": "MessageTemplates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createMessageTemplates",
+    "description": "Create message_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "channel": {
+          "type": "string",
+          "description": "channel field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "body": {
+          "type": "string",
+          "description": "body field"
+        },
+        "variables": {
+          "type": "object",
+          "description": "variables field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name",
+        "channel",
+        "body"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/message_templates",
+      "tag": "MessageTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getMessageTemplates",
+    "description": "Get message_templates by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/message_templates/{id}",
+      "tag": "MessageTemplates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateMessageTemplates",
+    "description": "Update message_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "channel": {
+          "type": "string",
+          "description": "channel field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "body": {
+          "type": "string",
+          "description": "body field"
+        },
+        "variables": {
+          "type": "object",
+          "description": "variables field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/message_templates/{id}",
+      "tag": "MessageTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteMessageTemplates",
+    "description": "Delete message_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/message_templates/{id}",
+      "tag": "MessageTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listDocuments",
+    "description": "List documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/documents",
+      "tag": "Documents",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createDocuments",
+    "description": "Create documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "file_name": {
+          "type": "string",
+          "description": "file_name field"
+        },
+        "file_type": {
+          "type": "string",
+          "description": "file_type field"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "mime_type field"
+        },
+        "file_size_bytes": {
+          "type": "integer",
+          "description": "file_size_bytes field"
+        },
+        "storage_path": {
+          "type": "string",
+          "description": "storage_path field"
+        },
+        "storage_bucket": {
+          "type": "string",
+          "description": "storage_bucket field"
+        },
+        "parsed_text": {
+          "type": "string",
+          "description": "parsed_text field"
+        },
+        "parsed_data": {
+          "type": "object",
+          "description": "parsed_data field"
+        },
+        "uploaded_by": {
+          "type": "string",
+          "description": "uploaded_by field"
+        },
+        "uploaded_at": {
+          "type": "string",
+          "description": "uploaded_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "candidate_id",
+        "file_name",
+        "storage_path",
+        "uploaded_by"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/documents",
+      "tag": "Documents",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getDocuments",
+    "description": "Get documents by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/documents/{id}",
+      "tag": "Documents",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateDocuments",
+    "description": "Update documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "file_name": {
+          "type": "string",
+          "description": "file_name field"
+        },
+        "file_type": {
+          "type": "string",
+          "description": "file_type field"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "mime_type field"
+        },
+        "file_size_bytes": {
+          "type": "integer",
+          "description": "file_size_bytes field"
+        },
+        "storage_path": {
+          "type": "string",
+          "description": "storage_path field"
+        },
+        "storage_bucket": {
+          "type": "string",
+          "description": "storage_bucket field"
+        },
+        "parsed_text": {
+          "type": "string",
+          "description": "parsed_text field"
+        },
+        "parsed_data": {
+          "type": "object",
+          "description": "parsed_data field"
+        },
+        "uploaded_by": {
+          "type": "string",
+          "description": "uploaded_by field"
+        },
+        "uploaded_at": {
+          "type": "string",
+          "description": "uploaded_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/documents/{id}",
+      "tag": "Documents",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteDocuments",
+    "description": "Delete documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/documents/{id}",
+      "tag": "Documents",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listContactPoints",
+    "description": "List contact_points",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/contact_points",
+      "tag": "ContactPoints",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createContactPoints",
+    "description": "Create contact_points",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "type": {
+          "type": "string",
+          "description": "type field"
+        },
+        "value": {
+          "type": "string",
+          "description": "value field"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "is_primary field"
+        },
+        "is_dnc": {
+          "type": "boolean",
+          "description": "is_dnc field"
+        },
+        "normalized_value": {
+          "type": "string",
+          "description": "normalized_value field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "candidate_id",
+        "type",
+        "value"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/contact_points",
+      "tag": "ContactPoints",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getContactPoints",
+    "description": "Get contact_points by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/contact_points/{id}",
+      "tag": "ContactPoints",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateContactPoints",
+    "description": "Update contact_points",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "type": {
+          "type": "string",
+          "description": "type field"
+        },
+        "value": {
+          "type": "string",
+          "description": "value field"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "is_primary field"
+        },
+        "is_dnc": {
+          "type": "boolean",
+          "description": "is_dnc field"
+        },
+        "normalized_value": {
+          "type": "string",
+          "description": "normalized_value field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/contact_points/{id}",
+      "tag": "ContactPoints",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteContactPoints",
+    "description": "Delete contact_points",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/contact_points/{id}",
+      "tag": "ContactPoints",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listConversations",
+    "description": "List conversations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/conversations",
+      "tag": "Conversations",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createConversations",
+    "description": "Create conversations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "channel": {
+          "type": "string",
+          "description": "channel field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "last_message_at": {
+          "type": "string",
+          "description": "last_message_at field"
+        },
+        "message_count": {
+          "type": "integer",
+          "description": "message_count field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "candidate_id",
+        "channel"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/conversations",
+      "tag": "Conversations",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getConversations",
+    "description": "Get conversations by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/conversations/{id}",
+      "tag": "Conversations",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateConversations",
+    "description": "Update conversations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "channel": {
+          "type": "string",
+          "description": "channel field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "last_message_at": {
+          "type": "string",
+          "description": "last_message_at field"
+        },
+        "message_count": {
+          "type": "integer",
+          "description": "message_count field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/conversations/{id}",
+      "tag": "Conversations",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteConversations",
+    "description": "Delete conversations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/conversations/{id}",
+      "tag": "Conversations",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listInboundMessages",
+    "description": "List inbound_messages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/inbound_messages",
+      "tag": "InboundMessages",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createInboundMessages",
+    "description": "Create inbound_messages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "provider_message_id": {
+          "type": "string",
+          "description": "provider_message_id field"
+        },
+        "from_address": {
+          "type": "string",
+          "description": "from_address field"
+        },
+        "to_address": {
+          "type": "string",
+          "description": "to_address field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "body": {
+          "type": "string",
+          "description": "body field"
+        },
+        "received_at": {
+          "type": "string",
+          "description": "received_at field"
+        },
+        "processed_at": {
+          "type": "string",
+          "description": "processed_at field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "conversation_id": {
+          "type": "string",
+          "description": "conversation_id field"
+        },
+        "intent": {
+          "type": "string",
+          "description": "intent field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "provider",
+        "from_address",
+        "received_at"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/inbound_messages",
+      "tag": "InboundMessages",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getInboundMessages",
+    "description": "Get inbound_messages by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/inbound_messages/{id}",
+      "tag": "InboundMessages",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateInboundMessages",
+    "description": "Update inbound_messages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "provider_message_id": {
+          "type": "string",
+          "description": "provider_message_id field"
+        },
+        "from_address": {
+          "type": "string",
+          "description": "from_address field"
+        },
+        "to_address": {
+          "type": "string",
+          "description": "to_address field"
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject field"
+        },
+        "body": {
+          "type": "string",
+          "description": "body field"
+        },
+        "received_at": {
+          "type": "string",
+          "description": "received_at field"
+        },
+        "processed_at": {
+          "type": "string",
+          "description": "processed_at field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "conversation_id": {
+          "type": "string",
+          "description": "conversation_id field"
+        },
+        "intent": {
+          "type": "string",
+          "description": "intent field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/inbound_messages/{id}",
+      "tag": "InboundMessages",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteInboundMessages",
+    "description": "Delete inbound_messages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/inbound_messages/{id}",
+      "tag": "InboundMessages",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listScorecardInstances",
+    "description": "List scorecard_instances",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/scorecard_instances",
+      "tag": "ScorecardInstances",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createScorecardInstances",
+    "description": "Create scorecard_instances",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "interview_round_id": {
+          "type": "string",
+          "description": "interview_round_id field"
+        },
+        "template_id": {
+          "type": "string",
+          "description": "template_id field"
+        },
+        "interviewer_user_id": {
+          "type": "string",
+          "description": "interviewer_user_id field"
+        },
+        "due_at": {
+          "type": "string",
+          "description": "due_at field"
+        },
+        "lock_at": {
+          "type": "string",
+          "description": "lock_at field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "interview_round_id",
+        "template_id",
+        "interviewer_user_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/scorecard_instances",
+      "tag": "ScorecardInstances",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getScorecardInstances",
+    "description": "Get scorecard_instances by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/scorecard_instances/{id}",
+      "tag": "ScorecardInstances",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateScorecardInstances",
+    "description": "Update scorecard_instances",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "interview_round_id": {
+          "type": "string",
+          "description": "interview_round_id field"
+        },
+        "template_id": {
+          "type": "string",
+          "description": "template_id field"
+        },
+        "interviewer_user_id": {
+          "type": "string",
+          "description": "interviewer_user_id field"
+        },
+        "due_at": {
+          "type": "string",
+          "description": "due_at field"
+        },
+        "lock_at": {
+          "type": "string",
+          "description": "lock_at field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/scorecard_instances/{id}",
+      "tag": "ScorecardInstances",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteScorecardInstances",
+    "description": "Delete scorecard_instances",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/scorecard_instances/{id}",
+      "tag": "ScorecardInstances",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listPlacements",
+    "description": "List placements",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/placements",
+      "tag": "Placements",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createPlacements",
+    "description": "Create placements",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "placement_fee": {
+          "type": "integer",
+          "description": "placement_fee field"
+        },
+        "fee_currency": {
+          "type": "string",
+          "description": "fee_currency field"
+        },
+        "guarantee_days": {
+          "type": "integer",
+          "description": "guarantee_days field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "start_date"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/placements",
+      "tag": "Placements",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getPlacements",
+    "description": "Get placements by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/placements/{id}",
+      "tag": "Placements",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updatePlacements",
+    "description": "Update placements",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "offer_id": {
+          "type": "string",
+          "description": "offer_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "start_date field"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "end_date field"
+        },
+        "placement_fee": {
+          "type": "integer",
+          "description": "placement_fee field"
+        },
+        "fee_currency": {
+          "type": "string",
+          "description": "fee_currency field"
+        },
+        "guarantee_days": {
+          "type": "integer",
+          "description": "guarantee_days field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/placements/{id}",
+      "tag": "Placements",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deletePlacements",
+    "description": "Delete placements",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/placements/{id}",
+      "tag": "Placements",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listPipeline",
+    "description": "List pipeline",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/pipeline",
+      "tag": "Pipeline",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createPipeline",
+    "description": "Create pipeline",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "submission_id": {
+          "type": "string",
+          "description": "submission_id field"
+        },
+        "stage": {
+          "type": "string",
+          "description": "stage field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "moved_by": {
+          "type": "string",
+          "description": "moved_by field"
+        },
+        "moved_at": {
+          "type": "string",
+          "description": "moved_at field"
+        }
+      },
+      "required": [
+        "stage"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/pipeline",
+      "tag": "Pipeline",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getPipeline",
+    "description": "Get pipeline by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/pipeline/{id}",
+      "tag": "Pipeline",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updatePipeline",
+    "description": "Update pipeline",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "submission_id": {
+          "type": "string",
+          "description": "submission_id field"
+        },
+        "stage": {
+          "type": "string",
+          "description": "stage field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "moved_by": {
+          "type": "string",
+          "description": "moved_by field"
+        },
+        "moved_at": {
+          "type": "string",
+          "description": "moved_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/pipeline/{id}",
+      "tag": "Pipeline",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deletePipeline",
+    "description": "Delete pipeline",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/pipeline/{id}",
+      "tag": "Pipeline",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listWebhookDeliveries",
+    "description": "List webhook_deliveries",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/webhook_deliveries",
+      "tag": "WebhookDeliveries",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createWebhookDeliveries",
+    "description": "Create webhook_deliveries",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "subscription_id": {
+          "type": "string",
+          "description": "subscription_id field"
+        },
+        "event_id": {
+          "type": "string",
+          "description": "event_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "attempts": {
+          "type": "integer",
+          "description": "attempts field"
+        },
+        "last_attempt_at": {
+          "type": "string",
+          "description": "last_attempt_at field"
+        },
+        "next_retry_at": {
+          "type": "string",
+          "description": "next_retry_at field"
+        },
+        "response_code": {
+          "type": "integer",
+          "description": "response_code field"
+        },
+        "response_body": {
+          "type": "string",
+          "description": "response_body field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "subscription_id",
+        "event_id",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/webhook_deliveries",
+      "tag": "WebhookDeliveries",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getWebhookDeliveries",
+    "description": "Get webhook_deliveries by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/webhook_deliveries/{id}",
+      "tag": "WebhookDeliveries",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateWebhookDeliveries",
+    "description": "Update webhook_deliveries",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "subscription_id": {
+          "type": "string",
+          "description": "subscription_id field"
+        },
+        "event_id": {
+          "type": "string",
+          "description": "event_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "attempts": {
+          "type": "integer",
+          "description": "attempts field"
+        },
+        "last_attempt_at": {
+          "type": "string",
+          "description": "last_attempt_at field"
+        },
+        "next_retry_at": {
+          "type": "string",
+          "description": "next_retry_at field"
+        },
+        "response_code": {
+          "type": "integer",
+          "description": "response_code field"
+        },
+        "response_body": {
+          "type": "string",
+          "description": "response_body field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/webhook_deliveries/{id}",
+      "tag": "WebhookDeliveries",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteWebhookDeliveries",
+    "description": "Delete webhook_deliveries",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/webhook_deliveries/{id}",
+      "tag": "WebhookDeliveries",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listOrganizations",
+    "description": "List organizations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/organizations",
+      "tag": "Organizations",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createOrganizations",
+    "description": "Create organizations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "slug": {
+          "type": "string",
+          "description": "slug field"
+        },
+        "settings": {
+          "type": "object",
+          "description": "settings field"
+        }
+      },
+      "required": [
+        "name",
+        "slug"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/organizations",
+      "tag": "Organizations",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getOrganizations",
+    "description": "Get organizations by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/organizations/{id}",
+      "tag": "Organizations",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateOrganizations",
+    "description": "Update organizations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "slug": {
+          "type": "string",
+          "description": "slug field"
+        },
+        "settings": {
+          "type": "object",
+          "description": "settings field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/organizations/{id}",
+      "tag": "Organizations",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteOrganizations",
+    "description": "Delete organizations",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/organizations/{id}",
+      "tag": "Organizations",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listEntityTags",
+    "description": "List entity_tags",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/entity_tags",
+      "tag": "EntityTags",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createEntityTags",
+    "description": "Create entity_tags",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "tag_id": {
+          "type": "string",
+          "description": "tag_id field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "entity_type",
+        "entity_id",
+        "tag_id",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/entity_tags",
+      "tag": "EntityTags",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getEntityTags",
+    "description": "Get entity_tags by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/entity_tags/{id}",
+      "tag": "EntityTags",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateEntityTags",
+    "description": "Update entity_tags",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "tag_id": {
+          "type": "string",
+          "description": "tag_id field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/entity_tags/{id}",
+      "tag": "EntityTags",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteEntityTags",
+    "description": "Delete entity_tags",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/entity_tags/{id}",
+      "tag": "EntityTags",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listJobEmbeddings",
+    "description": "List job_embeddings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/job_embeddings",
+      "tag": "JobEmbeddings",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createJobEmbeddings",
+    "description": "Create job_embeddings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "embedding": {
+          "type": "string",
+          "description": "embedding field"
+        },
+        "content_snapshot": {
+          "type": "string",
+          "description": "content_snapshot field"
+        },
+        "model_name": {
+          "type": "string",
+          "description": "model_name field"
+        },
+        "generated_at": {
+          "type": "string",
+          "description": "generated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "model": {
+          "type": "string",
+          "description": "model field"
+        },
+        "dims": {
+          "type": "integer",
+          "description": "dims field"
+        },
+        "content_sha256": {
+          "type": "string",
+          "description": "content_sha256 field"
+        }
+      },
+      "required": [
+        "job_id",
+        "embedding",
+        "organization_id",
+        "model"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/job_embeddings",
+      "tag": "JobEmbeddings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getJobEmbeddings",
+    "description": "Get job_embeddings by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/job_embeddings/{id}",
+      "tag": "JobEmbeddings",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateJobEmbeddings",
+    "description": "Update job_embeddings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "embedding": {
+          "type": "string",
+          "description": "embedding field"
+        },
+        "content_snapshot": {
+          "type": "string",
+          "description": "content_snapshot field"
+        },
+        "model_name": {
+          "type": "string",
+          "description": "model_name field"
+        },
+        "generated_at": {
+          "type": "string",
+          "description": "generated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "model": {
+          "type": "string",
+          "description": "model field"
+        },
+        "dims": {
+          "type": "integer",
+          "description": "dims field"
+        },
+        "content_sha256": {
+          "type": "string",
+          "description": "content_sha256 field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/job_embeddings/{id}",
+      "tag": "JobEmbeddings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteJobEmbeddings",
+    "description": "Delete job_embeddings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/job_embeddings/{id}",
+      "tag": "JobEmbeddings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listTalentPools",
+    "description": "List talent_pools",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/talent_pools",
+      "tag": "TalentPools",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createTalentPools",
+    "description": "Create talent_pools",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "color": {
+          "type": "string",
+          "description": "color field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "name",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/talent_pools",
+      "tag": "TalentPools",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getTalentPools",
+    "description": "Get talent_pools by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/talent_pools/{id}",
+      "tag": "TalentPools",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateTalentPools",
+    "description": "Update talent_pools",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "color": {
+          "type": "string",
+          "description": "color field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/talent_pools/{id}",
+      "tag": "TalentPools",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteTalentPools",
+    "description": "Delete talent_pools",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/talent_pools/{id}",
+      "tag": "TalentPools",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listTalentPoolMembers",
+    "description": "List talent_pool_members",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/talent_pool_members",
+      "tag": "TalentPoolMembers",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createTalentPoolMembers",
+    "description": "Create talent_pool_members",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "pool_id": {
+          "type": "string",
+          "description": "pool_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "added_at": {
+          "type": "string",
+          "description": "added_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "pool_id",
+        "candidate_id",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/talent_pool_members",
+      "tag": "TalentPoolMembers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getTalentPoolMembers",
+    "description": "Get talent_pool_members by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/talent_pool_members/{id}",
+      "tag": "TalentPoolMembers",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateTalentPoolMembers",
+    "description": "Update talent_pool_members",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "pool_id": {
+          "type": "string",
+          "description": "pool_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "added_at": {
+          "type": "string",
+          "description": "added_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/talent_pool_members/{id}",
+      "tag": "TalentPoolMembers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteTalentPoolMembers",
+    "description": "Delete talent_pool_members",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/talent_pool_members/{id}",
+      "tag": "TalentPoolMembers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listSubmittals",
+    "description": "List submittals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/submittals",
+      "tag": "Submittals",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createSubmittals",
+    "description": "Create submittals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "recruiter_id": {
+          "type": "string",
+          "description": "recruiter_id field"
+        },
+        "linkedin_url": {
+          "type": "string",
+          "description": "linkedin_url field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "location_text": {
+          "type": "string",
+          "description": "location_text field"
+        },
+        "employment_type": {
+          "type": "string",
+          "description": "employment_type field"
+        },
+        "comp_unit": {
+          "type": "string",
+          "description": "comp_unit field"
+        },
+        "comp_value": {
+          "type": "number",
+          "description": "comp_value field"
+        },
+        "currency_code": {
+          "type": "string",
+          "description": "currency_code field"
+        },
+        "interview_availability": {
+          "type": "object",
+          "description": "interview_availability field"
+        },
+        "start_availability": {
+          "type": "string",
+          "description": "start_availability field"
+        },
+        "ai_summary": {
+          "type": "string",
+          "description": "ai_summary field"
+        },
+        "final_summary": {
+          "type": "string",
+          "description": "final_summary field"
+        },
+        "recruiter_edits_delta": {
+          "type": "object",
+          "description": "recruiter_edits_delta field"
+        },
+        "resume_document_id": {
+          "type": "string",
+          "description": "resume_document_id field"
+        },
+        "score_snapshot": {
+          "type": "object",
+          "description": "score_snapshot field"
+        },
+        "risk_flags": {
+          "type": "object",
+          "description": "risk_flags field"
+        },
+        "confidence_score": {
+          "type": "number",
+          "description": "confidence_score field"
+        },
+        "state": {
+          "type": "string",
+          "description": "state field"
+        },
+        "client_channel": {
+          "type": "string",
+          "description": "client_channel field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "candidate_id",
+        "job_id",
+        "recruiter_id",
+        "employment_type",
+        "comp_unit",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/submittals",
+      "tag": "Submittals",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getSubmittals",
+    "description": "Get submittals by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/submittals/{id}",
+      "tag": "Submittals",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateSubmittals",
+    "description": "Update submittals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "recruiter_id": {
+          "type": "string",
+          "description": "recruiter_id field"
+        },
+        "linkedin_url": {
+          "type": "string",
+          "description": "linkedin_url field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "location_text": {
+          "type": "string",
+          "description": "location_text field"
+        },
+        "employment_type": {
+          "type": "string",
+          "description": "employment_type field"
+        },
+        "comp_unit": {
+          "type": "string",
+          "description": "comp_unit field"
+        },
+        "comp_value": {
+          "type": "number",
+          "description": "comp_value field"
+        },
+        "currency_code": {
+          "type": "string",
+          "description": "currency_code field"
+        },
+        "interview_availability": {
+          "type": "object",
+          "description": "interview_availability field"
+        },
+        "start_availability": {
+          "type": "string",
+          "description": "start_availability field"
+        },
+        "ai_summary": {
+          "type": "string",
+          "description": "ai_summary field"
+        },
+        "final_summary": {
+          "type": "string",
+          "description": "final_summary field"
+        },
+        "recruiter_edits_delta": {
+          "type": "object",
+          "description": "recruiter_edits_delta field"
+        },
+        "resume_document_id": {
+          "type": "string",
+          "description": "resume_document_id field"
+        },
+        "score_snapshot": {
+          "type": "object",
+          "description": "score_snapshot field"
+        },
+        "risk_flags": {
+          "type": "object",
+          "description": "risk_flags field"
+        },
+        "confidence_score": {
+          "type": "number",
+          "description": "confidence_score field"
+        },
+        "state": {
+          "type": "string",
+          "description": "state field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "client_channel": {
+          "type": "string",
+          "description": "client_channel field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/submittals/{id}",
+      "tag": "Submittals",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteSubmittals",
+    "description": "Delete submittals",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/submittals/{id}",
+      "tag": "Submittals",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listTasks",
+    "description": "List tasks",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/tasks",
+      "tag": "Tasks",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createTasks",
+    "description": "Create tasks",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "description": "tenant_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "task_type": {
+          "type": "string",
+          "description": "task_type field"
+        },
+        "priority": {
+          "type": "string",
+          "description": "priority field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "assigned_to_user_id": {
+          "type": "string",
+          "description": "assigned_to_user_id field"
+        },
+        "related_entity_type": {
+          "type": "string",
+          "description": "related_entity_type field"
+        },
+        "related_entity_id": {
+          "type": "string",
+          "description": "related_entity_id field"
+        },
+        "due_at": {
+          "type": "string",
+          "description": "due_at field"
+        },
+        "sla_at": {
+          "type": "string",
+          "description": "sla_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "title",
+        "task_type",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/tasks",
+      "tag": "Tasks",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getTasks",
+    "description": "Get tasks by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/tasks/{id}",
+      "tag": "Tasks",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateTasks",
+    "description": "Update tasks",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "tenant_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "task_type": {
+          "type": "string",
+          "description": "task_type field"
+        },
+        "priority": {
+          "type": "string",
+          "description": "priority field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "assigned_to_user_id": {
+          "type": "string",
+          "description": "assigned_to_user_id field"
+        },
+        "related_entity_type": {
+          "type": "string",
+          "description": "related_entity_type field"
+        },
+        "related_entity_id": {
+          "type": "string",
+          "description": "related_entity_id field"
+        },
+        "due_at": {
+          "type": "string",
+          "description": "due_at field"
+        },
+        "sla_at": {
+          "type": "string",
+          "description": "sla_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/tasks/{id}",
+      "tag": "Tasks",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteTasks",
+    "description": "Delete tasks",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/tasks/{id}",
+      "tag": "Tasks",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listRoles",
+    "description": "List roles",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/roles",
+      "tag": "Roles",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createRoles",
+    "description": "Create roles",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "permissions": {
+          "type": "object",
+          "description": "permissions field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/roles",
+      "tag": "Roles",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getRoles",
+    "description": "Get roles by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/roles/{id}",
+      "tag": "Roles",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateRoles",
+    "description": "Update roles",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "permissions": {
+          "type": "object",
+          "description": "permissions field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/roles/{id}",
+      "tag": "Roles",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteRoles",
+    "description": "Delete roles",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/roles/{id}",
+      "tag": "Roles",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listSettings",
+    "description": "List settings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/settings",
+      "tag": "Settings",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createSettings",
+    "description": "Create settings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "key": {
+          "type": "string",
+          "description": "key field"
+        },
+        "value": {
+          "type": "object",
+          "description": "value field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "key"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/settings",
+      "tag": "Settings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getSettings",
+    "description": "Get settings by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/settings/{id}",
+      "tag": "Settings",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateSettings",
+    "description": "Update settings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "key": {
+          "type": "string",
+          "description": "key field"
+        },
+        "value": {
+          "type": "object",
+          "description": "value field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/settings/{id}",
+      "tag": "Settings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteSettings",
+    "description": "Delete settings",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/settings/{id}",
+      "tag": "Settings",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listNotificationPreferences",
+    "description": "List notification_preferences",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/notification_preferences",
+      "tag": "NotificationPreferences",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createNotificationPreferences",
+    "description": "Create notification_preferences",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "notification_type": {
+          "type": "string",
+          "description": "notification_type field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "notification_type"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/notification_preferences",
+      "tag": "NotificationPreferences",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getNotificationPreferences",
+    "description": "Get notification_preferences by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/notification_preferences/{id}",
+      "tag": "NotificationPreferences",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateNotificationPreferences",
+    "description": "Update notification_preferences",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "notification_type": {
+          "type": "string",
+          "description": "notification_type field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/notification_preferences/{id}",
+      "tag": "NotificationPreferences",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteNotificationPreferences",
+    "description": "Delete notification_preferences",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/notification_preferences/{id}",
+      "tag": "NotificationPreferences",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listBench",
+    "description": "List bench",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/bench",
+      "tag": "Bench",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createBench",
+    "description": "Create bench",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "consultant_id": {
+          "type": "string",
+          "description": "consultant_id field"
+        },
+        "availability_date": {
+          "type": "string",
+          "description": "availability_date field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/bench",
+      "tag": "Bench",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getBench",
+    "description": "Get bench by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/bench/{id}",
+      "tag": "Bench",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateBench",
+    "description": "Update bench",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "consultant_id": {
+          "type": "string",
+          "description": "consultant_id field"
+        },
+        "availability_date": {
+          "type": "string",
+          "description": "availability_date field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/bench/{id}",
+      "tag": "Bench",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteBench",
+    "description": "Delete bench",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/bench/{id}",
+      "tag": "Bench",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAuditLogs",
+    "description": "List audit_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/audit_logs",
+      "tag": "AuditLogs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAuditLogs",
+    "description": "Create audit_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "action": {
+          "type": "string",
+          "description": "action field"
+        },
+        "changes": {
+          "type": "object",
+          "description": "changes field"
+        },
+        "ip_address": {
+          "type": "string",
+          "description": "ip_address field"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "user_agent field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/audit_logs",
+      "tag": "AuditLogs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAuditLogs",
+    "description": "Get audit_logs by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/audit_logs/{id}",
+      "tag": "AuditLogs",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAuditLogs",
+    "description": "Update audit_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "user_id field"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "entity_type field"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "entity_id field"
+        },
+        "action": {
+          "type": "string",
+          "description": "action field"
+        },
+        "changes": {
+          "type": "object",
+          "description": "changes field"
+        },
+        "ip_address": {
+          "type": "string",
+          "description": "ip_address field"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "user_agent field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/audit_logs/{id}",
+      "tag": "AuditLogs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAuditLogs",
+    "description": "Delete audit_logs",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/audit_logs/{id}",
+      "tag": "AuditLogs",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listBilling",
+    "description": "List billing",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/billing",
+      "tag": "Billing",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createBilling",
+    "description": "Create billing",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "customer_id field"
+        },
+        "customer_name": {
+          "type": "string",
+          "description": "customer_name field"
+        },
+        "customer_email": {
+          "type": "string",
+          "description": "customer_email field"
+        },
+        "billing_type": {
+          "type": "string",
+          "description": "billing_type field"
+        },
+        "plan_name": {
+          "type": "string",
+          "description": "plan_name field"
+        },
+        "plan_description": {
+          "type": "string",
+          "description": "plan_description field"
+        },
+        "amount": {
+          "type": "number",
+          "description": "amount field"
+        },
+        "currency": {
+          "type": "string",
+          "description": "currency field"
+        },
+        "billing_cycle": {
+          "type": "string",
+          "description": "billing_cycle field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "subscription_start": {
+          "type": "string",
+          "description": "subscription_start field"
+        },
+        "subscription_end": {
+          "type": "string",
+          "description": "subscription_end field"
+        },
+        "trial_end_date": {
+          "type": "string",
+          "description": "trial_end_date field"
+        },
+        "next_billing_date": {
+          "type": "string",
+          "description": "next_billing_date field"
+        },
+        "last_billing_date": {
+          "type": "string",
+          "description": "last_billing_date field"
+        },
+        "last_payment_date": {
+          "type": "string",
+          "description": "last_payment_date field"
+        },
+        "payment_method": {
+          "type": "string",
+          "description": "payment_method field"
+        },
+        "payment_method_details": {
+          "type": "object",
+          "description": "payment_method_details field"
+        },
+        "total_revenue": {
+          "type": "number",
+          "description": "total_revenue field"
+        },
+        "outstanding_balance": {
+          "type": "number",
+          "description": "outstanding_balance field"
+        },
+        "payments_count": {
+          "type": "integer",
+          "description": "payments_count field"
+        },
+        "last_invoice_id": {
+          "type": "string",
+          "description": "last_invoice_id field"
+        },
+        "next_invoice_id": {
+          "type": "string",
+          "description": "next_invoice_id field"
+        },
+        "auto_renew": {
+          "type": "boolean",
+          "description": "auto_renew field"
+        },
+        "cancel_at_period_end": {
+          "type": "boolean",
+          "description": "cancel_at_period_end field"
+        },
+        "canceled_at": {
+          "type": "string",
+          "description": "canceled_at field"
+        },
+        "cancellation_reason": {
+          "type": "string",
+          "description": "cancellation_reason field"
+        },
+        "usage_data": {
+          "type": "object",
+          "description": "usage_data field"
+        },
+        "tags": {
+          "type": "array",
+          "description": "tags field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "customer_name",
+        "billing_type",
+        "plan_name",
+        "amount",
+        "billing_cycle"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/billing",
+      "tag": "Billing",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getBilling",
+    "description": "Get billing by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/billing/{id}",
+      "tag": "Billing",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateBilling",
+    "description": "Update billing",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "customer_id field"
+        },
+        "customer_name": {
+          "type": "string",
+          "description": "customer_name field"
+        },
+        "customer_email": {
+          "type": "string",
+          "description": "customer_email field"
+        },
+        "billing_type": {
+          "type": "string",
+          "description": "billing_type field"
+        },
+        "plan_name": {
+          "type": "string",
+          "description": "plan_name field"
+        },
+        "plan_description": {
+          "type": "string",
+          "description": "plan_description field"
+        },
+        "amount": {
+          "type": "number",
+          "description": "amount field"
+        },
+        "currency": {
+          "type": "string",
+          "description": "currency field"
+        },
+        "billing_cycle": {
+          "type": "string",
+          "description": "billing_cycle field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "subscription_start": {
+          "type": "string",
+          "description": "subscription_start field"
+        },
+        "subscription_end": {
+          "type": "string",
+          "description": "subscription_end field"
+        },
+        "trial_end_date": {
+          "type": "string",
+          "description": "trial_end_date field"
+        },
+        "next_billing_date": {
+          "type": "string",
+          "description": "next_billing_date field"
+        },
+        "last_billing_date": {
+          "type": "string",
+          "description": "last_billing_date field"
+        },
+        "last_payment_date": {
+          "type": "string",
+          "description": "last_payment_date field"
+        },
+        "payment_method": {
+          "type": "string",
+          "description": "payment_method field"
+        },
+        "payment_method_details": {
+          "type": "object",
+          "description": "payment_method_details field"
+        },
+        "total_revenue": {
+          "type": "number",
+          "description": "total_revenue field"
+        },
+        "outstanding_balance": {
+          "type": "number",
+          "description": "outstanding_balance field"
+        },
+        "payments_count": {
+          "type": "integer",
+          "description": "payments_count field"
+        },
+        "last_invoice_id": {
+          "type": "string",
+          "description": "last_invoice_id field"
+        },
+        "next_invoice_id": {
+          "type": "string",
+          "description": "next_invoice_id field"
+        },
+        "auto_renew": {
+          "type": "boolean",
+          "description": "auto_renew field"
+        },
+        "cancel_at_period_end": {
+          "type": "boolean",
+          "description": "cancel_at_period_end field"
+        },
+        "canceled_at": {
+          "type": "string",
+          "description": "canceled_at field"
+        },
+        "cancellation_reason": {
+          "type": "string",
+          "description": "cancellation_reason field"
+        },
+        "usage_data": {
+          "type": "object",
+          "description": "usage_data field"
+        },
+        "tags": {
+          "type": "array",
+          "description": "tags field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/billing/{id}",
+      "tag": "Billing",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteBilling",
+    "description": "Delete billing",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/billing/{id}",
+      "tag": "Billing",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listEventOutbox",
+    "description": "List event_outbox",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/event_outbox",
+      "tag": "EventOutbox",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createEventOutbox",
+    "description": "Create event_outbox",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "event_type": {
+          "type": "string",
+          "description": "event_type field"
+        },
+        "aggregate_type": {
+          "type": "string",
+          "description": "aggregate_type field"
+        },
+        "aggregate_id": {
+          "type": "string",
+          "description": "aggregate_id field"
+        },
+        "payload": {
+          "type": "object",
+          "description": "payload field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "attempts": {
+          "type": "integer",
+          "description": "attempts field"
+        },
+        "max_attempts": {
+          "type": "integer",
+          "description": "max_attempts field"
+        },
+        "last_error": {
+          "type": "string",
+          "description": "last_error field"
+        },
+        "processed_at": {
+          "type": "string",
+          "description": "processed_at field"
+        },
+        "scheduled_for": {
+          "type": "string",
+          "description": "scheduled_for field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "event_type",
+        "aggregate_type",
+        "aggregate_id",
+        "payload"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/event_outbox",
+      "tag": "EventOutbox",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getEventOutbox",
+    "description": "Get event_outbox by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/event_outbox/{id}",
+      "tag": "EventOutbox",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateEventOutbox",
+    "description": "Update event_outbox",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "event_type": {
+          "type": "string",
+          "description": "event_type field"
+        },
+        "aggregate_type": {
+          "type": "string",
+          "description": "aggregate_type field"
+        },
+        "aggregate_id": {
+          "type": "string",
+          "description": "aggregate_id field"
+        },
+        "payload": {
+          "type": "object",
+          "description": "payload field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "attempts": {
+          "type": "integer",
+          "description": "attempts field"
+        },
+        "max_attempts": {
+          "type": "integer",
+          "description": "max_attempts field"
+        },
+        "last_error": {
+          "type": "string",
+          "description": "last_error field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "processed_at": {
+          "type": "string",
+          "description": "processed_at field"
+        },
+        "scheduled_for": {
+          "type": "string",
+          "description": "scheduled_for field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/event_outbox/{id}",
+      "tag": "EventOutbox",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteEventOutbox",
+    "description": "Delete event_outbox",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/event_outbox/{id}",
+      "tag": "EventOutbox",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listNoteTemplates",
+    "description": "List note_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/note_templates",
+      "tag": "NoteTemplates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createNoteTemplates",
+    "description": "Create note_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "template_content": {
+          "type": "string",
+          "description": "template_content field"
+        },
+        "fields": {
+          "type": "object",
+          "description": "fields field"
+        },
+        "category": {
+          "type": "string",
+          "description": "category field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "name",
+        "template_content",
+        "created_by",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/note_templates",
+      "tag": "NoteTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getNoteTemplates",
+    "description": "Get note_templates by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/note_templates/{id}",
+      "tag": "NoteTemplates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateNoteTemplates",
+    "description": "Update note_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "template_content": {
+          "type": "string",
+          "description": "template_content field"
+        },
+        "fields": {
+          "type": "object",
+          "description": "fields field"
+        },
+        "category": {
+          "type": "string",
+          "description": "category field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/note_templates/{id}",
+      "tag": "NoteTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteNoteTemplates",
+    "description": "Delete note_templates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/note_templates/{id}",
+      "tag": "NoteTemplates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listSubmissionPackages",
+    "description": "List submission_packages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/submission_packages",
+      "tag": "SubmissionPackages",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createSubmissionPackages",
+    "description": "Create submission_packages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "candidate_ids": {
+          "type": "array",
+          "description": "candidate_ids field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "submission_data": {
+          "type": "object",
+          "description": "submission_data field"
+        },
+        "redact_email": {
+          "type": "boolean",
+          "description": "redact_email field"
+        },
+        "redact_phone": {
+          "type": "boolean",
+          "description": "redact_phone field"
+        },
+        "redact_full_name": {
+          "type": "boolean",
+          "description": "redact_full_name field"
+        },
+        "redact_address": {
+          "type": "boolean",
+          "description": "redact_address field"
+        },
+        "share_token": {
+          "type": "string",
+          "description": "share_token field"
+        },
+        "share_password_hash": {
+          "type": "string",
+          "description": "share_password_hash field"
+        },
+        "share_expires_at": {
+          "type": "string",
+          "description": "share_expires_at field"
+        },
+        "share_view_count": {
+          "type": "integer",
+          "description": "share_view_count field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        },
+        "submittal_id": {
+          "type": "string",
+          "description": "submittal_id field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "title",
+        "candidate_ids",
+        "submission_data",
+        "created_by",
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/submission_packages",
+      "tag": "SubmissionPackages",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getSubmissionPackages",
+    "description": "Get submission_packages by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/submission_packages/{id}",
+      "tag": "SubmissionPackages",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateSubmissionPackages",
+    "description": "Update submission_packages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "workspace_id": {
+          "type": "string",
+          "description": "workspace_id field"
+        },
+        "title": {
+          "type": "string",
+          "description": "title field"
+        },
+        "description": {
+          "type": "string",
+          "description": "description field"
+        },
+        "candidate_ids": {
+          "type": "array",
+          "description": "candidate_ids field"
+        },
+        "job_id": {
+          "type": "string",
+          "description": "job_id field"
+        },
+        "submission_data": {
+          "type": "object",
+          "description": "submission_data field"
+        },
+        "redact_email": {
+          "type": "boolean",
+          "description": "redact_email field"
+        },
+        "redact_phone": {
+          "type": "boolean",
+          "description": "redact_phone field"
+        },
+        "redact_full_name": {
+          "type": "boolean",
+          "description": "redact_full_name field"
+        },
+        "redact_address": {
+          "type": "boolean",
+          "description": "redact_address field"
+        },
+        "share_token": {
+          "type": "string",
+          "description": "share_token field"
+        },
+        "share_password_hash": {
+          "type": "string",
+          "description": "share_password_hash field"
+        },
+        "share_expires_at": {
+          "type": "string",
+          "description": "share_expires_at field"
+        },
+        "share_view_count": {
+          "type": "integer",
+          "description": "share_view_count field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "submitted_at": {
+          "type": "string",
+          "description": "submitted_at field"
+        },
+        "submittal_id": {
+          "type": "string",
+          "description": "submittal_id field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/submission_packages/{id}",
+      "tag": "SubmissionPackages",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteSubmissionPackages",
+    "description": "Delete submission_packages",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/submission_packages/{id}",
+      "tag": "SubmissionPackages",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listIdempotencyKeys",
+    "description": "List idempotency_keys",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/idempotency_keys",
+      "tag": "IdempotencyKeys",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createIdempotencyKeys",
+    "description": "Create idempotency_keys",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "key": {
+          "type": "string",
+          "description": "key field"
+        },
+        "request_hash": {
+          "type": "string",
+          "description": "request_hash field"
+        },
+        "response": {
+          "type": "object",
+          "description": "response field"
+        },
+        "expires_at": {
+          "type": "string",
+          "description": "expires_at field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "key",
+        "request_hash"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/idempotency_keys",
+      "tag": "IdempotencyKeys",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getIdempotencyKeys",
+    "description": "Get idempotency_keys by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/idempotency_keys/{id}",
+      "tag": "IdempotencyKeys",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateIdempotencyKeys",
+    "description": "Update idempotency_keys",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "key": {
+          "type": "string",
+          "description": "key field"
+        },
+        "request_hash": {
+          "type": "string",
+          "description": "request_hash field"
+        },
+        "response": {
+          "type": "object",
+          "description": "response field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "expires_at": {
+          "type": "string",
+          "description": "expires_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/idempotency_keys/{id}",
+      "tag": "IdempotencyKeys",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteIdempotencyKeys",
+    "description": "Delete idempotency_keys",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/idempotency_keys/{id}",
+      "tag": "IdempotencyKeys",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listEeoData",
+    "description": "List eeo_data",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/eeo_data",
+      "tag": "EeoData",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createEeoData",
+    "description": "Create eeo_data",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "gender": {
+          "type": "string",
+          "description": "gender field"
+        },
+        "race_ethnicity": {
+          "type": "string",
+          "description": "race_ethnicity field"
+        },
+        "veteran_status": {
+          "type": "string",
+          "description": "veteran_status field"
+        },
+        "disability_status": {
+          "type": "string",
+          "description": "disability_status field"
+        },
+        "collected_at": {
+          "type": "string",
+          "description": "collected_at field"
+        },
+        "collection_method": {
+          "type": "string",
+          "description": "collection_method field"
+        },
+        "consent_given": {
+          "type": "boolean",
+          "description": "consent_given field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/eeo_data",
+      "tag": "EeoData",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getEeoData",
+    "description": "Get eeo_data by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/eeo_data/{id}",
+      "tag": "EeoData",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateEeoData",
+    "description": "Update eeo_data",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "gender": {
+          "type": "string",
+          "description": "gender field"
+        },
+        "race_ethnicity": {
+          "type": "string",
+          "description": "race_ethnicity field"
+        },
+        "veteran_status": {
+          "type": "string",
+          "description": "veteran_status field"
+        },
+        "disability_status": {
+          "type": "string",
+          "description": "disability_status field"
+        },
+        "collected_at": {
+          "type": "string",
+          "description": "collected_at field"
+        },
+        "collection_method": {
+          "type": "string",
+          "description": "collection_method field"
+        },
+        "consent_given": {
+          "type": "boolean",
+          "description": "consent_given field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/eeo_data/{id}",
+      "tag": "EeoData",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteEeoData",
+    "description": "Delete eeo_data",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/eeo_data/{id}",
+      "tag": "EeoData",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listBackgroundChecks",
+    "description": "List background_checks",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/background_checks",
+      "tag": "BackgroundChecks",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createBackgroundChecks",
+    "description": "Create background_checks",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "external_id field"
+        },
+        "package_id": {
+          "type": "string",
+          "description": "package_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "result": {
+          "type": "string",
+          "description": "result field"
+        },
+        "adjudication": {
+          "type": "string",
+          "description": "adjudication field"
+        },
+        "report_url": {
+          "type": "string",
+          "description": "report_url field"
+        },
+        "turnaround_time": {
+          "type": "integer",
+          "description": "turnaround_time field"
+        },
+        "initiated_at": {
+          "type": "string",
+          "description": "initiated_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "candidate_id",
+        "provider",
+        "external_id",
+        "package_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/background_checks",
+      "tag": "BackgroundChecks",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getBackgroundChecks",
+    "description": "Get background_checks by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/background_checks/{id}",
+      "tag": "BackgroundChecks",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateBackgroundChecks",
+    "description": "Update background_checks",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "application_id": {
+          "type": "string",
+          "description": "application_id field"
+        },
+        "provider": {
+          "type": "string",
+          "description": "provider field"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "external_id field"
+        },
+        "package_id": {
+          "type": "string",
+          "description": "package_id field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "result": {
+          "type": "string",
+          "description": "result field"
+        },
+        "adjudication": {
+          "type": "string",
+          "description": "adjudication field"
+        },
+        "report_url": {
+          "type": "string",
+          "description": "report_url field"
+        },
+        "turnaround_time": {
+          "type": "integer",
+          "description": "turnaround_time field"
+        },
+        "initiated_at": {
+          "type": "string",
+          "description": "initiated_at field"
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "completed_at field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/background_checks/{id}",
+      "tag": "BackgroundChecks",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteBackgroundChecks",
+    "description": "Delete background_checks",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/background_checks/{id}",
+      "tag": "BackgroundChecks",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCandidateDocuments",
+    "description": "List candidate_documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_documents",
+      "tag": "CandidateDocuments",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCandidateDocuments",
+    "description": "Create candidate_documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "document_type": {
+          "type": "string",
+          "description": "document_type field"
+        },
+        "file_name": {
+          "type": "string",
+          "description": "file_name field"
+        },
+        "file_path": {
+          "type": "string",
+          "description": "file_path field"
+        },
+        "file_size": {
+          "type": "integer",
+          "description": "file_size field"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "mime_type field"
+        },
+        "parsed_data": {
+          "type": "object",
+          "description": "parsed_data field"
+        },
+        "parsing_status": {
+          "type": "string",
+          "description": "parsing_status field"
+        },
+        "parsed_at": {
+          "type": "string",
+          "description": "parsed_at field"
+        },
+        "parser_version": {
+          "type": "string",
+          "description": "parser_version field"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "is_primary field"
+        },
+        "version": {
+          "type": "integer",
+          "description": "version field"
+        },
+        "uploaded_by": {
+          "type": "string",
+          "description": "uploaded_by field"
+        }
+      },
+      "required": [
+        "document_type",
+        "file_name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/candidate_documents",
+      "tag": "CandidateDocuments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCandidateDocuments",
+    "description": "Get candidate_documents by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidate_documents/{id}",
+      "tag": "CandidateDocuments",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCandidateDocuments",
+    "description": "Update candidate_documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "document_type": {
+          "type": "string",
+          "description": "document_type field"
+        },
+        "file_name": {
+          "type": "string",
+          "description": "file_name field"
+        },
+        "file_path": {
+          "type": "string",
+          "description": "file_path field"
+        },
+        "file_size": {
+          "type": "integer",
+          "description": "file_size field"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "mime_type field"
+        },
+        "parsed_data": {
+          "type": "object",
+          "description": "parsed_data field"
+        },
+        "parsing_status": {
+          "type": "string",
+          "description": "parsing_status field"
+        },
+        "parsed_at": {
+          "type": "string",
+          "description": "parsed_at field"
+        },
+        "parser_version": {
+          "type": "string",
+          "description": "parser_version field"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "is_primary field"
+        },
+        "version": {
+          "type": "integer",
+          "description": "version field"
+        },
+        "uploaded_by": {
+          "type": "string",
+          "description": "uploaded_by field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/candidate_documents/{id}",
+      "tag": "CandidateDocuments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCandidateDocuments",
+    "description": "Delete candidate_documents",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/candidate_documents/{id}",
+      "tag": "CandidateDocuments",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listParsedResumes",
+    "description": "List parsed_resumes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/parsed_resumes",
+      "tag": "ParsedResumes",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createParsedResumes",
+    "description": "Create parsed_resumes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "source_document_id": {
+          "type": "string",
+          "description": "source_document_id field"
+        },
+        "parse_timestamp": {
+          "type": "string",
+          "description": "parse_timestamp field"
+        },
+        "parser_version": {
+          "type": "string",
+          "description": "parser_version field"
+        },
+        "overall_confidence": {
+          "type": "number",
+          "description": "overall_confidence field"
+        },
+        "contact_info": {
+          "type": "object",
+          "description": "contact_info field"
+        },
+        "work_experience": {
+          "type": "object",
+          "description": "work_experience field"
+        },
+        "education": {
+          "type": "object",
+          "description": "education field"
+        },
+        "skills": {
+          "type": "object",
+          "description": "skills field"
+        },
+        "certifications": {
+          "type": "object",
+          "description": "certifications field"
+        },
+        "parse_duration_ms": {
+          "type": "integer",
+          "description": "parse_duration_ms field"
+        },
+        "fields_requiring_review": {
+          "type": "array",
+          "description": "fields_requiring_review field"
+        },
+        "raw_text": {
+          "type": "string",
+          "description": "raw_text field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/parsed_resumes",
+      "tag": "ParsedResumes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getParsedResumes",
+    "description": "Get parsed_resumes by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/parsed_resumes/{id}",
+      "tag": "ParsedResumes",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateParsedResumes",
+    "description": "Update parsed_resumes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "candidate_id": {
+          "type": "string",
+          "description": "candidate_id field"
+        },
+        "source_document_id": {
+          "type": "string",
+          "description": "source_document_id field"
+        },
+        "parse_timestamp": {
+          "type": "string",
+          "description": "parse_timestamp field"
+        },
+        "parser_version": {
+          "type": "string",
+          "description": "parser_version field"
+        },
+        "overall_confidence": {
+          "type": "number",
+          "description": "overall_confidence field"
+        },
+        "contact_info": {
+          "type": "object",
+          "description": "contact_info field"
+        },
+        "work_experience": {
+          "type": "object",
+          "description": "work_experience field"
+        },
+        "education": {
+          "type": "object",
+          "description": "education field"
+        },
+        "skills": {
+          "type": "object",
+          "description": "skills field"
+        },
+        "certifications": {
+          "type": "object",
+          "description": "certifications field"
+        },
+        "parse_duration_ms": {
+          "type": "integer",
+          "description": "parse_duration_ms field"
+        },
+        "fields_requiring_review": {
+          "type": "array",
+          "description": "fields_requiring_review field"
+        },
+        "raw_text": {
+          "type": "string",
+          "description": "raw_text field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/parsed_resumes/{id}",
+      "tag": "ParsedResumes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteParsedResumes",
+    "description": "Delete parsed_resumes",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/parsed_resumes/{id}",
+      "tag": "ParsedResumes",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listAppUsers",
+    "description": "List app_users",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/app_users",
+      "tag": "AppUsers",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createAppUsers",
+    "description": "Create app_users",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "description": "tenant_id field"
+        },
+        "role": {
+          "type": "string",
+          "description": "role field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "permissions": {
+          "type": "object",
+          "description": "permissions field"
+        },
+        "preferences": {
+          "type": "object",
+          "description": "preferences field"
+        }
+      },
+      "required": [
+        "tenant_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/app_users",
+      "tag": "AppUsers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getAppUsers",
+    "description": "Get app_users by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/app_users/{id}",
+      "tag": "AppUsers",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateAppUsers",
+    "description": "Update app_users",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "tenant_id field"
+        },
+        "role": {
+          "type": "string",
+          "description": "role field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "permissions": {
+          "type": "object",
+          "description": "permissions field"
+        },
+        "preferences": {
+          "type": "object",
+          "description": "preferences field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/app_users/{id}",
+      "tag": "AppUsers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteAppUsers",
+    "description": "Delete app_users",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/app_users/{id}",
+      "tag": "AppUsers",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listTenants",
+    "description": "List tenants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/tenants",
+      "tag": "Tenants",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createTenants",
+    "description": "Create tenants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "slug": {
+          "type": "string",
+          "description": "slug field"
+        },
+        "domain": {
+          "type": "string",
+          "description": "domain field"
+        },
+        "logo_url": {
+          "type": "string",
+          "description": "logo_url field"
+        },
+        "settings": {
+          "type": "object",
+          "description": "settings field"
+        },
+        "features": {
+          "type": "object",
+          "description": "features field"
+        },
+        "subscription_tier": {
+          "type": "string",
+          "description": "subscription_tier field"
+        },
+        "subscription_status": {
+          "type": "string",
+          "description": "subscription_status field"
+        },
+        "billing_email": {
+          "type": "string",
+          "description": "billing_email field"
+        },
+        "deleted_at": {
+          "type": "string",
+          "description": "deleted_at field"
+        }
+      },
+      "required": [
+        "name",
+        "slug"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/tenants",
+      "tag": "Tenants",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getTenants",
+    "description": "Get tenants by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/tenants/{id}",
+      "tag": "Tenants",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateTenants",
+    "description": "Update tenants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "slug": {
+          "type": "string",
+          "description": "slug field"
+        },
+        "domain": {
+          "type": "string",
+          "description": "domain field"
+        },
+        "logo_url": {
+          "type": "string",
+          "description": "logo_url field"
+        },
+        "settings": {
+          "type": "object",
+          "description": "settings field"
+        },
+        "features": {
+          "type": "object",
+          "description": "features field"
+        },
+        "subscription_tier": {
+          "type": "string",
+          "description": "subscription_tier field"
+        },
+        "subscription_status": {
+          "type": "string",
+          "description": "subscription_status field"
+        },
+        "billing_email": {
+          "type": "string",
+          "description": "billing_email field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "deleted_at": {
+          "type": "string",
+          "description": "deleted_at field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/tenants/{id}",
+      "tag": "Tenants",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteTenants",
+    "description": "Delete tenants",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/tenants/{id}",
+      "tag": "Tenants",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCandidates",
+    "description": "List candidates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidates",
+      "tag": "Candidates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCandidates",
+    "description": "Create candidates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "first_name field"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "last_name field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "linkedin_url": {
+          "type": "string",
+          "description": "linkedin_url field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "timezone field"
+        },
+        "current_title": {
+          "type": "string",
+          "description": "current_title field"
+        },
+        "current_company": {
+          "type": "string",
+          "description": "current_company field"
+        },
+        "years_experience": {
+          "type": "integer",
+          "description": "years_experience field"
+        },
+        "desired_roles": {
+          "type": "array",
+          "description": "desired_roles field"
+        },
+        "skills": {
+          "type": "array",
+          "description": "skills field"
+        },
+        "resume_url": {
+          "type": "string",
+          "description": "resume_url field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "education_degree": {
+          "type": "string",
+          "description": "education_degree field"
+        },
+        "education_institution": {
+          "type": "string",
+          "description": "education_institution field"
+        },
+        "experience_years": {
+          "type": "integer",
+          "description": "experience_years field"
+        },
+        "headline": {
+          "type": "string",
+          "description": "headline field"
+        },
+        "zip_code": {
+          "type": "string",
+          "description": "zip_code field"
+        },
+        "stage": {
+          "type": "string",
+          "description": "stage field"
+        },
+        "location_normalized": {
+          "type": "string",
+          "description": "location_normalized field"
+        },
+        "city": {
+          "type": "string",
+          "description": "city field"
+        },
+        "state": {
+          "type": "string",
+          "description": "state field"
+        },
+        "country": {
+          "type": "string",
+          "description": "country field"
+        },
+        "metro_area": {
+          "type": "string",
+          "description": "metro_area field"
+        },
+        "tags": {
+          "type": "object",
+          "description": "tags field"
+        },
+        "rating": {
+          "type": "integer",
+          "description": "rating field"
+        },
+        "preferred_locations": {
+          "type": "object",
+          "description": "preferred_locations field"
+        },
+        "work_authorization": {
+          "type": "string",
+          "description": "work_authorization field"
+        },
+        "willing_to_relocate": {
+          "type": "boolean",
+          "description": "willing_to_relocate field"
+        },
+        "deleted_at": {
+          "type": "string",
+          "description": "deleted_at field"
+        },
+        "deleted_by": {
+          "type": "string",
+          "description": "deleted_by field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        },
+        "skills_json": {
+          "type": "object",
+          "description": "skills_json field"
+        },
+        "desired_roles_json": {
+          "type": "object",
+          "description": "desired_roles_json field"
+        }
+      },
+      "required": [
+        "organization_id"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/candidates",
+      "tag": "Candidates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCandidates",
+    "description": "Get candidates by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/candidates/{id}",
+      "tag": "Candidates",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCandidates",
+    "description": "Update candidates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "first_name field"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "last_name field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "linkedin_url": {
+          "type": "string",
+          "description": "linkedin_url field"
+        },
+        "location": {
+          "type": "string",
+          "description": "location field"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "timezone field"
+        },
+        "current_title": {
+          "type": "string",
+          "description": "current_title field"
+        },
+        "current_company": {
+          "type": "string",
+          "description": "current_company field"
+        },
+        "years_experience": {
+          "type": "integer",
+          "description": "years_experience field"
+        },
+        "desired_roles": {
+          "type": "array",
+          "description": "desired_roles field"
+        },
+        "skills": {
+          "type": "array",
+          "description": "skills field"
+        },
+        "resume_url": {
+          "type": "string",
+          "description": "resume_url field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "source": {
+          "type": "string",
+          "description": "source field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "metadata field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "education_degree": {
+          "type": "string",
+          "description": "education_degree field"
+        },
+        "education_institution": {
+          "type": "string",
+          "description": "education_institution field"
+        },
+        "experience_years": {
+          "type": "integer",
+          "description": "experience_years field"
+        },
+        "headline": {
+          "type": "string",
+          "description": "headline field"
+        },
+        "zip_code": {
+          "type": "string",
+          "description": "zip_code field"
+        },
+        "stage": {
+          "type": "string",
+          "description": "stage field"
+        },
+        "location_normalized": {
+          "type": "string",
+          "description": "location_normalized field"
+        },
+        "city": {
+          "type": "string",
+          "description": "city field"
+        },
+        "state": {
+          "type": "string",
+          "description": "state field"
+        },
+        "country": {
+          "type": "string",
+          "description": "country field"
+        },
+        "metro_area": {
+          "type": "string",
+          "description": "metro_area field"
+        },
+        "tags": {
+          "type": "object",
+          "description": "tags field"
+        },
+        "rating": {
+          "type": "integer",
+          "description": "rating field"
+        },
+        "preferred_locations": {
+          "type": "object",
+          "description": "preferred_locations field"
+        },
+        "work_authorization": {
+          "type": "string",
+          "description": "work_authorization field"
+        },
+        "willing_to_relocate": {
+          "type": "boolean",
+          "description": "willing_to_relocate field"
+        },
+        "deleted_at": {
+          "type": "string",
+          "description": "deleted_at field"
+        },
+        "deleted_by": {
+          "type": "string",
+          "description": "deleted_by field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        },
+        "skills_json": {
+          "type": "object",
+          "description": "skills_json field"
+        },
+        "desired_roles_json": {
+          "type": "object",
+          "description": "desired_roles_json field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/candidates/{id}",
+      "tag": "Candidates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCandidates",
+    "description": "Delete candidates",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/candidates/{id}",
+      "tag": "Candidates",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "listCompanies",
+    "description": "List companies",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "page query parameter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "pageSize query parameter"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "orderBy query parameter"
+        }
+      }
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/companies",
+      "tag": "Companies",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "createCompanies",
+    "description": "Create companies",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "type": {
+          "type": "string",
+          "description": "type field"
+        },
+        "industry": {
+          "type": "string",
+          "description": "industry field"
+        },
+        "website": {
+          "type": "string",
+          "description": "website field"
+        },
+        "linkedin_url": {
+          "type": "string",
+          "description": "linkedin_url field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "employee_count": {
+          "type": "integer",
+          "description": "employee_count field"
+        },
+        "annual_revenue": {
+          "type": "number",
+          "description": "annual_revenue field"
+        },
+        "headquarters": {
+          "type": "string",
+          "description": "headquarters field"
+        },
+        "billing_address": {
+          "type": "object",
+          "description": "billing_address field"
+        },
+        "payment_terms": {
+          "type": "string",
+          "description": "payment_terms field"
+        },
+        "default_bill_rate": {
+          "type": "number",
+          "description": "default_bill_rate field"
+        },
+        "default_markup": {
+          "type": "number",
+          "description": "default_markup field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "tags": {
+          "type": "object",
+          "description": "tags field"
+        },
+        "deleted_at": {
+          "type": "string",
+          "description": "deleted_at field"
+        },
+        "deleted_by": {
+          "type": "string",
+          "description": "deleted_by field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "organization_id",
+        "name"
+      ]
+    },
+    "metadata": {
+      "method": "POST",
+      "path": "/companies",
+      "tag": "Companies",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "getCompanies",
+    "description": "Get companies by ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "GET",
+      "path": "/companies/{id}",
+      "tag": "Companies",
+      "requiresAuth": true,
+      "mutates": false,
+      "confidenceThreshold": 0.7
+    }
+  },
+  {
+    "name": "updateCompanies",
+    "description": "Update companies",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "organization_id field"
+        },
+        "name": {
+          "type": "string",
+          "description": "name field"
+        },
+        "type": {
+          "type": "string",
+          "description": "type field"
+        },
+        "industry": {
+          "type": "string",
+          "description": "industry field"
+        },
+        "website": {
+          "type": "string",
+          "description": "website field"
+        },
+        "linkedin_url": {
+          "type": "string",
+          "description": "linkedin_url field"
+        },
+        "phone": {
+          "type": "string",
+          "description": "phone field"
+        },
+        "email": {
+          "type": "string",
+          "description": "email field"
+        },
+        "status": {
+          "type": "string",
+          "description": "status field"
+        },
+        "employee_count": {
+          "type": "integer",
+          "description": "employee_count field"
+        },
+        "annual_revenue": {
+          "type": "number",
+          "description": "annual_revenue field"
+        },
+        "headquarters": {
+          "type": "string",
+          "description": "headquarters field"
+        },
+        "billing_address": {
+          "type": "object",
+          "description": "billing_address field"
+        },
+        "payment_terms": {
+          "type": "string",
+          "description": "payment_terms field"
+        },
+        "default_bill_rate": {
+          "type": "number",
+          "description": "default_bill_rate field"
+        },
+        "default_markup": {
+          "type": "number",
+          "description": "default_markup field"
+        },
+        "notes": {
+          "type": "string",
+          "description": "notes field"
+        },
+        "tags": {
+          "type": "object",
+          "description": "tags field"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created_at field"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "updated_at field"
+        },
+        "deleted_at": {
+          "type": "string",
+          "description": "deleted_at field"
+        },
+        "deleted_by": {
+          "type": "string",
+          "description": "deleted_by field"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "created_by field"
+        },
+        "updated_by": {
+          "type": "string",
+          "description": "updated_by field"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "PATCH",
+      "path": "/companies/{id}",
+      "tag": "Companies",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  },
+  {
+    "name": "deleteCompanies",
+    "description": "Delete companies",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id parameter"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "metadata": {
+      "method": "DELETE",
+      "path": "/companies/{id}",
+      "tag": "Companies",
+      "requiresAuth": true,
+      "mutates": true,
+      "confidenceThreshold": 0.9
+    }
+  }
+];
+
+export const toolsByTag: Record<string, AITool[]> = {
+  'Tags': aiTools.filter(t => t.metadata.tag === 'Tags'),
+  'Users': aiTools.filter(t => t.metadata.tag === 'Users'),
+  'InterviewFeedback': aiTools.filter(t => t.metadata.tag === 'InterviewFeedback'),
+  'UserSessions': aiTools.filter(t => t.metadata.tag === 'UserSessions'),
+  'SavedSearches': aiTools.filter(t => t.metadata.tag === 'SavedSearches'),
+  'Activities': aiTools.filter(t => t.metadata.tag === 'Activities'),
+  'RegistryActions': aiTools.filter(t => t.metadata.tag === 'RegistryActions'),
+  'IntegrationConnections': aiTools.filter(t => t.metadata.tag === 'IntegrationConnections'),
+  'JobBoardMappings': aiTools.filter(t => t.metadata.tag === 'JobBoardMappings'),
+  'WebhookLogs': aiTools.filter(t => t.metadata.tag === 'WebhookLogs'),
+  'Messages': aiTools.filter(t => t.metadata.tag === 'Messages'),
+  'WebhookSubscriptions': aiTools.filter(t => t.metadata.tag === 'WebhookSubscriptions'),
+  'Workspaces': aiTools.filter(t => t.metadata.tag === 'Workspaces'),
+  'ImportRuns': aiTools.filter(t => t.metadata.tag === 'ImportRuns'),
+  'ImportConflicts': aiTools.filter(t => t.metadata.tag === 'ImportConflicts'),
+  'Clients': aiTools.filter(t => t.metadata.tag === 'Clients'),
+  'Jobs': aiTools.filter(t => t.metadata.tag === 'Jobs'),
+  'Consultants': aiTools.filter(t => t.metadata.tag === 'Consultants'),
+  'Notes': aiTools.filter(t => t.metadata.tag === 'Notes'),
+  'Compliance': aiTools.filter(t => t.metadata.tag === 'Compliance'),
+  'Notifications': aiTools.filter(t => t.metadata.tag === 'Notifications'),
+  'AssignmentExtensions': aiTools.filter(t => t.metadata.tag === 'AssignmentExtensions'),
+  'ImportJobs': aiTools.filter(t => t.metadata.tag === 'ImportJobs'),
+  'WorkspaceMembers': aiTools.filter(t => t.metadata.tag === 'WorkspaceMembers'),
+  'AiPrompts': aiTools.filter(t => t.metadata.tag === 'AiPrompts'),
+  'Onboarding': aiTools.filter(t => t.metadata.tag === 'Onboarding'),
+  'PerformanceReviews': aiTools.filter(t => t.metadata.tag === 'PerformanceReviews'),
+  'Submissions': aiTools.filter(t => t.metadata.tag === 'Submissions'),
+  'Interviews': aiTools.filter(t => t.metadata.tag === 'Interviews'),
+  'CampaignEnrollments': aiTools.filter(t => t.metadata.tag === 'CampaignEnrollments'),
+  'WorkflowInstances': aiTools.filter(t => t.metadata.tag === 'WorkflowInstances'),
+  'BusinessRules': aiTools.filter(t => t.metadata.tag === 'BusinessRules'),
+  'RecruitingMetrics': aiTools.filter(t => t.metadata.tag === 'RecruitingMetrics'),
+  'SkillsTaxonomy': aiTools.filter(t => t.metadata.tag === 'SkillsTaxonomy'),
+  'SkillProfiles': aiTools.filter(t => t.metadata.tag === 'SkillProfiles'),
+  'Communications': aiTools.filter(t => t.metadata.tag === 'Communications'),
+  'CandidateSkills': aiTools.filter(t => t.metadata.tag === 'CandidateSkills'),
+  'JobSkills': aiTools.filter(t => t.metadata.tag === 'JobSkills'),
+  'AiAgents': aiTools.filter(t => t.metadata.tag === 'AiAgents'),
+  'Invoices': aiTools.filter(t => t.metadata.tag === 'Invoices'),
+  'PromptTemplates': aiTools.filter(t => t.metadata.tag === 'PromptTemplates'),
+  'AiExecutions': aiTools.filter(t => t.metadata.tag === 'AiExecutions'),
+  'Expenses': aiTools.filter(t => t.metadata.tag === 'Expenses'),
+  'ClientContracts': aiTools.filter(t => t.metadata.tag === 'ClientContracts'),
+  'CandidateNotes': aiTools.filter(t => t.metadata.tag === 'CandidateNotes'),
+  'ClientContacts': aiTools.filter(t => t.metadata.tag === 'ClientContacts'),
+  'ClientProjects': aiTools.filter(t => t.metadata.tag === 'ClientProjects'),
+  'Workflows': aiTools.filter(t => t.metadata.tag === 'Workflows'),
+  'Contacts': aiTools.filter(t => t.metadata.tag === 'Contacts'),
+  'Reviews': aiTools.filter(t => t.metadata.tag === 'Reviews'),
+  'EmailLogs': aiTools.filter(t => t.metadata.tag === 'EmailLogs'),
+  'Contracts': aiTools.filter(t => t.metadata.tag === 'Contracts'),
+  'MeetingParticipants': aiTools.filter(t => t.metadata.tag === 'MeetingParticipants'),
+  'Meetings': aiTools.filter(t => t.metadata.tag === 'Meetings'),
+  'AvailabilityWindows': aiTools.filter(t => t.metadata.tag === 'AvailabilityWindows'),
+  'InterviewPlans': aiTools.filter(t => t.metadata.tag === 'InterviewPlans'),
+  'InterviewRounds': aiTools.filter(t => t.metadata.tag === 'InterviewRounds'),
+  'UserAuditLog': aiTools.filter(t => t.metadata.tag === 'UserAuditLog'),
+  'BulkJobs': aiTools.filter(t => t.metadata.tag === 'BulkJobs'),
+  'Transcripts': aiTools.filter(t => t.metadata.tag === 'Transcripts'),
+  'ScorecardTemplates': aiTools.filter(t => t.metadata.tag === 'ScorecardTemplates'),
+  'DecisionPackets': aiTools.filter(t => t.metadata.tag === 'DecisionPackets'),
+  'RecordingAssets': aiTools.filter(t => t.metadata.tag === 'RecordingAssets'),
+  'Timesheets': aiTools.filter(t => t.metadata.tag === 'Timesheets'),
+  'CompBands': aiTools.filter(t => t.metadata.tag === 'CompBands'),
+  'ScorecardResponses': aiTools.filter(t => t.metadata.tag === 'ScorecardResponses'),
+  'OnboardingPackets': aiTools.filter(t => t.metadata.tag === 'OnboardingPackets'),
+  'Starts': aiTools.filter(t => t.metadata.tag === 'Starts'),
+  'EsignEnvelopes': aiTools.filter(t => t.metadata.tag === 'EsignEnvelopes'),
+  'OfferApprovals': aiTools.filter(t => t.metadata.tag === 'OfferApprovals'),
+  'OfferDocuments': aiTools.filter(t => t.metadata.tag === 'OfferDocuments'),
+  'Applications': aiTools.filter(t => t.metadata.tag === 'Applications'),
+  'Templates': aiTools.filter(t => t.metadata.tag === 'Templates'),
+  'CandidateEmbeddings': aiTools.filter(t => t.metadata.tag === 'CandidateEmbeddings'),
+  'Subscriptions': aiTools.filter(t => t.metadata.tag === 'Subscriptions'),
+  'Assignments': aiTools.filter(t => t.metadata.tag === 'Assignments'),
+  'Forecasts': aiTools.filter(t => t.metadata.tag === 'Forecasts'),
+  'ActionRegistry': aiTools.filter(t => t.metadata.tag === 'ActionRegistry'),
+  'BenchEntries': aiTools.filter(t => t.metadata.tag === 'BenchEntries'),
+  'Teams': aiTools.filter(t => t.metadata.tag === 'Teams'),
+  'AutomationRules': aiTools.filter(t => t.metadata.tag === 'AutomationRules'),
+  'Integrations': aiTools.filter(t => t.metadata.tag === 'Integrations'),
+  'Offers': aiTools.filter(t => t.metadata.tag === 'Offers'),
+  'Reports': aiTools.filter(t => t.metadata.tag === 'Reports'),
+  'Dashboards': aiTools.filter(t => t.metadata.tag === 'Dashboards'),
+  'Requirements': aiTools.filter(t => t.metadata.tag === 'Requirements'),
+  'AnalyticsReports': aiTools.filter(t => t.metadata.tag === 'AnalyticsReports'),
+  'TaskRules': aiTools.filter(t => t.metadata.tag === 'TaskRules'),
+  'CampaignSequences': aiTools.filter(t => t.metadata.tag === 'CampaignSequences'),
+  'Referrals': aiTools.filter(t => t.metadata.tag === 'Referrals'),
+  'AuditLog': aiTools.filter(t => t.metadata.tag === 'AuditLog'),
+  'CandidateWorkHistory': aiTools.filter(t => t.metadata.tag === 'CandidateWorkHistory'),
+  'MatchScores': aiTools.filter(t => t.metadata.tag === 'MatchScores'),
+  'CandidateEducation': aiTools.filter(t => t.metadata.tag === 'CandidateEducation'),
+  'MessageTemplates': aiTools.filter(t => t.metadata.tag === 'MessageTemplates'),
+  'Documents': aiTools.filter(t => t.metadata.tag === 'Documents'),
+  'ContactPoints': aiTools.filter(t => t.metadata.tag === 'ContactPoints'),
+  'Conversations': aiTools.filter(t => t.metadata.tag === 'Conversations'),
+  'InboundMessages': aiTools.filter(t => t.metadata.tag === 'InboundMessages'),
+  'ScorecardInstances': aiTools.filter(t => t.metadata.tag === 'ScorecardInstances'),
+  'Placements': aiTools.filter(t => t.metadata.tag === 'Placements'),
+  'Pipeline': aiTools.filter(t => t.metadata.tag === 'Pipeline'),
+  'WebhookDeliveries': aiTools.filter(t => t.metadata.tag === 'WebhookDeliveries'),
+  'Organizations': aiTools.filter(t => t.metadata.tag === 'Organizations'),
+  'EntityTags': aiTools.filter(t => t.metadata.tag === 'EntityTags'),
+  'JobEmbeddings': aiTools.filter(t => t.metadata.tag === 'JobEmbeddings'),
+  'TalentPools': aiTools.filter(t => t.metadata.tag === 'TalentPools'),
+  'TalentPoolMembers': aiTools.filter(t => t.metadata.tag === 'TalentPoolMembers'),
+  'Submittals': aiTools.filter(t => t.metadata.tag === 'Submittals'),
+  'Tasks': aiTools.filter(t => t.metadata.tag === 'Tasks'),
+  'Roles': aiTools.filter(t => t.metadata.tag === 'Roles'),
+  'Settings': aiTools.filter(t => t.metadata.tag === 'Settings'),
+  'NotificationPreferences': aiTools.filter(t => t.metadata.tag === 'NotificationPreferences'),
+  'Bench': aiTools.filter(t => t.metadata.tag === 'Bench'),
+  'AuditLogs': aiTools.filter(t => t.metadata.tag === 'AuditLogs'),
+  'Billing': aiTools.filter(t => t.metadata.tag === 'Billing'),
+  'EventOutbox': aiTools.filter(t => t.metadata.tag === 'EventOutbox'),
+  'NoteTemplates': aiTools.filter(t => t.metadata.tag === 'NoteTemplates'),
+  'SubmissionPackages': aiTools.filter(t => t.metadata.tag === 'SubmissionPackages'),
+  'IdempotencyKeys': aiTools.filter(t => t.metadata.tag === 'IdempotencyKeys'),
+  'EeoData': aiTools.filter(t => t.metadata.tag === 'EeoData'),
+  'BackgroundChecks': aiTools.filter(t => t.metadata.tag === 'BackgroundChecks'),
+  'CandidateDocuments': aiTools.filter(t => t.metadata.tag === 'CandidateDocuments'),
+  'ParsedResumes': aiTools.filter(t => t.metadata.tag === 'ParsedResumes'),
+  'AppUsers': aiTools.filter(t => t.metadata.tag === 'AppUsers'),
+  'Tenants': aiTools.filter(t => t.metadata.tag === 'Tenants'),
+  'Candidates': aiTools.filter(t => t.metadata.tag === 'Candidates'),
+  'Companies': aiTools.filter(t => t.metadata.tag === 'Companies'),
+};
+
+export const mutatingTools = aiTools.filter(t => t.metadata.mutates);
+export const queryTools = aiTools.filter(t => !t.metadata.mutates);
+
+export function getToolByName(name: string): AITool | undefined {
+  return aiTools.find(t => t.name === name);
+}
+
+export function validateToolConfidence(tool: AITool, confidence: number): boolean {
+  return confidence >= tool.metadata.confidenceThreshold;
+}
+
+export function getToolsForEntity(entity: string): AITool[] {
+  return aiTools.filter(t => t.metadata.tag.toLowerCase() === entity.toLowerCase());
+}
