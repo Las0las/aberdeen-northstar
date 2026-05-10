@@ -362,7 +362,7 @@ export default function ApplicationDetailPage() {
 
   return (
     <Entity360Tabs
-      entityType="application"
+      entityType="applications"
       entityId={id}
       title={title}
       actions={actions}

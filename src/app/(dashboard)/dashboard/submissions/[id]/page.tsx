@@ -185,7 +185,7 @@ export default function SubmissionDetailPage() {
 
   return (
     <Entity360Tabs
-      entityType="submission"
+      entityType="submissions"
       entityId={id}
       title={title}
       actions={actions}

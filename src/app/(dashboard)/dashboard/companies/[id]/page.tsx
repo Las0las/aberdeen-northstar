@@ -199,7 +199,7 @@ export default function CompanyDetailPage() {
 
   return (
     <Entity360Tabs
-      entityType="company"
+      entityType="companies"
       entityId={id}
       title={title}
       actions={actions}

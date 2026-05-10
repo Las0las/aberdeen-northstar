@@ -6,20 +6,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/db/supabaseAdmin';
 import { requireOrgContext, successResponse, errorResponse } from '@/server/orgScope';
-import { 
-  assertAllowedEntity, 
-  assertUuid, 
+import {
+  assertAllowedEntity,
+  assertUuid,
   getNotesSupport
 } from '@/server/contractAllowlist';
+import { checkRateLimit, rateLimitHeaders, RATE_LIMITS } from '@/server/rateLimit';
+import { logger, errorMeta } from '@/server/logger';
 
 export async function GET(request: NextRequest) {
   try {
+    const rl = checkRateLimit(request, 'notes:get', RATE_LIMITS.read);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        errorResponse('RATE_LIMITED', 'Too many requests'),
+        { status: 429, headers: rateLimitHeaders(rl) }
+      );
+    }
+
     // 1. Require org context (NEVER from client input)
     const ctx = await requireOrgContext();
     if (!ctx) {
       return NextResponse.json(
         errorResponse('UNAUTHORIZED', 'Organization context required'),
-        { status: 401 }
+        { status: 401, headers: rateLimitHeaders(rl) }
       );
     }
 
@@ -95,7 +105,7 @@ export async function GET(request: NextRequest) {
     const { data, error } = await query;
 
     if (error) {
-      console.error('Notes query error:', error);
+      logger.error('notes query failed', { route: 'notes', code: error.code });
       return NextResponse.json(
         errorResponse('DB_ERROR', 'Database query failed'),
         { status: 500 }
@@ -106,7 +116,7 @@ export async function GET(request: NextRequest) {
       successResponse(data || [], { supported: true })
     );
   } catch (err) {
-    console.error('Notes GET error:', err);
+    logger.error('notes GET exception', errorMeta(err, { route: 'notes', method: 'GET' }));
     return NextResponse.json(
       errorResponse('INTERNAL_ERROR', 'Internal server error'),
       { status: 500 }
@@ -116,12 +126,20 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const rl = checkRateLimit(request, 'notes:post', RATE_LIMITS.write);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        errorResponse('RATE_LIMITED', 'Too many requests'),
+        { status: 429, headers: rateLimitHeaders(rl) }
+      );
+    }
+
     // 1. Require org context
     const ctx = await requireOrgContext();
     if (!ctx) {
       return NextResponse.json(
         errorResponse('UNAUTHORIZED', 'Organization context required'),
-        { status: 401 }
+        { status: 401, headers: rateLimitHeaders(rl) }
       );
     }
 
@@ -248,16 +266,16 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (error) {
-      console.error('Notes insert error:', error);
+      logger.error('notes insert failed', { route: 'notes', code: error.code });
       return NextResponse.json(
-        errorResponse('DB_ERROR', error.message),
+        errorResponse('DB_ERROR', 'Database insert failed'),
         { status: 500 }
       );
     }
 
     return NextResponse.json(successResponse(data), { status: 201 });
   } catch (err) {
-    console.error('Notes POST error:', err);
+    logger.error('notes POST exception', errorMeta(err, { route: 'notes', method: 'POST' }));
     return NextResponse.json(
       errorResponse('INTERNAL_ERROR', 'Internal server error'),
       { status: 500 }

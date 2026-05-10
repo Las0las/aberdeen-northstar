@@ -5,6 +5,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/db/supabaseAdmin';
 import { requireOrgContext, successResponse, errorResponse } from '@/server/orgScope';
 import { assertAllowedEntity, assertUuid, ALLOWED_ENTITY_TABLES } from '@/server/contractAllowlist';
+import { checkRateLimit, rateLimitHeaders, RATE_LIMITS } from '@/server/rateLimit';
+import { logger, errorMeta } from '@/server/logger';
 import dbContract from '@/db/contract/db_contract.json';
 
 // Types
@@ -49,6 +51,37 @@ const EXCLUDED_TABLES = new Set([
 // Limits to prevent fan-out
 const MAX_RELATED_TABLES = 5;
 const MAX_ROWS_PER_TABLE = 25;
+
+// Per-table projection whitelist. Returning select('*') leaks PII columns
+// (emails, phone numbers, password hashes, salary data, etc.) to anyone who
+// can hit /api/related. List the columns useful for the Related tab UI:
+// id + a human-readable label + a status hint + timestamps.
+const SAFE_COLUMNS_BY_TABLE: Record<string, string> = {
+  candidates: 'id,first_name,last_name,full_name,status,created_at',
+  jobs: 'id,title,status,created_at',
+  submissions: 'id,status,submitted_at,created_at',
+  interviews: 'id,scheduled_at,status,created_at',
+  offers: 'id,status,created_at',
+  placements: 'id,status,start_date,created_at',
+  bench_entries: 'id,state,reason,bench_started_at,created_at',
+  companies: 'id,name,status,created_at',
+  clients: 'id,name,status,created_at',
+  contacts: 'id,first_name,last_name,full_name,email,created_at',
+  organizations: 'id,name,created_at',
+  users: 'id,full_name,name,email,role,created_at',
+  roles: 'id,name,created_at',
+  teams: 'id,name,created_at',
+  applications: 'id,status,stage,date_applied,created_at',
+  tasks: 'id,title,status,created_at',
+  reports: 'id,name,created_at',
+};
+
+// Default minimal projection if a table isn't explicitly whitelisted.
+const DEFAULT_SAFE_COLUMNS = 'id,created_at';
+
+function safeColumns(table: string): string {
+  return SAFE_COLUMNS_BY_TABLE[table] || DEFAULT_SAFE_COLUMNS;
+}
 
 // Parse contract
 const tables: ContractTable[] = (dbContract as { tables: ContractTable[] }).tables || [];
@@ -107,12 +140,21 @@ function humanize(tableName: string): string {
 
 export async function GET(request: NextRequest) {
   try {
+    // /api/related does N+1 fan-out; tighter limit than other reads.
+    const rl = checkRateLimit(request, 'related:get', { limit: 60, windowMs: 60_000 });
+    if (!rl.allowed) {
+      return NextResponse.json(
+        errorResponse('RATE_LIMITED', 'Too many requests'),
+        { status: 429, headers: rateLimitHeaders(rl) }
+      );
+    }
+
     // 1. Require org context
     const ctx = await requireOrgContext();
     if (!ctx) {
       return NextResponse.json(
         errorResponse('UNAUTHORIZED', 'Organization context required'),
-        { status: 401 }
+        { status: 401, headers: rateLimitHeaders(rl) }
       );
     }
 
@@ -153,12 +195,21 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // 3. Fetch base record to get FK values
-    const { data: baseRecord, error: baseError } = await supabaseAdmin
+    // 3. Fetch base record. Pre-filter by org_id at query time when the
+    //    target table is org-scoped per contract — this fails closed if the
+    //    record belongs to another tenant (returns no row) instead of relying
+    //    on a post-fetch check.
+    const baseTableHasOrg = tableHasOrgId(entityTable);
+    let baseQuery = supabaseAdmin
       .from(entityTable)
       .select('*')
-      .eq('id', entityId)
-      .single();
+      .eq('id', entityId);
+
+    if (baseTableHasOrg) {
+      baseQuery = baseQuery.eq('organization_id', ctx.organizationId);
+    }
+
+    const { data: baseRecord, error: baseError } = await baseQuery.single();
 
     if (baseError || !baseRecord) {
       return NextResponse.json(
@@ -167,14 +218,22 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // 4. Verify org scope on base record
-    const record = baseRecord as Record<string, unknown>;
-    if ('organization_id' in record && record.organization_id !== ctx.organizationId) {
+    // 4. Defense-in-depth: if the table IS org-scoped, the query above already
+    //    filtered, so we'll only ever see in-tenant rows. If the contract says
+    //    the table has NO org_id (rare for allowlisted entities), fail closed
+    //    rather than returning unscoped fan-out — prior behavior silently let
+    //    cross-tenant FK fan-out from any guessable UUID.
+    if (!baseTableHasOrg) {
       return NextResponse.json(
-        errorResponse('FORBIDDEN', 'Access denied'),
-        { status: 403 }
+        errorResponse(
+          'NOT_IMPLEMENTED',
+          'related lookup not supported for tables without organization_id'
+        ),
+        { status: 501 }
       );
     }
+
+    const record = baseRecord as Record<string, unknown>;
 
     // 5. Get relationships from contract
     const relationships = getRelationships(entityTable);
@@ -193,7 +252,7 @@ export async function GET(request: NextRequest) {
       try {
         let query = supabaseAdmin
           .from(rel.targetTable)
-          .select('*')
+          .select(safeColumns(rel.targetTable))
           .eq('id', fkValue)
           .limit(1);
 
@@ -203,7 +262,7 @@ export async function GET(request: NextRequest) {
         }
 
         const { data } = await query;
-        
+
         if (data && data.length > 0) {
           outgoing.push({
             table: rel.targetTable,
@@ -225,7 +284,7 @@ export async function GET(request: NextRequest) {
       try {
         let query = supabaseAdmin
           .from(rel.sourceTable)
-          .select('*')
+          .select(safeColumns(rel.sourceTable))
           .eq(rel.sourceColumn, entityId)
           .limit(MAX_ROWS_PER_TABLE);
 
@@ -251,7 +310,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(successResponse({ outgoing, incoming }));
   } catch (err) {
-    console.error('Related route error:', err);
+    logger.error('related route exception', errorMeta(err, { route: 'related' }));
     return NextResponse.json(
       errorResponse('INTERNAL_ERROR', 'Internal server error'),
       { status: 500 }

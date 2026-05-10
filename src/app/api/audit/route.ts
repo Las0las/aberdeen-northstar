@@ -4,20 +4,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/db/supabaseAdmin';
 import { requireOrgContext, successResponse, errorResponse } from '@/server/orgScope';
-import { 
-  assertAllowedEntity, 
-  assertUuid, 
-  getAuditSupport 
+import {
+  assertAllowedEntity,
+  assertUuid,
+  getAuditSupport
 } from '@/server/contractAllowlist';
+import { checkRateLimit, rateLimitHeaders, RATE_LIMITS } from '@/server/rateLimit';
+import { logger, errorMeta } from '@/server/logger';
 
 export async function GET(request: NextRequest) {
   try {
+    const rl = checkRateLimit(request, 'audit:get', RATE_LIMITS.read);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        errorResponse('RATE_LIMITED', 'Too many requests'),
+        { status: 429, headers: rateLimitHeaders(rl) }
+      );
+    }
+
     // 1. Require org context (NEVER from client input)
     const ctx = await requireOrgContext();
     if (!ctx) {
       return NextResponse.json(
         errorResponse('UNAUTHORIZED', 'Organization context required'),
-        { status: 401 }
+        { status: 401, headers: rateLimitHeaders(rl) }
       );
     }
 
@@ -77,24 +87,29 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // 5. Build query with org isolation
-    let query = supabaseAdmin
+    // Fail closed: refusing to return an unscoped audit log is safer than
+    // accidentally exposing another tenant's history.
+    if (!support.hasOrgId) {
+      return NextResponse.json(
+        errorResponse('NOT_IMPLEMENTED', 'audit_log table lacks organization_id; cannot enforce tenant scope'),
+        { status: 501 }
+      );
+    }
+
+    // 5. Build query with org isolation (always filtered now).
+    const query = supabaseAdmin
       .from(support.tableName)
       .select('*')
       .eq('table_name', entityTable)
       .eq('record_id', recordId)
+      .eq('organization_id', ctx.organizationId)
       .order('created_at', { ascending: false })
       .limit(limit);
-
-    // Enforce org scope if contract supports it
-    if (support.hasOrgId) {
-      query = query.eq('organization_id', ctx.organizationId);
-    }
 
     const { data, error } = await query;
 
     if (error) {
-      console.error('Audit query error:', error);
+      logger.error('audit query failed', { route: 'audit', code: error.code });
       return NextResponse.json(
         errorResponse('DB_ERROR', 'Database query failed'),
         { status: 500 }
@@ -103,7 +118,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(successResponse(data || []));
   } catch (err) {
-    console.error('Audit route error:', err);
+    logger.error('audit route exception', errorMeta(err, { route: 'audit' }));
     return NextResponse.json(
       errorResponse('INTERNAL_ERROR', 'Internal server error'),
       { status: 500 }

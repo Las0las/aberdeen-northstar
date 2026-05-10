@@ -5,7 +5,18 @@
 import { cookies, headers } from 'next/headers';
 
 // Dev bypass check (server-side env)
+// CRITICAL: must require BOTH the explicit flag AND non-production NODE_ENV.
+// In production, the misconfigured flag must NEVER grant access — fail closed.
 function isDevBypassEnabled(): boolean {
+  if (process.env.NODE_ENV === 'production') {
+    if (process.env.NEXT_PUBLIC_DEV_AUTH_BYPASS === 'true') {
+      // Visible boot-time signal that the flag is being ignored.
+      console.error(
+        '[security] NEXT_PUBLIC_DEV_AUTH_BYPASS=true ignored in production build'
+      );
+    }
+    return false;
+  }
   return process.env.NEXT_PUBLIC_DEV_AUTH_BYPASS === 'true';
 }
 

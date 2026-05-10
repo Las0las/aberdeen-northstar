@@ -31,7 +31,9 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/dashboard`,
+        // Route through /auth/callback so the OTP code is exchanged for a
+        // session and Supabase cookies are written before reaching /dashboard.
+        emailRedirectTo: `${window.location.origin}/auth/callback?redirect=/dashboard`,
       },
     });
     

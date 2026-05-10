@@ -4,8 +4,28 @@ import { createBrowserClient } from '@supabase/ssr';
 import type { Database } from '@/types/database.types';
 import { isDevBypassEnabled, getDevSession } from '@/config/devAuth';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key';
+const PLACEHOLDER_URL = 'https://placeholder.supabase.co';
+const PLACEHOLDER_KEY = 'placeholder-key';
+
+const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const rawAnon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+// Defer hard-fail until request time — `next build` evaluates this module
+// during page-data collection where production env may legitimately be unset.
+const isProductionRuntime =
+  process.env.NODE_ENV === 'production' &&
+  process.env.NEXT_PHASE !== 'phase-production-build';
+
+if (
+  isProductionRuntime &&
+  (!rawUrl || rawUrl === PLACEHOLDER_URL || !rawAnon || rawAnon === PLACEHOLDER_KEY)
+) {
+  throw new Error(
+    'Supabase client misconfigured: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are required in production'
+  );
+}
+
+const supabaseUrl = rawUrl || PLACEHOLDER_URL;
+const supabaseAnonKey = rawAnon || PLACEHOLDER_KEY;
 
 // Browser client for client-side usage
 export const supabase = createBrowserClient<Database>(supabaseUrl, supabaseAnonKey);
