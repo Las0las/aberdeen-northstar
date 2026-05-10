@@ -271,14 +271,26 @@ export default function ApplicationDetailPage() {
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Favorite</span>
               <div className="flex items-center gap-2">
-                <Star className={`h-4 w-4 ${application.is_favorite ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground'}`} />
+                <Star
+                  className={`h-4 w-4 ${
+                    application.is_favorite
+                      ? 'fill-warning-foreground text-warning-foreground'
+                      : 'text-muted-foreground'
+                  }`}
+                  aria-hidden="true"
+                />
                 <span>{application.is_favorite ? 'Yes' : 'No'}</span>
               </div>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Archived</span>
               <div className="flex items-center gap-2">
-                <Archive className={`h-4 w-4 ${application.is_archived ? 'text-orange-500' : 'text-muted-foreground'}`} />
+                <Archive
+                  className={`h-4 w-4 ${
+                    application.is_archived ? 'text-warning-foreground' : 'text-muted-foreground'
+                  }`}
+                  aria-hidden="true"
+                />
                 <span>{application.is_archived ? 'Yes' : 'No'}</span>
               </div>
             </div>

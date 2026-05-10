@@ -28,8 +28,13 @@ export default function HomePage() {
   }, [router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div
+      className="flex min-h-screen items-center justify-center"
+      role="status"
+      aria-live="polite"
+    >
       <div className="animate-pulse text-muted-foreground">Loading...</div>
+      <span className="sr-only">Loading…</span>
     </div>
   );
 }

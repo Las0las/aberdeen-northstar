@@ -157,7 +157,7 @@ export default function InterviewDetailPage() {
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Overall</span>
               <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 text-yellow-500" />
+                <Star className="h-4 w-4 fill-warning-foreground text-warning-foreground" aria-hidden="true" />
                 <span>{interview.overall_rating}/5</span>
               </div>
             </div>

@@ -49,16 +49,20 @@ export interface ButtonProps
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, loading, children, disabled, ...props }, ref) => {
+  (
+    { className, variant, size, asChild = false, loading, children, disabled, ...props },
+    ref
+  ) => {
     const Comp = asChild ? Slot : 'button';
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         disabled={disabled || loading}
+        aria-busy={loading || undefined}
         {...props}
       >
-        {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
         {children}
       </Comp>
     );
@@ -176,8 +180,9 @@ const badgeVariants = cva(
         secondary: 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
         destructive: 'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80',
         outline: 'text-foreground',
-        success: 'border-transparent bg-green-100 text-green-800',
-        warning: 'border-transparent bg-yellow-100 text-yellow-800',
+        success: 'border-transparent bg-success text-success-foreground',
+        warning: 'border-transparent bg-warning text-warning-foreground',
+        info: 'border-transparent bg-info text-info-foreground',
       },
     },
     defaultVariants: {
@@ -250,8 +255,21 @@ export function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivEl
 }
 
 // ============ SPINNER ============
-export function Spinner({ className, ...props }: React.HTMLAttributes<SVGElement>) {
-  return <Loader2 className={cn('h-4 w-4 animate-spin', className)} {...props} />;
+export function Spinner({
+  className,
+  label = 'Loading',
+  ...props
+}: React.HTMLAttributes<SVGElement> & { label?: string }) {
+  return (
+    <>
+      <Loader2
+        className={cn('h-4 w-4 animate-spin', className)}
+        aria-hidden="true"
+        {...props}
+      />
+      <span className="sr-only">{label}</span>
+    </>
+  );
 }
 
 // ============ DIALOG ============
@@ -486,7 +504,11 @@ interface EmptyStateProps {
 export function EmptyState({ icon, title, description, action }: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center">
-      {icon && <div className="mb-4 text-muted-foreground">{icon}</div>}
+      {icon && (
+        <div className="mb-4 text-muted-foreground" aria-hidden="true">
+          {icon}
+        </div>
+      )}
       <h3 className="text-lg font-semibold">{title}</h3>
       {description && <p className="mt-1 text-sm text-muted-foreground">{description}</p>}
       {action && <div className="mt-4">{action}</div>}
@@ -508,6 +530,7 @@ interface DataTableProps<T> {
   loading?: boolean;
   emptyMessage?: string;
   onRowClick?: (item: T) => void;
+  caption?: string;
 }
 
 export function DataTable<T extends { id: string }>({
@@ -516,10 +539,12 @@ export function DataTable<T extends { id: string }>({
   loading,
   emptyMessage = 'No data found',
   onRowClick,
+  caption,
 }: DataTableProps<T>) {
   if (loading) {
     return (
-      <div className="space-y-3">
+      <div className="space-y-3" role="status" aria-live="polite" aria-label="Loading data">
+        <span className="sr-only">Loading…</span>
         {[...Array(5)].map((_, i) => (
           <Skeleton key={i} className="h-12 w-full" />
         ))}
@@ -534,10 +559,12 @@ export function DataTable<T extends { id: string }>({
   return (
     <div className="rounded-md border">
       <table className="w-full">
+        {caption && <caption className="sr-only">{caption}</caption>}
         <thead>
           <tr className="border-b bg-muted/50">
             {columns.map((column) => (
               <th
+                scope="col"
                 key={String(column.key)}
                 className={cn('px-4 py-3 text-left text-sm font-medium text-muted-foreground', column.className)}
               >
@@ -550,8 +577,25 @@ export function DataTable<T extends { id: string }>({
           {data.map((item) => (
             <tr
               key={item.id}
-              className={cn('border-b transition-colors hover:bg-muted/50', onRowClick && 'cursor-pointer')}
-              onClick={() => onRowClick?.(item)}
+              className={cn(
+                'border-b transition-colors hover:bg-muted/50',
+                onRowClick &&
+                  'cursor-pointer focus-visible:bg-muted/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset'
+              )}
+              onClick={onRowClick ? () => onRowClick(item) : undefined}
+              onKeyDown={
+                onRowClick
+                  ? (e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onRowClick(item);
+                      }
+                    }
+                  : undefined
+              }
+              role={onRowClick ? 'button' : undefined}
+              tabIndex={onRowClick ? 0 : undefined}
+              aria-label={onRowClick ? 'Open record' : undefined}
             >
               {columns.map((column) => (
                 <td key={String(column.key)} className={cn('px-4 py-3 text-sm', column.className)}>
@@ -577,18 +621,33 @@ interface PaginationProps {
 
 export function Pagination({ page, totalPages, onPageChange }: PaginationProps) {
   return (
-    <div className="flex items-center justify-between px-2 py-4">
-      <div className="text-sm text-muted-foreground">
+    <nav
+      aria-label="Pagination"
+      className="flex items-center justify-between px-2 py-4"
+    >
+      <div className="text-sm text-muted-foreground" aria-live="polite">
         Page {page} of {totalPages}
       </div>
       <div className="flex gap-2">
-        <Button variant="outline" size="sm" onClick={() => onPageChange(page - 1)} disabled={page <= 1}>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onPageChange(page - 1)}
+          disabled={page <= 1}
+          aria-label="Go to previous page"
+        >
           Previous
         </Button>
-        <Button variant="outline" size="sm" onClick={() => onPageChange(page + 1)} disabled={page >= totalPages}>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onPageChange(page + 1)}
+          disabled={page >= totalPages}
+          aria-label="Go to next page"
+        >
           Next
         </Button>
       </div>
-    </div>
+    </nav>
   );
 }

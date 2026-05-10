@@ -186,7 +186,7 @@ export default function DevValidatePage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5 text-amber-500" />
+              <AlertTriangle className="h-5 w-5 text-warning-foreground" aria-hidden="true" />
               Dev Bypass Configuration
             </CardTitle>
           </CardHeader>
@@ -220,12 +220,12 @@ export default function DevValidatePage() {
 
         {/* Summary */}
         {results.some((r) => r.listStatus !== 'pending') && (
-          <div className="flex gap-4">
-            <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50">
-              <CheckCircle className="h-4 w-4 mr-1" /> {passCount} Passed
+          <div className="flex gap-4" role="status" aria-live="polite">
+            <Badge variant="success">
+              <CheckCircle className="h-4 w-4 mr-1" aria-hidden="true" /> {passCount} Passed
             </Badge>
-            <Badge variant="outline" className="text-red-600 border-red-200 bg-red-50">
-              <XCircle className="h-4 w-4 mr-1" /> {failCount} Failed
+            <Badge variant="destructive">
+              <XCircle className="h-4 w-4 mr-1" aria-hidden="true" /> {failCount} Failed
             </Badge>
           </div>
         )}
@@ -234,16 +234,28 @@ export default function DevValidatePage() {
         <div className="grid gap-4">
           {results.map((result) => (
             <Card key={result.module} className={
-              result.listStatus === 'fail' ? 'border-red-200' :
-              result.listStatus === 'pass' ? 'border-green-200' : ''
+              result.listStatus === 'fail' ? 'border-destructive/40' :
+              result.listStatus === 'pass' ? 'border-success-foreground/30' : ''
             }>
               <CardContent className="py-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    {result.listStatus === 'pass' && <CheckCircle className="h-5 w-5 text-green-500" />}
-                    {result.listStatus === 'fail' && <XCircle className="h-5 w-5 text-red-500" />}
-                    {result.listStatus === 'write_blocked' && <AlertTriangle className="h-5 w-5 text-amber-500" />}
-                    {result.listStatus === 'pending' && <div className="h-5 w-5 rounded-full border-2 border-muted" />}
+                    {result.listStatus === 'pass' && (
+                      <CheckCircle className="h-5 w-5 text-success-foreground" aria-label="Passed" />
+                    )}
+                    {result.listStatus === 'fail' && (
+                      <XCircle className="h-5 w-5 text-destructive" aria-label="Failed" />
+                    )}
+                    {result.listStatus === 'write_blocked' && (
+                      <AlertTriangle className="h-5 w-5 text-warning-foreground" aria-label="Blocked by RLS" />
+                    )}
+                    {result.listStatus === 'pending' && (
+                      <div
+                        className="h-5 w-5 rounded-full border-2 border-muted"
+                        role="status"
+                        aria-label="Pending"
+                      />
+                    )}
                     <div>
                       <div className="font-medium">{result.module}</div>
                       <div className="text-xs text-muted-foreground font-mono">{result.table}</div>
@@ -257,13 +269,13 @@ export default function DevValidatePage() {
                       <span className="text-muted-foreground">{result.listCount} records</span>
                     )}
                     {result.listStatus === 'fail' && (
-                      <span className="text-red-600 text-xs max-w-xs truncate">{result.listError}</span>
+                      <span className="text-destructive text-xs max-w-xs truncate">{result.listError}</span>
                     )}
                     {result.fetchStatus === 'pass' && (
-                      <Badge className="bg-green-100 text-green-700 text-xs">fetch ✓</Badge>
+                      <Badge variant="success" className="text-xs">fetch ✓</Badge>
                     )}
                     {result.fetchStatus === 'fail' && (
-                      <Badge className="bg-red-100 text-red-700 text-xs">fetch ✗</Badge>
+                      <Badge variant="destructive" className="text-xs">fetch ✗</Badge>
                     )}
                   </div>
                 </div>
