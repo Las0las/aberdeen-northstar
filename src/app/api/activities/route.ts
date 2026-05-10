@@ -4,20 +4,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/db/supabaseAdmin';
 import { requireOrgContext, successResponse, errorResponse } from '@/server/orgScope';
-import { 
-  assertAllowedEntity, 
-  assertUuid, 
-  getActivitiesSupport 
+import {
+  assertAllowedEntity,
+  assertUuid,
+  getActivitiesSupport
 } from '@/server/contractAllowlist';
+import { checkRateLimit, rateLimitHeaders, RATE_LIMITS } from '@/server/rateLimit';
 
 export async function GET(request: NextRequest) {
   try {
+    // 0. Rate limit before any DB work.
+    const rl = checkRateLimit(request, 'activities:get', RATE_LIMITS.read);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        errorResponse('RATE_LIMITED', 'Too many requests'),
+        { status: 429, headers: rateLimitHeaders(rl) }
+      );
+    }
+
     // 1. Require org context (NEVER from client input)
     const ctx = await requireOrgContext();
     if (!ctx) {
       return NextResponse.json(
         errorResponse('UNAUTHORIZED', 'Organization context required'),
-        { status: 401 }
+        { status: 401, headers: rateLimitHeaders(rl) }
       );
     }
 

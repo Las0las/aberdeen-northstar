@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/db/supabaseAdmin';
 import { requireOrgContext, assertOrgScope, successResponse, errorResponse } from '@/server/orgScope';
 import { assertUuid } from '@/server/contractAllowlist';
+import { checkRateLimit, rateLimitHeaders, RATE_LIMITS } from '@/server/rateLimit';
 
 interface RouteContext {
   params: Promise<{ id: string }>;
@@ -19,12 +20,20 @@ interface NoteRecord {
 
 export async function PATCH(request: NextRequest, context: RouteContext) {
   try {
+    const rl = checkRateLimit(request, 'notes:patch', RATE_LIMITS.write);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        errorResponse('RATE_LIMITED', 'Too many requests'),
+        { status: 429, headers: rateLimitHeaders(rl) }
+      );
+    }
+
     // 1. Require org context
     const ctx = await requireOrgContext();
     if (!ctx) {
       return NextResponse.json(
         errorResponse('UNAUTHORIZED', 'Organization context required'),
-        { status: 401 }
+        { status: 401, headers: rateLimitHeaders(rl) }
       );
     }
 
@@ -102,11 +111,14 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
       updateData.is_internal = !!body.is_internal;
     }
 
-    // 7. Update
+    // 7. Update — filter by org_id as well as id so a bug in assertOrgScope
+    // can't lead to cross-tenant writes (defense in depth against the
+    // service-role client bypassing RLS).
     const { data, error } = await supabaseAdmin
       .from('notes')
       .update(updateData as never)
       .eq('id', id)
+      .eq('organization_id', ctx.organizationId)
       .select()
       .single();
 
@@ -130,12 +142,20 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
 
 export async function DELETE(request: NextRequest, context: RouteContext) {
   try {
+    const rl = checkRateLimit(request, 'notes:delete', RATE_LIMITS.write);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        errorResponse('RATE_LIMITED', 'Too many requests'),
+        { status: 429, headers: rateLimitHeaders(rl) }
+      );
+    }
+
     // 1. Require org context
     const ctx = await requireOrgContext();
     if (!ctx) {
       return NextResponse.json(
         errorResponse('UNAUTHORIZED', 'Organization context required'),
-        { status: 401 }
+        { status: 401, headers: rateLimitHeaders(rl) }
       );
     }
 
@@ -177,11 +197,12 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
       );
     }
 
-    // 5. Delete
+    // 5. Delete — filter by org_id too (see PATCH for rationale).
     const { error } = await supabaseAdmin
       .from('notes')
       .delete()
-      .eq('id', id);
+      .eq('id', id)
+      .eq('organization_id', ctx.organizationId);
 
     if (error) {
       console.error('Notes delete error:', error);

@@ -18,22 +18,20 @@ function toPascalCase(str) {
 function generateTypedAPI(contract) {
   const tables = contract.tables;
   const orgTables = tables.filter(t => t.columns.some(c => c.name === 'organization_id')).map(t => t.table);
-  
+
   let output = `// AUTO-GENERATED - Typed Supabase API Layer
 // DO NOT EDIT - Regenerate with: node scripts/generate-typed-api.js
 
 import { supabase, getOrganizationId } from '@/lib/supabase';
 import type { Database } from '@/types/database.types';
+import { tableHasOrg } from '@/db/orgScope';
 
 type Tables = Database['public']['Tables'];
 
-// Organization-scoped tables
-const ORG_SCOPED_TABLES = new Set([
-${orgTables.map(t => `  '${t}',`).join('\n')}
-]);
-
+// Single source of truth: src/db/orgScope.ts derives org-scoped tables from
+// the contract at runtime. Don't duplicate the list here.
 export function isOrgScoped(table: string): boolean {
-  return ORG_SCOPED_TABLES.has(table);
+  return tableHasOrg(table);
 }
 
 // Pagination types
@@ -77,8 +75,11 @@ export async function createRecord<T extends TableName>(
     insertData = { ...insertData, organization_id: orgId } as TableInsert<T>;
   }
   
-  const { data: result, error } = await supabase
-    .from(table)
+  // The generated Database types are too loose for the supabase client's
+  // strict overload set when T is generic. Cast to any at the call site —
+  // the public API surface still has the correct generic types.
+  const { data: result, error } = await (supabase
+    .from(table as string) as any)
     .insert(insertData)
     .select()
     .single();
@@ -91,8 +92,8 @@ export async function getRecord<T extends TableName>(
   id: string,
   options?: QueryOptions
 ): Promise<TableRow<T> | null> {
-  const { data, error } = await supabase
-    .from(table)
+  const { data, error } = await (supabase
+    .from(table as string) as any)
     .select(options?.select || '*')
     .eq('id', id)
     .single();
@@ -109,7 +110,7 @@ export async function listRecords<T extends TableName>(
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  let query = supabase.from(table).select(options?.select || '*', { count: 'exact' });
+  let query = (supabase.from(table as string) as any).select(options?.select || '*', { count: 'exact' });
   
   if (options?.filters) {
     for (const [key, value] of Object.entries(options.filters)) {
@@ -142,8 +143,8 @@ export async function updateRecord<T extends TableName>(
   id: string,
   data: TableUpdate<T>
 ): Promise<TableRow<T>> {
-  const { data: result, error } = await supabase
-    .from(table)
+  const { data: result, error } = await (supabase
+    .from(table as string) as any)
     .update(data)
     .eq('id', id)
     .select()
@@ -156,7 +157,7 @@ export async function deleteRecord<T extends TableName>(
   table: T,
   id: string
 ): Promise<void> {
-  const { error } = await supabase.from(table).delete().eq('id', id);
+  const { error } = await (supabase.from(table as string) as any).delete().eq('id', id);
   if (error) throw error;
 }
 
@@ -168,8 +169,8 @@ export async function listRecordsInfinite<T extends TableName>(
 ): Promise<{ data: TableRow<T>[]; nextCursor: string | null }> {
   const pageSize = options?.pageSize || 20;
 
-  let query = supabase
-    .from(table)
+  let query = (supabase
+    .from(table as string) as any)
     .select(options?.select || '*')
     .order('created_at', { ascending: false })
     .limit(pageSize + 1);
@@ -220,10 +221,20 @@ export async function listRecordsInfinite<T extends TableName>(
     const apiName = toCamelCase(name) + 'Api';
     const hasOrgId = orgTables.includes(name);
     
+    // For tables without organization_id, callers don't supply that field but
+    // createRecord's signature still expects an Omit on 'organization_id'.
+    // Bridge with a cast so the public API stays clean for the consumer.
+    const createParam = hasOrgId
+      ? `Omit<TableInsert<'${name}'>, 'organization_id'>`
+      : `Omit<TableInsert<'${name}'>, 'id'>`;
+    const createBody = hasOrgId
+      ? `createRecord('${name}', data)`
+      : `createRecord('${name}', data as unknown as Omit<TableInsert<'${name}'>, 'organization_id'>)`;
+
     output += `
 // ${toPascalCase(name)} API
 export const ${apiName} = {
-  create: (data: Omit<TableInsert<'${name}'>, ${hasOrgId ? "'organization_id'" : "'id'"}>) => createRecord('${name}', data),
+  create: (data: ${createParam}) => ${createBody},
   get: (id: string, options?: QueryOptions) => getRecord('${name}', id, options),
   list: (options?: ListOptions) => listRecords('${name}', options),
   listInfinite: (cursor: string | null, options?: Omit<ListOptions, 'page'>) => listRecordsInfinite('${name}', cursor, options),

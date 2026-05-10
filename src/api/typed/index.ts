@@ -3,132 +3,14 @@
 
 import { supabase, getOrganizationId } from '@/lib/supabase';
 import type { Database } from '@/types/database.types';
+import { tableHasOrg } from '@/db/orgScope';
 
 type Tables = Database['public']['Tables'];
 
-// Organization-scoped tables
-const ORG_SCOPED_TABLES = new Set([
-  'tags',
-  'users',
-  'interview_feedback',
-  'user_sessions',
-  'saved_searches',
-  'activities',
-  'integration_connections',
-  'job_board_mappings',
-  'webhook_logs',
-  'messages',
-  'webhook_subscriptions',
-  'workspaces',
-  'clients',
-  'jobs',
-  'consultants',
-  'notes',
-  'compliance',
-  'notifications',
-  'assignment_extensions',
-  'ai_prompts',
-  'onboarding',
-  'performance_reviews',
-  'submissions',
-  'interviews',
-  'campaign_enrollments',
-  'workflow_instances',
-  'business_rules',
-  'recruiting_metrics',
-  'communications',
-  'candidate_skills',
-  'job_skills',
-  'ai_agents',
-  'invoices',
-  'prompt_templates',
-  'ai_executions',
-  'expenses',
-  'client_contracts',
-  'candidate_notes',
-  'client_contacts',
-  'client_projects',
-  'workflows',
-  'contacts',
-  'reviews',
-  'email_logs',
-  'contracts',
-  'meeting_participants',
-  'meetings',
-  'availability_windows',
-  'interview_plans',
-  'interview_rounds',
-  'user_audit_log',
-  'bulk_jobs',
-  'transcripts',
-  'scorecard_templates',
-  'decision_packets',
-  'recording_assets',
-  'timesheets',
-  'comp_bands',
-  'scorecard_responses',
-  'onboarding_packets',
-  'starts',
-  'esign_envelopes',
-  'offer_approvals',
-  'offer_documents',
-  'applications',
-  'templates',
-  'candidate_embeddings',
-  'subscriptions',
-  'assignments',
-  'forecasts',
-  'bench_entries',
-  'teams',
-  'automation_rules',
-  'integrations',
-  'offers',
-  'reports',
-  'dashboards',
-  'requirements',
-  'analytics_reports',
-  'task_rules',
-  'campaign_sequences',
-  'referrals',
-  'audit_log',
-  'candidate_work_history',
-  'match_scores',
-  'candidate_education',
-  'message_templates',
-  'documents',
-  'contact_points',
-  'conversations',
-  'inbound_messages',
-  'scorecard_instances',
-  'placements',
-  'pipeline',
-  'webhook_deliveries',
-  'entity_tags',
-  'job_embeddings',
-  'talent_pools',
-  'talent_pool_members',
-  'submittals',
-  'tasks',
-  'roles',
-  'settings',
-  'notification_preferences',
-  'bench',
-  'audit_logs',
-  'billing',
-  'event_outbox',
-  'note_templates',
-  'submission_packages',
-  'idempotency_keys',
-  'eeo_data',
-  'background_checks',
-  'candidate_documents',
-  'parsed_resumes',
-  'candidates',
-  'companies',
-]);
-
+// Single source of truth: src/db/orgScope.ts derives org-scoped tables from
+// the contract at runtime. Don't duplicate the list here.
 export function isOrgScoped(table: string): boolean {
-  return ORG_SCOPED_TABLES.has(table);
+  return tableHasOrg(table);
 }
 
 // Pagination types
@@ -172,6 +54,9 @@ export async function createRecord<T extends TableName>(
     insertData = { ...insertData, organization_id: orgId } as TableInsert<T>;
   }
   
+  // The generated Database types are too loose for the supabase client's
+  // strict overload set when T is generic. Cast to any at the call site —
+  // the public API surface still has the correct generic types.
   const { data: result, error } = await (supabase
     .from(table as string) as any)
     .insert(insertData)
@@ -407,7 +292,7 @@ export const notificationsApi = {
 
 // WorkspaceMembers API
 export const workspaceMembersApi = {
-  create: (data: Omit<TableInsert<'workspace_members'>, 'id'>) => createRecord('workspace_members', data),
+  create: (data: Omit<TableInsert<'workspace_members'>, 'id'>) => createRecord('workspace_members', data as unknown as Omit<TableInsert<'workspace_members'>, 'organization_id'>),
   get: (id: string, options?: QueryOptions) => getRecord('workspace_members', id, options),
   list: (options?: ListOptions) => listRecords('workspace_members', options),
   listInfinite: (cursor: string | null, options?: Omit<ListOptions, 'page'>) => listRecordsInfinite('workspace_members', cursor, options),
@@ -557,7 +442,7 @@ export const placementsApi = {
 
 // Organizations API
 export const organizationsApi = {
-  create: (data: Omit<TableInsert<'organizations'>, 'id'>) => createRecord('organizations', data),
+  create: (data: Omit<TableInsert<'organizations'>, 'id'>) => createRecord('organizations', data as unknown as Omit<TableInsert<'organizations'>, 'organization_id'>),
   get: (id: string, options?: QueryOptions) => getRecord('organizations', id, options),
   list: (options?: ListOptions) => listRecords('organizations', options),
   listInfinite: (cursor: string | null, options?: Omit<ListOptions, 'page'>) => listRecordsInfinite('organizations', cursor, options),
@@ -615,7 +500,7 @@ export const benchApi = {
   delete: (id: string) => deleteRecord('bench', id),
 };
 
-// AppUsers API (uses tenant_id, not organization_id)
+// AppUsers API
 export const appUsersApi = {
   create: (data: Omit<TableInsert<'app_users'>, 'id'>) => createRecord('app_users', data as unknown as Omit<TableInsert<'app_users'>, 'organization_id'>),
   get: (id: string, options?: QueryOptions) => getRecord('app_users', id, options),
