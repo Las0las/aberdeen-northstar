@@ -9,6 +9,7 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "dev:validate": "ts-node scripts/dev-validate.ts",
+    "smoke:api": "ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/smoke-api.ts",
     "generate": "npm run generate:types && npm run generate:openapi && npm run generate:ai-tools && npm run generate:api && npm run generate:hooks",
     "generate:types": "node scripts/generate-from-contract.js",
     "generate:openapi": "node scripts/generate-openapi.js",

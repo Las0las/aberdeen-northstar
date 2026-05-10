@@ -28,7 +28,7 @@ const ALLOWED_ENTITY_TABLES = new Set([
   'interviews',
   'offers',
   'placements',
-  'bench',
+  'bench_entries',
   'companies',
   'clients',
   'contacts',
