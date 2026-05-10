@@ -62,13 +62,15 @@ export default function DashboardPage() {
           <Card key={stat.name}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">{stat.name}</CardTitle>
-              <stat.icon className="h-4 w-4 text-muted-foreground" />
+              <stat.icon className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
             </CardHeader>
             <CardContent>
               {stat.loading ? (
-                <Skeleton className="h-8 w-16" />
+                <Skeleton className="h-8 w-16" aria-label={`Loading ${stat.name}`} />
               ) : (
-                <div className="text-2xl font-bold">{stat.value.toLocaleString()}</div>
+                <div className="text-2xl font-bold" aria-label={`${stat.name}: ${stat.value.toLocaleString()}`}>
+                  {stat.value.toLocaleString()}
+                </div>
               )}
             </CardContent>
           </Card>

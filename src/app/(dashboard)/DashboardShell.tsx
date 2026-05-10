@@ -74,11 +74,18 @@ export default function DashboardShell({
 
   return (
     <div className="flex h-screen bg-background">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
       {/* Sidebar */}
-      <aside className="hidden w-64 flex-col border-r bg-card lg:flex">
+      <aside aria-label="Primary" className="hidden w-64 flex-col border-r bg-card lg:flex">
         <div className="flex h-16 items-center border-b px-6">
           <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            <div
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground"
+              aria-hidden="true"
+            >
               N
             </div>
             <span>Northstar</span>
@@ -87,27 +94,33 @@ export default function DashboardShell({
         
         {/* DEV BYPASS BADGE */}
         {isDevMode && (
-          <div className="mx-4 mt-4 flex items-center gap-2 rounded-md bg-amber-100 px-3 py-2 text-amber-800 text-xs font-medium">
-            <AlertTriangle className="h-4 w-4" />
+          <div
+            role="status"
+            aria-live="polite"
+            className="mx-4 mt-4 flex items-center gap-2 rounded-md bg-warning px-3 py-2 text-warning-foreground text-xs font-medium"
+          >
+            <AlertTriangle className="h-4 w-4" aria-hidden="true" />
             DEV BYPASS MODE
           </div>
         )}
         
-        <nav className="flex-1 space-y-1 overflow-auto p-4">
+        <nav className="flex-1 space-y-1 overflow-auto p-4" aria-label="Dashboard navigation">
           {navigation.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
             return (
               <Link
                 key={item.name}
                 href={item.href}
+                aria-current={isActive ? 'page' : undefined}
                 className={cn(
                   'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                   isActive
                     ? 'bg-primary text-primary-foreground'
                     : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
                 )}
               >
-                <item.icon className="h-4 w-4" />
+                <item.icon className="h-4 w-4" aria-hidden="true" />
                 {item.name}
               </Link>
             );
@@ -117,35 +130,45 @@ export default function DashboardShell({
           {isDevMode && (
             <Link
               href="/__dev/validate"
+              aria-current={pathname === '/__dev/validate' ? 'page' : undefined}
               className={cn(
                 'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                 pathname === '/__dev/validate'
-                  ? 'bg-amber-600 text-white'
-                  : 'text-amber-600 hover:bg-amber-50'
+                  ? 'bg-warning-foreground text-warning'
+                  : 'text-warning-foreground/80 hover:bg-warning hover:text-warning-foreground'
               )}
             >
-              <CheckSquare className="h-4 w-4" />
+              <CheckSquare className="h-4 w-4" aria-hidden="true" />
               Validation
             </Link>
           )}
         </nav>
         <div className="border-t p-4">
           <div className="flex items-center gap-3 px-3 py-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-sm font-medium">
+            <div
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-sm font-medium"
+              aria-hidden="true"
+            >
               {userEmail?.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 truncate text-sm">
               {userEmail}
             </div>
-            <Button variant="ghost" size="icon" onClick={handleLogout} title="Logout">
-              <LogOut className="h-4 w-4" />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleLogout}
+              aria-label="Log out"
+              title="Log out"
+            >
+              <LogOut className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
         </div>
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto">
+      <main id="main-content" className="flex-1 overflow-auto" tabIndex={-1}>
         <div className="container mx-auto p-6">{children}</div>
       </main>
     </div>

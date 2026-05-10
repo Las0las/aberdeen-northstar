@@ -24,6 +24,16 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+
+    /* Semantic status tokens (subtle bg + readable foreground, AA contrast) */
+    --success: 142 71% 92%;
+    --success-foreground: 142 72% 22%;
+    --warning: 45 96% 89%;
+    --warning-foreground: 30 80% 22%;
+    --info: 214 95% 93%;
+    --info-foreground: 222 70% 25%;
+    --neutral: 210 16% 93%;
+    --neutral-foreground: 215 20% 25%;
   }
 
   .dark {
@@ -46,6 +56,16 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
+    /* Semantic status tokens — dark mode uses muted backgrounds with bright fg */
+    --success: 142 50% 18%;
+    --success-foreground: 142 71% 80%;
+    --warning: 35 60% 18%;
+    --warning-foreground: 45 96% 80%;
+    --info: 214 50% 22%;
+    --info-foreground: 214 95% 85%;
+    --neutral: 215 20% 22%;
+    --neutral-foreground: 215 16% 80%;
   }
 }
 
@@ -78,10 +98,45 @@
   background: hsl(var(--muted-foreground) / 0.5);
 }
 
-/* Focus styles */
-*:focus-visible {
+/* Fallback focus ring for elements that don't define their own.
+   Components built on Radix / shadcn already render a ring via Tailwind utilities,
+   so we only target plain interactive elements here. */
+a:focus-visible,
+button:focus-visible:not([class*='ring-']):not([class*='focus-visible:ring-']),
+[role='button']:focus-visible:not([class*='ring-']):not([class*='focus-visible:ring-']) {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
+}
+
+/* Visually hide while keeping accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border: 2px solid hsl(var(--ring));
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0.5rem;
 }
 
 /* Animations */
@@ -111,4 +166,16 @@
 
 .animate-slide-up {
   animation: slideUp 0.2s ease-out;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

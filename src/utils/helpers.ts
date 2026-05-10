@@ -131,26 +131,34 @@ export function debounce<T extends (...args: unknown[]) => unknown>(
 }
 
 // Status color mapping
+// Maps a status string to a semantic token-based class pair.
+// Tokens (success/warning/info/destructive/neutral) carry light + dark mode variants.
 export function getStatusColor(status: string): string {
+  const SUCCESS = 'bg-success text-success-foreground';
+  const WARNING = 'bg-warning text-warning-foreground';
+  const INFO = 'bg-info text-info-foreground';
+  const DANGER = 'bg-destructive/15 text-destructive';
+  const NEUTRAL = 'bg-neutral text-neutral-foreground';
+
   const colors: Record<string, string> = {
-    active: 'bg-green-100 text-green-800',
-    inactive: 'bg-gray-100 text-gray-800',
-    pending: 'bg-yellow-100 text-yellow-800',
-    approved: 'bg-green-100 text-green-800',
-    rejected: 'bg-red-100 text-red-800',
-    completed: 'bg-blue-100 text-blue-800',
-    cancelled: 'bg-gray-100 text-gray-800',
-    draft: 'bg-gray-100 text-gray-800',
-    open: 'bg-blue-100 text-blue-800',
-    closed: 'bg-gray-100 text-gray-800',
-    hired: 'bg-green-100 text-green-800',
-    interview: 'bg-purple-100 text-purple-800',
-    offer: 'bg-indigo-100 text-indigo-800',
-    new: 'bg-blue-100 text-blue-800',
-    in_progress: 'bg-yellow-100 text-yellow-800',
-    scheduled: 'bg-purple-100 text-purple-800',
+    active: SUCCESS,
+    inactive: NEUTRAL,
+    pending: WARNING,
+    approved: SUCCESS,
+    rejected: DANGER,
+    completed: INFO,
+    cancelled: NEUTRAL,
+    draft: NEUTRAL,
+    open: INFO,
+    closed: NEUTRAL,
+    hired: SUCCESS,
+    interview: INFO,
+    offer: INFO,
+    new: INFO,
+    in_progress: WARNING,
+    scheduled: INFO,
   };
-  return colors[status.toLowerCase()] || 'bg-gray-100 text-gray-800';
+  return colors[status.toLowerCase()] || NEUTRAL;
 }
 
 // Email validation

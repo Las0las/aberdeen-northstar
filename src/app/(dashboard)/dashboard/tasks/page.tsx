@@ -92,14 +92,15 @@ export default function TasksPage() {
       key: 'priority',
       header: 'Priority',
       render: (task: Task) => {
-        const priorityColors: Record<string, string> = {
-          p1: 'bg-red-100 text-red-800',
-          p2: 'bg-yellow-100 text-yellow-800',
-          p3: 'bg-green-100 text-green-800',
+        const priority = task.priority || 'p2';
+        const variantByPriority: Record<string, 'destructive' | 'warning' | 'success' | 'secondary'> = {
+          p1: 'destructive',
+          p2: 'warning',
+          p3: 'success',
         };
         return (
-          <Badge className={priorityColors[task.priority || 'p2'] || 'bg-gray-100 text-gray-800'}>
-            {task.priority || 'P2'}
+          <Badge variant={variantByPriority[priority] || 'secondary'}>
+            {priority.toUpperCase()}
           </Badge>
         );
       },
@@ -131,8 +132,9 @@ export default function TasksPage() {
               handleComplete(task.id);
             }}
             disabled={updateTask.isPending}
+            aria-label={`Mark task ${task.title} as complete`}
           >
-            <Check className="h-4 w-4" />
+            <Check className="h-4 w-4" aria-hidden="true" />
           </Button>
         )
       ),

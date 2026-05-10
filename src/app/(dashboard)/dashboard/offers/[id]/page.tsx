@@ -141,15 +141,15 @@ export default function OfferDetailPage() {
             </div>
           )}
           {offer.accepted_at && (
-            <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-green-600" />
-              <span className="text-green-600">Accepted: {formatDateTime(offer.accepted_at)}</span>
+            <div className="flex items-center gap-2 text-success-foreground">
+              <Calendar className="h-4 w-4" aria-hidden="true" />
+              <span>Accepted: {formatDateTime(offer.accepted_at)}</span>
             </div>
           )}
           {offer.declined_at && (
-            <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-red-600" />
-              <span className="text-red-600">Declined: {formatDateTime(offer.declined_at)}</span>
+            <div className="flex items-center gap-2 text-destructive">
+              <Calendar className="h-4 w-4" aria-hidden="true" />
+              <span>Declined: {formatDateTime(offer.declined_at)}</span>
             </div>
           )}
         </CardContent>

@@ -83,7 +83,16 @@ export default function SubmissionsPage() {
       header: 'Match Score',
       render: (sub: Submission) => (
         sub.ai_match_score ? (
-          <Badge className={sub.ai_match_score >= 80 ? 'bg-green-100 text-green-800' : sub.ai_match_score >= 60 ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}>
+          <Badge
+            variant={
+              sub.ai_match_score >= 80
+                ? 'success'
+                : sub.ai_match_score >= 60
+                ? 'warning'
+                : 'destructive'
+            }
+            aria-label={`Match score ${sub.ai_match_score} percent`}
+          >
             {sub.ai_match_score}%
           </Badge>
         ) : '-'

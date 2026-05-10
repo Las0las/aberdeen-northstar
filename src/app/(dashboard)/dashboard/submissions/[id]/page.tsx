@@ -114,7 +114,7 @@ export default function SubmissionDetailPage() {
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Match Score</span>
               <div className="flex items-center gap-2">
-                <Star className="h-4 w-4 text-yellow-500" />
+                <Star className="h-4 w-4 fill-warning-foreground text-warning-foreground" aria-hidden="true" />
                 <span className="font-medium">{submission.ai_match_score}%</span>
               </div>
             </div>

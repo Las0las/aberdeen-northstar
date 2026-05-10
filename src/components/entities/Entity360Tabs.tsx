@@ -283,7 +283,7 @@ function ActivityTab({ entityType, entityId }: { entityType: string; entityId: s
     return (
       <Card>
         <CardContent className="py-12 text-center">
-          <Clock className="mx-auto h-12 w-12 text-muted-foreground" />
+          <Clock className="mx-auto h-12 w-12 text-muted-foreground" aria-hidden="true" />
           <h3 className="mt-4 text-lg font-semibold">No Activity Yet</h3>
           <p className="text-muted-foreground">Activity will appear here as actions are taken.</p>
         </CardContent>
@@ -295,7 +295,7 @@ function ActivityTab({ entityType, entityId }: { entityType: string; entityId: s
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Clock className="h-5 w-5" />
+          <Clock className="h-5 w-5" aria-hidden="true" />
           Activity Timeline
         </CardTitle>
       </CardHeader>
@@ -420,12 +420,12 @@ function NotesTab({ entityType, entityId }: { entityType: string; entityId: stri
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold flex items-center gap-2">
-          <MessageSquare className="h-5 w-5" />
+          <MessageSquare className="h-5 w-5" aria-hidden="true" />
           Notes
         </h3>
         {notesSupported && (
           <Button onClick={() => { cancelEdit(); setIsAdding(!isAdding); }} size="sm">
-            <Plus className="h-4 w-4 mr-1" />
+            <Plus className="h-4 w-4 mr-1" aria-hidden="true" />
             Add Note
           </Button>
         )}
@@ -434,7 +434,7 @@ function NotesTab({ entityType, entityId }: { entityType: string; entityId: stri
       {!notesSupported && (
         <Card>
           <CardContent className="py-8 text-center">
-            <FileText className="mx-auto h-10 w-10 text-muted-foreground" />
+            <FileText className="mx-auto h-10 w-10 text-muted-foreground" aria-hidden="true" />
             <p className="mt-2 text-sm text-muted-foreground">
               Notes are not supported for this entity type.
             </p>
@@ -478,7 +478,7 @@ function NotesTab({ entityType, entityId }: { entityType: string; entityId: stri
       {notesSupported && notes.length === 0 && !isAdding && (
         <Card>
           <CardContent className="py-12 text-center">
-            <FileText className="mx-auto h-12 w-12 text-muted-foreground" />
+            <FileText className="mx-auto h-12 w-12 text-muted-foreground" aria-hidden="true" />
             <h3 className="mt-4 text-lg font-semibold">No Notes Yet</h3>
             <p className="text-muted-foreground">Add notes to track important information.</p>
           </CardContent>
@@ -500,16 +500,22 @@ function NotesTab({ entityType, entityId }: { entityType: string; entityId: stri
                     </div>
                   </div>
                   <div className="flex gap-1 ml-2">
-                    <Button variant="ghost" size="sm" onClick={() => startEdit(note)}>
-                      <Pencil className="h-4 w-4" />
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => startEdit(note)}
+                      aria-label={note.title ? `Edit note: ${note.title}` : 'Edit note'}
+                    >
+                      <Pencil className="h-4 w-4" aria-hidden="true" />
                     </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={() => deleteMutation.mutate(note.id)}
                       disabled={deleteMutation.isPending}
+                      aria-label={note.title ? `Delete note: ${note.title}` : 'Delete note'}
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="h-4 w-4" aria-hidden="true" />
                     </Button>
                   </div>
                 </div>
@@ -558,7 +564,7 @@ function RelatedTab({
     return (
       <Card>
         <CardContent className="py-12 text-center">
-          <LinkIcon className="mx-auto h-12 w-12 text-muted-foreground" />
+          <LinkIcon className="mx-auto h-12 w-12 text-muted-foreground" aria-hidden="true" />
           <h3 className="mt-4 text-lg font-semibold">No Related Records</h3>
           <p className="text-muted-foreground">Related entities will appear here when linked.</p>
         </CardContent>
@@ -573,7 +579,7 @@ function RelatedTab({
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <LinkIcon className="h-5 w-5" />
+              <LinkIcon className="h-5 w-5" aria-hidden="true" />
               Quick Links
             </CardTitle>
           </CardHeader>
@@ -695,7 +701,7 @@ function AuditTab({ entityType, entityId }: { entityType: string; entityId: stri
     return (
       <Card>
         <CardContent className="py-12 text-center">
-          <Shield className="mx-auto h-12 w-12 text-muted-foreground" />
+          <Shield className="mx-auto h-12 w-12 text-muted-foreground" aria-hidden="true" />
           <h3 className="mt-4 text-lg font-semibold">No Audit Trail</h3>
           <p className="text-muted-foreground">Compliance and audit events will appear here.</p>
         </CardContent>
@@ -707,19 +713,20 @@ function AuditTab({ entityType, entityId }: { entityType: string; entityId: stri
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Shield className="h-5 w-5" />
+          <Shield className="h-5 w-5" aria-hidden="true" />
           Audit Trail
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
+            <caption className="sr-only">Audit trail of changes to this record</caption>
             <thead>
               <tr className="border-b">
-                <th className="text-left py-2 px-2">Action</th>
-                <th className="text-left py-2 px-2">User</th>
-                <th className="text-left py-2 px-2">Changes</th>
-                <th className="text-left py-2 px-2">Timestamp</th>
+                <th scope="col" className="text-left py-2 px-2">Action</th>
+                <th scope="col" className="text-left py-2 px-2">User</th>
+                <th scope="col" className="text-left py-2 px-2">Changes</th>
+                <th scope="col" className="text-left py-2 px-2">Timestamp</th>
               </tr>
             </thead>
             <tbody>
