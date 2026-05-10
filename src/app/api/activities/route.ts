@@ -10,6 +10,7 @@ import {
   getActivitiesSupport
 } from '@/server/contractAllowlist';
 import { checkRateLimit, rateLimitHeaders, RATE_LIMITS } from '@/server/rateLimit';
+import { logger, errorMeta } from '@/server/logger';
 
 export async function GET(request: NextRequest) {
   try {
@@ -97,7 +98,7 @@ export async function GET(request: NextRequest) {
     const { data, error } = await query;
 
     if (error) {
-      console.error('Activities query error:', error);
+      logger.error('activities query failed', { route: 'activities', code: error.code });
       return NextResponse.json(
         errorResponse('DB_ERROR', 'Database query failed'),
         { status: 500 }
@@ -106,7 +107,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(successResponse(data || []));
   } catch (err) {
-    console.error('Activities route error:', err);
+    logger.error('activities route exception', errorMeta(err, { route: 'activities' }));
     return NextResponse.json(
       errorResponse('INTERNAL_ERROR', 'Internal server error'),
       { status: 500 }

@@ -209,7 +209,7 @@ export default function JobDetailPage() {
 
   return (
     <Entity360Tabs
-      entityType="job"
+      entityType="jobs"
       entityId={id}
       title={title}
       actions={actions}

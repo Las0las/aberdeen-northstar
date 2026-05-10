@@ -532,8 +532,9 @@ function RelatedTab({
   entityId: string; 
   relatedEntities: RelatedEntity[];
 }) {
-  // Map entity type to table name (remove trailing 's' if present for singular)
-  const tableName = entityType.endsWith('s') ? entityType : `${entityType}s`;
+  // entityType is now always the plural table name (enforced by
+  // scripts/check-entity-types.ts at build time). No pluralization needed.
+  const tableName = entityType;
   
   const { data: related, isLoading, error } = useQuery({
     queryKey: ['related', tableName, entityId],

@@ -245,7 +245,7 @@ export default function InterviewDetailPage() {
 
   return (
     <Entity360Tabs
-      entityType="interview"
+      entityType="interviews"
       entityId={id}
       title={title}
       actions={actions}

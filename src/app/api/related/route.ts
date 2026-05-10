@@ -6,6 +6,7 @@ import { supabaseAdmin } from '@/db/supabaseAdmin';
 import { requireOrgContext, successResponse, errorResponse } from '@/server/orgScope';
 import { assertAllowedEntity, assertUuid, ALLOWED_ENTITY_TABLES } from '@/server/contractAllowlist';
 import { checkRateLimit, rateLimitHeaders, RATE_LIMITS } from '@/server/rateLimit';
+import { logger, errorMeta } from '@/server/logger';
 import dbContract from '@/db/contract/db_contract.json';
 
 // Types
@@ -309,7 +310,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(successResponse({ outgoing, incoming }));
   } catch (err) {
-    console.error('Related route error:', err);
+    logger.error('related route exception', errorMeta(err, { route: 'related' }));
     return NextResponse.json(
       errorResponse('INTERNAL_ERROR', 'Internal server error'),
       { status: 500 }

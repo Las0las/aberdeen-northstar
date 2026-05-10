@@ -8,9 +8,15 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "check:entity-types": "ts-node --compiler-options '{\"module\":\"commonjs\",\"target\":\"es2017\"}' scripts/check-entity-types.ts",
+    "prebuild": "npm run check:entity-types",
     "dev:validate": "ts-node scripts/dev-validate.ts",
     "smoke:api": "ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/smoke-api.ts",
     "generate": "npm run generate:types && npm run generate:openapi && npm run generate:ai-tools && npm run generate:api && npm run generate:hooks",
+    "generate:check": "npm run generate >/dev/null && git diff --quiet -- src/types src/openapi src/ai/tools src/api/typed src/hooks src/schemas || (echo 'Generated files are out of sync with the contract. Run `npm run generate` and commit.' && git --no-pager diff --stat -- src/types src/openapi src/ai/tools src/api/typed src/hooks src/schemas && exit 1)",
     "generate:types": "node scripts/generate-from-contract.js",
     "generate:openapi": "node scripts/generate-openapi.js",
     "generate:ai-tools": "node scripts/generate-ai-tools.js",
@@ -51,6 +57,7 @@
     "@types/node": "^20.11.19",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
+    "@vitest/coverage-v8": "^4.1.5",
     "autoprefixer": "^10.4.17",
     "dotenv": "^16.6.1",
     "eslint": "^8.56.0",
@@ -58,6 +65,7 @@
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^4.1.5"
   }
 }

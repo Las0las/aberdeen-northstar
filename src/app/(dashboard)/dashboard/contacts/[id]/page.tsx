@@ -160,7 +160,7 @@ export default function ContactDetailPage() {
 
   return (
     <Entity360Tabs
-      entityType="contact"
+      entityType="contacts"
       entityId={id}
       title={title}
       actions={actions}

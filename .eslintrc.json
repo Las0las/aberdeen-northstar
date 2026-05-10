@@ -1,3 +1,38 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "@/db/supabaseAdmin",
+            "message": "supabaseAdmin uses the service role and bypasses RLS — only import from src/app/api/* or src/server/*."
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/app/api/**/*.ts", "src/server/**/*.ts", "scripts/**/*.{ts,js}", "src/middleware.ts", "src/app/auth/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    },
+    {
+      "files": ["src/**/__tests__/**", "src/**/*.test.ts"],
+      "rules": {
+        "no-console": "off",
+        "no-restricted-imports": "off"
+      }
+    },
+    {
+      "files": ["src/api/typed/index.ts", "src/hooks/generated.ts", "src/types/database.types.ts", "src/schemas/index.ts", "src/ai/tools/generated/**"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
 }

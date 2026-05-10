@@ -6,6 +6,7 @@ import { supabaseAdmin } from '@/db/supabaseAdmin';
 import { requireOrgContext, assertOrgScope, successResponse, errorResponse } from '@/server/orgScope';
 import { assertUuid } from '@/server/contractAllowlist';
 import { checkRateLimit, rateLimitHeaders, RATE_LIMITS } from '@/server/rateLimit';
+import { logger, errorMeta } from '@/server/logger';
 
 interface RouteContext {
   params: Promise<{ id: string }>;
@@ -123,7 +124,7 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
       .single();
 
     if (error) {
-      console.error('Notes update error:', error);
+      logger.error('notes update failed', { route: 'notes/[id]', code: error.code });
       return NextResponse.json(
         errorResponse('DB_ERROR', 'Database update failed'),
         { status: 500 }
@@ -132,7 +133,7 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
 
     return NextResponse.json(successResponse(data));
   } catch (err) {
-    console.error('Notes PATCH error:', err);
+    logger.error('notes PATCH exception', errorMeta(err, { route: 'notes/[id]', method: 'PATCH' }));
     return NextResponse.json(
       errorResponse('INTERNAL_ERROR', 'Internal server error'),
       { status: 500 }
@@ -205,7 +206,7 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
       .eq('organization_id', ctx.organizationId);
 
     if (error) {
-      console.error('Notes delete error:', error);
+      logger.error('notes delete failed', { route: 'notes/[id]', code: error.code });
       return NextResponse.json(
         errorResponse('DB_ERROR', 'Database delete failed'),
         { status: 500 }
@@ -214,7 +215,7 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
 
     return NextResponse.json(successResponse({ deleted: true }));
   } catch (err) {
-    console.error('Notes DELETE error:', err);
+    logger.error('notes DELETE exception', errorMeta(err, { route: 'notes/[id]', method: 'DELETE' }));
     return NextResponse.json(
       errorResponse('INTERNAL_ERROR', 'Internal server error'),
       { status: 500 }

@@ -215,7 +215,7 @@ export default function CandidateDetailPage() {
 
   return (
     <Entity360Tabs
-      entityType="candidate"
+      entityType="candidates"
       entityId={id}
       title={title}
       actions={actions}

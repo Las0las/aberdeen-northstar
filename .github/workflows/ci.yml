@@ -1,0 +1,53 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Only one CI run per ref — newer pushes cancel older ones.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: type-check, lint, test, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      # Build runs without real Supabase credentials. The runtime clients
+      # detect NEXT_PHASE=phase-production-build and defer the hard-fail.
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: 1
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: install
+        run: npm ci --no-audit --no-fund
+
+      - name: type-check
+        run: npm run type-check
+
+      - name: lint
+        run: npm run lint
+
+      - name: contract-regen drift check
+        run: npm run generate:check
+
+      - name: entity-types allowlist check
+        run: npm run check:entity-types
+
+      - name: unit tests
+        run: npm run test
+
+      # `next build` runs `prebuild` (entity-types check) automatically.
+      - name: build
+        run: npm run build

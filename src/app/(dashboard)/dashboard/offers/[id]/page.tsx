@@ -212,7 +212,7 @@ export default function OfferDetailPage() {
 
   return (
     <Entity360Tabs
-      entityType="offer"
+      entityType="offers"
       entityId={id}
       title={title}
       actions={actions}
