@@ -4,20 +4,31 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/db/supabaseAdmin';
 import { requireOrgContext, successResponse, errorResponse } from '@/server/orgScope';
-import { 
-  assertAllowedEntity, 
-  assertUuid, 
-  getActivitiesSupport 
+import {
+  assertAllowedEntity,
+  assertUuid,
+  getActivitiesSupport
 } from '@/server/contractAllowlist';
+import { checkRateLimit, rateLimitHeaders, RATE_LIMITS } from '@/server/rateLimit';
+import { logger, errorMeta } from '@/server/logger';
 
 export async function GET(request: NextRequest) {
   try {
+    // 0. Rate limit before any DB work.
+    const rl = checkRateLimit(request, 'activities:get', RATE_LIMITS.read);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        errorResponse('RATE_LIMITED', 'Too many requests'),
+        { status: 429, headers: rateLimitHeaders(rl) }
+      );
+    }
+
     // 1. Require org context (NEVER from client input)
     const ctx = await requireOrgContext();
     if (!ctx) {
       return NextResponse.json(
         errorResponse('UNAUTHORIZED', 'Organization context required'),
-        { status: 401 }
+        { status: 401, headers: rateLimitHeaders(rl) }
       );
     }
 
@@ -87,7 +98,7 @@ export async function GET(request: NextRequest) {
     const { data, error } = await query;
 
     if (error) {
-      console.error('Activities query error:', error);
+      logger.error('activities query failed', { route: 'activities', code: error.code });
       return NextResponse.json(
         errorResponse('DB_ERROR', 'Database query failed'),
         { status: 500 }
@@ -96,7 +107,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(successResponse(data || []));
   } catch (err) {
-    console.error('Activities route error:', err);
+    logger.error('activities route exception', errorMeta(err, { route: 'activities' }));
     return NextResponse.json(
       errorResponse('INTERNAL_ERROR', 'Internal server error'),
       { status: 500 }

@@ -216,7 +216,7 @@ export default function PlacementDetailPage() {
 
   return (
     <Entity360Tabs
-      entityType="placement"
+      entityType="placements"
       entityId={id}
       title={title}
       actions={actions}

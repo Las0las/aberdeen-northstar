@@ -106,9 +106,32 @@ interface Entity360TabsProps {
   relatedEntities?: RelatedEntity[];
 }
 
+// UUID v4-ish format check — same regex as the server allowlist. Cheap
+// client-side guard so we don't fire requests we know will 400.
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+class InvalidParamsError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidParamsError';
+  }
+}
+
+function assertUuid(id: string, fieldName: string): void {
+  if (!UUID_RE.test(id)) {
+    throw new InvalidParamsError(`Invalid ${fieldName}`);
+  }
+}
+
+function buildUrl(path: string, params: Record<string, string>): string {
+  const qs = new URLSearchParams(params).toString();
+  return qs ? `${path}?${qs}` : path;
+}
+
 // API fetch helpers
 async function fetchActivities(entityType: string, entityId: string): Promise<Activity[]> {
-  const res = await fetch(`/api/activities?entity_type=${entityType}&entity_id=${entityId}`);
+  assertUuid(entityId, 'entity_id');
+  const res = await fetch(buildUrl('/api/activities', { entity_type: entityType, entity_id: entityId }));
   const json: ApiResponse<Activity[]> = await res.json();
   if (!json.ok) throw new Error(json.error?.message || 'Failed to fetch activities');
   return json.data || [];
@@ -121,7 +144,8 @@ interface NotesResponse {
 }
 
 async function fetchNotes(entityType: string, entityId: string): Promise<NotesResponse> {
-  const res = await fetch(`/api/notes?entity_type=${entityType}&entity_id=${entityId}`);
+  assertUuid(entityId, 'entity_id');
+  const res = await fetch(buildUrl('/api/notes', { entity_type: entityType, entity_id: entityId }));
   const json = await res.json() as ApiResponse<Note[]> & { meta?: { supported?: boolean; reason?: string } };
   if (!json.ok) throw new Error(json.error?.message || 'Failed to fetch notes');
   return {
@@ -132,6 +156,7 @@ async function fetchNotes(entityType: string, entityId: string): Promise<NotesRe
 }
 
 async function createNote(data: { entity_type: string; entity_id: string; title?: string; content: string; note_type?: string; is_internal?: boolean }): Promise<Note> {
+  assertUuid(data.entity_id, 'entity_id');
   const res = await fetch('/api/notes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -143,7 +168,8 @@ async function createNote(data: { entity_type: string; entity_id: string; title?
 }
 
 async function updateNote(id: string, data: { title?: string; content?: string; note_type?: string; is_internal?: boolean }): Promise<Note> {
-  const res = await fetch(`/api/notes/${id}`, {
+  assertUuid(id, 'note id');
+  const res = await fetch(`/api/notes/${encodeURIComponent(id)}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -154,20 +180,23 @@ async function updateNote(id: string, data: { title?: string; content?: string; 
 }
 
 async function deleteNote(id: string): Promise<void> {
-  const res = await fetch(`/api/notes/${id}`, { method: 'DELETE' });
+  assertUuid(id, 'note id');
+  const res = await fetch(`/api/notes/${encodeURIComponent(id)}`, { method: 'DELETE' });
   const json: ApiResponse<{ deleted: boolean }> = await res.json();
   if (!json.ok) throw new Error(json.error?.message || 'Failed to delete note');
 }
 
 async function fetchAudit(tableName: string, recordId: string): Promise<AuditLog[]> {
-  const res = await fetch(`/api/audit?table_name=${tableName}&record_id=${recordId}`);
+  assertUuid(recordId, 'record_id');
+  const res = await fetch(buildUrl('/api/audit', { table_name: tableName, record_id: recordId }));
   const json: ApiResponse<AuditLog[]> = await res.json();
   if (!json.ok) throw new Error(json.error?.message || 'Failed to fetch audit');
   return json.data || [];
 }
 
 async function fetchRelated(table: string, id: string): Promise<RelatedData> {
-  const res = await fetch(`/api/related?table=${table}&id=${id}`);
+  assertUuid(id, 'id');
+  const res = await fetch(buildUrl('/api/related', { table, id }));
   const json: ApiResponse<RelatedData> = await res.json();
   if (!json.ok) throw new Error(json.error?.message || 'Failed to fetch related');
   return json.data || { outgoing: [], incoming: [] };
@@ -503,8 +532,9 @@ function RelatedTab({
   entityId: string; 
   relatedEntities: RelatedEntity[];
 }) {
-  // Map entity type to table name (remove trailing 's' if present for singular)
-  const tableName = entityType.endsWith('s') ? entityType : `${entityType}s`;
+  // entityType is now always the plural table name (enforced by
+  // scripts/check-entity-types.ts at build time). No pluralization needed.
+  const tableName = entityType;
   
   const { data: related, isLoading, error } = useQuery({
     queryKey: ['related', tableName, entityId],

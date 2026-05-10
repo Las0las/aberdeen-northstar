@@ -178,7 +178,7 @@ export default function ClientDetailPage() {
 
   return (
     <Entity360Tabs
-      entityType="client"
+      entityType="clients"
       entityId={id}
       title={title}
       actions={actions}
