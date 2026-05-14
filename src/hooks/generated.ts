@@ -332,7 +332,7 @@ export function useTagsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateTag() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['tags']['Insert'], 'organization_id'>) => api.tags.create(data),
+    mutationFn: (data: Tables['tags']['Insert']) => api.tags.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.tags.all });
     },
@@ -396,7 +396,7 @@ export function useUsersInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateUser() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['users']['Insert'], 'organization_id'>) => api.users.create(data),
+    mutationFn: (data: Tables['users']['Insert']) => api.users.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.users.all });
     },
@@ -460,7 +460,7 @@ export function useSavedSearchesInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateSavedSearch() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['saved_searches']['Insert'], 'organization_id'>) => api.savedSearches.create(data),
+    mutationFn: (data: Tables['saved_searches']['Insert']) => api.savedSearches.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.savedSearches.all });
     },
@@ -524,7 +524,7 @@ export function useActivitiesInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateActivity() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['activities']['Insert'], 'organization_id'>) => api.activities.create(data),
+    mutationFn: (data: Tables['activities']['Insert']) => api.activities.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.activities.all });
     },
@@ -588,7 +588,7 @@ export function useIntegrationConnectionsInfinite(options?: Omit<ListOptions, 'p
 export function useCreateIntegrationConnection() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['integration_connections']['Insert'], 'organization_id'>) => api.integrationConnections.create(data),
+    mutationFn: (data: Tables['integration_connections']['Insert']) => api.integrationConnections.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.integrationConnections.all });
     },
@@ -652,7 +652,7 @@ export function useMessagesInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateMessage() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['messages']['Insert'], 'organization_id'>) => api.messages.create(data),
+    mutationFn: (data: Tables['messages']['Insert']) => api.messages.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.messages.all });
     },
@@ -716,7 +716,7 @@ export function useWorkspacesInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateWorkspace() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['workspaces']['Insert'], 'organization_id'>) => api.workspaces.create(data),
+    mutationFn: (data: Tables['workspaces']['Insert']) => api.workspaces.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.workspaces.all });
     },
@@ -780,7 +780,7 @@ export function useClientsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateClient() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['clients']['Insert'], 'organization_id'>) => api.clients.create(data),
+    mutationFn: (data: Tables['clients']['Insert']) => api.clients.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.clients.all });
     },
@@ -844,7 +844,7 @@ export function useJobsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateJob() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['jobs']['Insert'], 'organization_id'>) => api.jobs.create(data),
+    mutationFn: (data: Tables['jobs']['Insert']) => api.jobs.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.jobs.all });
     },
@@ -908,7 +908,7 @@ export function useNotesInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateNote() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['notes']['Insert'], 'organization_id'>) => api.notes.create(data),
+    mutationFn: (data: Tables['notes']['Insert']) => api.notes.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.notes.all });
     },
@@ -972,7 +972,7 @@ export function useNotificationsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateNotification() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['notifications']['Insert'], 'organization_id'>) => api.notifications.create(data),
+    mutationFn: (data: Tables['notifications']['Insert']) => api.notifications.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.notifications.all });
     },
@@ -1036,7 +1036,7 @@ export function useWorkspaceMembersInfinite(options?: Omit<ListOptions, 'page'>)
 export function useCreateWorkspaceMember() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['workspace_members']['Insert'], 'organization_id'>) => api.workspaceMembers.create(data),
+    mutationFn: (data: Tables['workspace_members']['Insert']) => api.workspaceMembers.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.workspaceMembers.all });
     },
@@ -1100,7 +1100,7 @@ export function useSubmissionsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateSubmission() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['submissions']['Insert'], 'organization_id'>) => api.submissions.create(data),
+    mutationFn: (data: Tables['submissions']['Insert']) => api.submissions.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.submissions.all });
     },
@@ -1164,7 +1164,7 @@ export function useInterviewsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateInterview() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['interviews']['Insert'], 'organization_id'>) => api.interviews.create(data),
+    mutationFn: (data: Tables['interviews']['Insert']) => api.interviews.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.interviews.all });
     },
@@ -1228,7 +1228,7 @@ export function useInvoicesInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateInvoice() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['invoices']['Insert'], 'organization_id'>) => api.invoices.create(data),
+    mutationFn: (data: Tables['invoices']['Insert']) => api.invoices.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.invoices.all });
     },
@@ -1292,7 +1292,7 @@ export function useWorkflowsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateWorkflow() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['workflows']['Insert'], 'organization_id'>) => api.workflows.create(data),
+    mutationFn: (data: Tables['workflows']['Insert']) => api.workflows.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.workflows.all });
     },
@@ -1356,7 +1356,7 @@ export function useContactsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateContact() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['contacts']['Insert'], 'organization_id'>) => api.contacts.create(data),
+    mutationFn: (data: Tables['contacts']['Insert']) => api.contacts.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.contacts.all });
     },
@@ -1420,7 +1420,7 @@ export function useMeetingsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateMeeting() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['meetings']['Insert'], 'organization_id'>) => api.meetings.create(data),
+    mutationFn: (data: Tables['meetings']['Insert']) => api.meetings.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.meetings.all });
     },
@@ -1484,7 +1484,7 @@ export function useTimesheetsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateTimesheet() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['timesheets']['Insert'], 'organization_id'>) => api.timesheets.create(data),
+    mutationFn: (data: Tables['timesheets']['Insert']) => api.timesheets.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.timesheets.all });
     },
@@ -1548,7 +1548,7 @@ export function useApplicationsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateApplication() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['applications']['Insert'], 'organization_id'>) => api.applications.create(data),
+    mutationFn: (data: Tables['applications']['Insert']) => api.applications.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.applications.all });
     },
@@ -1612,7 +1612,7 @@ export function useTemplatesInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateTemplate() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['templates']['Insert'], 'organization_id'>) => api.templates.create(data),
+    mutationFn: (data: Tables['templates']['Insert']) => api.templates.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.templates.all });
     },
@@ -1676,7 +1676,7 @@ export function useTeamsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateTeam() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['teams']['Insert'], 'organization_id'>) => api.teams.create(data),
+    mutationFn: (data: Tables['teams']['Insert']) => api.teams.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.teams.all });
     },
@@ -1740,7 +1740,7 @@ export function useOffersInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateOffer() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['offers']['Insert'], 'organization_id'>) => api.offers.create(data),
+    mutationFn: (data: Tables['offers']['Insert']) => api.offers.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.offers.all });
     },
@@ -1804,7 +1804,7 @@ export function useReportsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateReport() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['reports']['Insert'], 'organization_id'>) => api.reports.create(data),
+    mutationFn: (data: Tables['reports']['Insert']) => api.reports.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.reports.all });
     },
@@ -1868,7 +1868,7 @@ export function useDocumentsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateDocument() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['documents']['Insert'], 'organization_id'>) => api.documents.create(data),
+    mutationFn: (data: Tables['documents']['Insert']) => api.documents.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.documents.all });
     },
@@ -1932,7 +1932,7 @@ export function usePlacementsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreatePlacement() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['placements']['Insert'], 'organization_id'>) => api.placements.create(data),
+    mutationFn: (data: Tables['placements']['Insert']) => api.placements.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.placements.all });
     },
@@ -1996,7 +1996,7 @@ export function useOrganizationsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateOrganization() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['organizations']['Insert'], 'organization_id'>) => api.organizations.create(data),
+    mutationFn: (data: Tables['organizations']['Insert']) => api.organizations.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.organizations.all });
     },
@@ -2060,7 +2060,7 @@ export function useTalentPoolsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateTalentPool() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['talent_pools']['Insert'], 'organization_id'>) => api.talentPools.create(data),
+    mutationFn: (data: Tables['talent_pools']['Insert']) => api.talentPools.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.talentPools.all });
     },
@@ -2124,7 +2124,7 @@ export function useTasksInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateTask() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['tasks']['Insert'], 'organization_id'>) => api.tasks.create(data),
+    mutationFn: (data: Tables['tasks']['Insert']) => api.tasks.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.tasks.all });
     },
@@ -2188,7 +2188,7 @@ export function useRolesInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateRole() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['roles']['Insert'], 'organization_id'>) => api.roles.create(data),
+    mutationFn: (data: Tables['roles']['Insert']) => api.roles.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.roles.all });
     },
@@ -2252,7 +2252,7 @@ export function useSettingsInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateSetting() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['settings']['Insert'], 'organization_id'>) => api.settings.create(data),
+    mutationFn: (data: Tables['settings']['Insert']) => api.settings.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.settings.all });
     },
@@ -2316,7 +2316,7 @@ export function useBenchInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateBenchEntry() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['bench']['Insert'], 'organization_id'>) => api.bench.create(data),
+    mutationFn: (data: Tables['bench']['Insert']) => api.bench.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.bench.all });
     },
@@ -2380,7 +2380,7 @@ export function useAppUsersInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateAppUser() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['app_users']['Insert'], 'organization_id'>) => api.appUsers.create(data),
+    mutationFn: (data: Tables['app_users']['Insert']) => api.appUsers.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.appUsers.all });
     },
@@ -2423,11 +2423,10 @@ export function useCandidate(id: string | undefined) {
 }
 
 // List Candidates with pagination
-export function useCandidates(options?: ListOptions & { enabled?: boolean }) {
+export function useCandidates(options?: ListOptions) {
   return useQuery({
     queryKey: queryKeys.candidates.list(options),
     queryFn: () => api.candidates.list(options),
-    enabled: options?.enabled !== false,
   });
 }
 
@@ -2445,7 +2444,7 @@ export function useCandidatesInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateCandidate() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['candidates']['Insert'], 'organization_id'>) => api.candidates.create(data),
+    mutationFn: (data: Tables['candidates']['Insert']) => api.candidates.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.candidates.all });
     },
@@ -2509,7 +2508,7 @@ export function useCompaniesInfinite(options?: Omit<ListOptions, 'page'>) {
 export function useCreateCompany() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Tables['companies']['Insert'], 'organization_id'>) => api.companies.create(data),
+    mutationFn: (data: Tables['companies']['Insert']) => api.companies.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.companies.all });
     },
@@ -2556,7 +2555,7 @@ export function useCurrentUser() {
 }
 
 // Candidates search
-export function useCandidateSearch(query: string, options?: ListOptions & { enabled?: boolean }) {
+export function useCandidateSearch(query: string, options?: ListOptions) {
   return useQuery({
     queryKey: [...queryKeys.candidates.all, 'search', query, options],
     queryFn: async () => {
@@ -2581,7 +2580,7 @@ export function useCandidateSearch(query: string, options?: ListOptions & { enab
         totalPages: Math.ceil((count || 0) / pageSize),
       };
     },
-    enabled: options?.enabled !== false && query.length >= 2,
+    enabled: query.length >= 2,
   });
 }
 
