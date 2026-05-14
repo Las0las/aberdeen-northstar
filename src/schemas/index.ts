@@ -1,5 +1,4 @@
 // AUTO-GENERATED FROM db_contract.frozen.json - DO NOT EDIT
-// Generated: 2026-05-14T01:34:38.081Z
 
 import { z } from 'zod';
 

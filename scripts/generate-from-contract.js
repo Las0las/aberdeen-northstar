@@ -84,7 +84,6 @@ function getZodType(pgType) {
 
 function generateDatabaseTypes() {
   let output = `// AUTO-GENERATED FROM db_contract.frozen.json - DO NOT EDIT
-// Generated: ${new Date().toISOString()}
 
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
@@ -162,7 +161,6 @@ export type UpdateTables<T extends keyof Database['public']['Tables']> = Databas
 
 function generateZodSchemas() {
   let output = `// AUTO-GENERATED FROM db_contract.frozen.json - DO NOT EDIT
-// Generated: ${new Date().toISOString()}
 
 import { z } from 'zod';
 
