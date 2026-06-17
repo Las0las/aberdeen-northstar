@@ -1,5 +1,4 @@
 // AUTO-GENERATED FROM db_contract.frozen.json - DO NOT EDIT
-// Generated: 2026-01-17T23:00:17.460Z
 
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 

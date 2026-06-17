@@ -4,6 +4,7 @@ import path from 'node:path';
 export default defineConfig({
   resolve: {
     alias: {
+      '@/contracts': path.resolve(__dirname, 'contracts'),
       '@': path.resolve(__dirname, 'src'),
     },
   },
